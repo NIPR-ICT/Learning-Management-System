@@ -88,7 +88,7 @@ class MaterialController extends Controller
         }
     
         $material->delete();
-    
+
         return redirect()->route('all.materials')->with('alert', [
             'title' => 'Deleted!',
             'text' => 'Material deleted successfully!',
