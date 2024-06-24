@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/add-material/{id}',[MaterialController::class,'create'])->name('add.material');
         Route::post('/add-material',[MaterialController::class,'store'])->name('material.store');
         Route::get('/all-material',[MaterialController::class,'index'])->name('all.materials');
+        Route::delete('/material/{id}', [MaterialController::class, 'destroy'])->name('material.delete');
         Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
 
     });

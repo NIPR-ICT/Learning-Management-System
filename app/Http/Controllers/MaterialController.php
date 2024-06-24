@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lesson;
 use App\Models\Material;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use PharIo\Manifest\Url;
@@ -75,5 +76,24 @@ class MaterialController extends Controller
         }
     }
    
+
+    public function destroy($id)
+    {
+        $material = Material::findOrFail($id);
+    
+        Log::info('File path: ' . $material->file_path); 
+    
+        if (!empty($material->file_path) && Storage::disk('public')->exists($material->file_path)) {
+            Storage::disk('public')->delete($material->file_path);
+        }
+    
+        $material->delete();
+    
+        return redirect()->route('all.materials')->with('alert', [
+            'title' => 'Deleted!',
+            'text' => 'Material deleted successfully!',
+            'icon' => 'success'
+        ]);
+    }
 
 }
