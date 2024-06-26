@@ -62,8 +62,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add-lesson', [LessonController::class, 'store'])->name('lesson.store');
         Route::get('/lesson-course/{id}', [LessonController::class, 'showCoures'])->name('lesson.course.module');
         Route::delete('/lesson/{id}', [LessonController::class, 'destroy'])->name('lesson.delete');
-        Route::get('/edit-lesson/{id}',[LessonController::class,'editLesson'])->name('edit.lesson.form');
-        Route::put('/edit-lesson/{id}', [LessonController::class, 'storeupdate'])->name('lesson.update');
         Route::get('/add-material/{id}',[MaterialController::class,'create'])->name('add.material');
         Route::post('/add-material',[MaterialController::class,'store'])->name('material.store');
         Route::get('/all-material',[MaterialController::class,'index'])->name('all.materials');
