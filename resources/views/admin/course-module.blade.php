@@ -55,7 +55,7 @@
                                             {{ $shortened }}</td>
                                             <td class="py-3 px-4">{{ $lesson->order}}</td>
                                             <td class="py-3 px-4 flex space-x-2 whitespace-nowrap">
-                                                <a href="{{route('edit.lesson.form', $lesson->id)}}" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                                                <a href="#" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Edit</a>
                                                 <a href="{{ route('add.material', $lesson->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Material</a>
                                                 <form action="{{ route('lesson.delete', $lesson->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Lesson?');" style="display:inline;">
                                                     @csrf
