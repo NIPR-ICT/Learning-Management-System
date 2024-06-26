@@ -84,9 +84,9 @@
                 </li>
 
                 <li>
-                    <a href="#" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">
+                    <a href="{{route('profile.edit')}}" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">
                         <i class="fas fa-cog mr-2"></i>
-                        View All Courses
+                       Account Setting
                     </a>
                 </li>
             </ul>
