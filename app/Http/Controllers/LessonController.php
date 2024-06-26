@@ -11,7 +11,6 @@ class LessonController extends Controller
     public function index(Request $request)
     {
         $modules = Module::paginate(10);
-
         return view('admin.view-modules', compact('modules'));
     }
 
@@ -23,7 +22,7 @@ class LessonController extends Controller
     public function store(Request $request)
 {
      $request->validate([
-        'title' => 'required|string',
+        'title' => 'required|string|unique:lessons,title',
         'module_id' => 'required',
         'course_id' => 'required',
         'content' => 'required',
@@ -43,6 +42,38 @@ class LessonController extends Controller
     return redirect()->route('all.modules.lesson')->with('alert', [
         'title' => 'Success!',
         'text' => 'Lesson added successfully.',
+        'icon' => 'success'
+    ]);
+}
+
+
+public function editLesson($id){
+    $lesson = Lesson::findOrFail($id);
+    if($lesson){
+        return view('admin.update-lesson', compact('lesson')); 
+    }
+}
+
+public function storeupdate(Request $request, Lesson $lesson){
+     $request->validate([
+        'title' => 'required|string',
+        'module_id' => 'required',
+        'course_id' => 'required',
+        'content' => 'required',
+        'order' => 'required|integer',
+    ]);
+
+    $lesson = Lesson::findOrFail($request->id);
+    $lesson->title = $request->input('title');
+    $lesson->module_id = $request->input('module_id');
+    $lesson->course_id = $request->input('course_id');
+    $lesson->content = $request->input('content');
+    $lesson->order = $request->input('order');
+
+    $lesson->save();
+    return redirect()->route('all.modules.lesson')->with('alert', [
+        'title' => 'Success!',
+        'text' => 'Lesson updated successfully.',
         'icon' => 'success'
     ]);
 }
