@@ -18,6 +18,7 @@ class Program extends Model
         'min_credit',
         'created_by',
         'program_duration',
+        'short_code',
     ];
 
     public function user()

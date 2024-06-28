@@ -81,6 +81,12 @@
                                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                 </div>
 
+                                <div class="mb-4">
+                                    <label for="credit_unit" class="block text-sm font-medium text-gray-700">Course Credit Unit</label>
+                                    <input type="number" min="0" id="credit_unit" name="credit_unit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('credit_unit') }}">
+                                    <x-input-error :messages="$errors->get('credit_unit')" class="mt-2" />
+                                </div>
+
                                 <div>
                                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Submit

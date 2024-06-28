@@ -37,6 +37,7 @@ class ProgramController extends Controller
             'max_credit' => 'required|integer',
             'min_credit' => 'required|integer',
             'program_duration' => 'required|string',
+            'short_code' => 'required|string',
         ]);
 
         $program = new Program([
@@ -46,6 +47,7 @@ class ProgramController extends Controller
             'min_credit' => $request->get('min_credit'),
             'created_by' => auth()->id(), 
             'program_duration' => $request->get('program_duration'),
+            'short_code' => $request->get('short_code'),
         ]);
 
         $program->save();
@@ -80,6 +82,7 @@ class ProgramController extends Controller
             'max_credit' => 'required|integer',
             'min_credit' => 'required|integer',
             'program_duration' => 'required|string|max:255',
+            'short_code' => 'required',
         ]);
 
         $program = Program::findOrFail($request->id);
@@ -90,6 +93,7 @@ class ProgramController extends Controller
         $program->max_credit = $request->input('max_credit');
         $program->min_credit = $request->input('min_credit');
         $program->program_duration = $request->input('program_duration');
+        $program->short_code = $request->input('short_code');
 
         $program->save();
 

@@ -35,6 +35,7 @@ class CourseController extends Controller
                 'course_amount' => 'required|integer',
                 'course_code' => 'required|string|unique:courses,course_code',
                 'description' => 'required|string',
+                'credit_unit' => 'required|integer',
             ]);
         
             // Create a new Course instance and populate it with validated data
@@ -47,6 +48,7 @@ class CourseController extends Controller
                 'course_code' => $request->input('course_code'),
                 'description' => $request->input('description'),
                 'created_by' => auth()->id(),
+                'credit_unit' => $request->input('credit_unit'),
             ]);
 
             $course->save();
@@ -82,6 +84,7 @@ public function storeupdate(Request $request, Course $course){
         'course_amount' => 'required|numeric|min:0',
         'course_code' => 'required|string|max:255',
         'description' => 'nullable|string',
+        'credit_unit' => 'required|integer',
     ]);
 
     $course = Course::findOrFail($request->id);
@@ -92,6 +95,7 @@ public function storeupdate(Request $request, Course $course){
     $course->course_amount = $request->input('course_amount');
     $course->course_code = $request->input('course_code');
     $course->description = $request->input('description');
+    $course->credit_unit = $request->input('credit_unit');
     $course->save();
     return redirect()->route('all.courses')->with('alert', [
         'title' => 'Success!',
