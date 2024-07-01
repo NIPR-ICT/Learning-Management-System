@@ -50,4 +50,8 @@ class User extends Authenticatable
 {
     return $this->hasMany(Course::class, 'created_by');
 }
+public function centers()
+    {
+        return $this->hasMany(Center::class, 'created_by');
+    }
 }

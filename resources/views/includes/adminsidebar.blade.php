@@ -70,6 +70,22 @@
                     </ul>
                 </li>
 
+
+                <li class="relative">
+                    <a href="#" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="true">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        Manage Centers
+                        <span class="ml-auto">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </a>
+                    <ul class="absolute hidden bg-red-500 text-white shadow-lg rounded-lg mt-2 py-2 w-48 top-0 left-0 z-10 space-y-2">
+                        <!-- Add rounded-lg for border radius -->
+                        <li><a href="{{route('add.center')}}" class="block px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">Add Center</a></li>
+                        <li><a href="{{route('all.center')}}" class="block px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">Manage Centers</a></li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="{{route('all.modules.lesson')}}" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">
                         <i class="fas fa-book mr-2"></i>
