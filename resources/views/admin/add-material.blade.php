@@ -29,15 +29,13 @@
                                 @csrf
                                 <div class="mb-4">
                                     <label for="lesson_id" class="block text-sm font-medium text-gray-700">Lesson Title</label>
-                                    <input type="text" id="lesson_id" name="title" value="{{$lesson->title}}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('title') }}" readonly>
-                                    <input type="hidden" id="lesson_id" name="lesson_id" value="{{$lesson->id}}">
+                                    <input type="text" id="lesson_id" name="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('title') }}" readonly>
                                     <x-input-error :messages="$errors->get('lesson_id')" class="mt-2" />
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="course_name" class="block text-sm font-medium text-gray-700">Course Name</label>
-                                    <input type="text" id="course_name" value="{{$lesson->course->title}}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" readonly>
-                                    <input type="hidden" id="course_id" name="course_id" value="{{$lesson->course->id}}">
+                                    <input type="text" id="course_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" readonly>
                                     <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
                                 </div>
 

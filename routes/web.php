@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
@@ -67,6 +68,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/all-material',[MaterialController::class,'index'])->name('all.materials');
         Route::delete('/material/{id}', [MaterialController::class, 'destroy'])->name('material.delete');
         Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
+        Route::get('/add-center', [CenterController::class, 'create'])->name('add.center');
+        Route::post('/add-center', [CenterController::class, 'store'])->name('center.store');
+        Route::get('/all-centers', [CenterController::class, 'index'])->name('all.center');
+        Route::get('/edit-center/{id}', [CenterController::class, 'edit'])->name('center.update');
+        Route::put('/edit-center/{id}', [CenterController::class, 'update'])->name('center.store.update');
+        Route::delete('/center/{id}', [CenterController::class, 'destroy'])->name('center.delete');
 
     });
 
