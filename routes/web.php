@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
@@ -29,9 +30,20 @@ require __DIR__.'/auth.php';
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['role:user'])->group(function () {
+    // Route::middleware(['role:user'])->group(function () {
+    //     Route::get('/dashboard', [HomeController::class, 'student'])->name('dashboard');
+    //     Route::get('/update-biodata', function(){
+    //         return view('bioupdate');
+    //     })->name('biodata.update');
+        
+    // });
+    Route::post('/update-biodata',[BiodataController::class,'store'])->name('store.biodata');
+    Route::middleware(['role:user', 'biodata.updated'])->group(function () {
         Route::get('/dashboard', [HomeController::class, 'student'])->name('dashboard');
+        Route::get('/update-biodata',[BiodataController::class,'create'])->name('biodata.update');
+    
     });
+    
 
     Route::middleware(['role:admin'])->group(function () {
         Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');

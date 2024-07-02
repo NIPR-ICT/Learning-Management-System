@@ -18,14 +18,19 @@
                 </div>
 
                 <!-- Sidebar -->
-               @include('includes.studentsidebar')
+                @include('includes.studentsidebar')
 
                 <!-- Main Content Area -->
                 <div class="col-span-1 sm:col-span-3">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
-                            {{ __("You're logged in!") }}
+                            @if (!Auth::user()->biodata)
+                                <p>Please <a href="{{ route('biodata.update') }}" class="text-red-500 hover:text-red-700">update your biodata</a> to access all features.</p>
+                            @else
+                                <p>Welcome, {{ Auth::user()->name }}! You have successfully updated your biodata.</p>
+                            @endif
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -33,5 +38,4 @@
     </div>
 
     @include('includes.script');
-    
 </x-app-layout>

@@ -54,4 +54,9 @@ public function centers()
     {
         return $this->hasMany(Center::class, 'created_by');
     }
+
+    public function biodata()
+    {
+        return $this->hasOne(Biodata::class);
+    }
 }

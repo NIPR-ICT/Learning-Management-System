@@ -7,26 +7,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Role
+class EnsureBiodataUpdated
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role): Response
+    public function handle(Request $request, Closure $next): Response
     {
-
+        
         $user = Auth::user();
 
-        if (!$user) {
-            return redirect()->route('login')->with('error', 'Please log in.');
-        }
-
-        if ($user->role !== $role) {
-            Auth::logout();
-            return redirect()->route('login')->with('error', 'Unauthorized access. You have been logged out.');
-        }
+       // Avoid redirect loop by checking the current route name
+       if ($user && ! $user->biodata && $request->route()->getName() !== 'biodata.update') {
+        return redirect()->route('biodata.update');
+    }
         return $next($request);
     }
 }
