@@ -26,7 +26,6 @@ class BiodataController extends Controller
             'highest_qualification' => 'required|string',
             'major_field_of_study' => 'required|string',
             'practice_no' => [
-                'required',
                 Rule::unique('biodata', 'practice_no') 
             ],
         ]);
