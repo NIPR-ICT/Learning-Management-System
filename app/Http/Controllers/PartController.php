@@ -31,6 +31,9 @@ class PartController extends Controller
                 }),
             ],
             'description' => 'required|string',
+            'max_credit' => 'required|integer',
+            'min_credit' => 'required|integer',
+            'program_duration' => 'required|string',
         ]);
         
 
@@ -38,6 +41,9 @@ class PartController extends Controller
             'program_id' => $request->get('program_id'),
             'name' => $request->get('name'),
             'description' => $request->get('description'),
+            'max_credit' => $request->get('max_credit'),
+            'min_credit' => $request->get('min_credit'),
+            'program_duration' => $request->get('program_duration'),
         ]);
 
         $part->save();

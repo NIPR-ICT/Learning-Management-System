@@ -34,19 +34,13 @@ class ProgramController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'max_credit' => 'required|integer',
-            'min_credit' => 'required|integer',
-            'program_duration' => 'required|string',
             'short_code' => 'required|string',
         ]);
 
         $program = new Program([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
-            'max_credit' => $request->get('max_credit'),
-            'min_credit' => $request->get('min_credit'),
             'created_by' => auth()->id(), 
-            'program_duration' => $request->get('program_duration'),
             'short_code' => $request->get('short_code'),
         ]);
 
@@ -79,9 +73,6 @@ class ProgramController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'max_credit' => 'required|integer',
-            'min_credit' => 'required|integer',
-            'program_duration' => 'required|string|max:255',
             'short_code' => 'required',
         ]);
 
@@ -90,9 +81,6 @@ class ProgramController extends Controller
         // Update the program with the new data
         $program->title = $request->input('title');
         $program->description = $request->input('description');
-        $program->max_credit = $request->input('max_credit');
-        $program->min_credit = $request->input('min_credit');
-        $program->program_duration = $request->input('program_duration');
         $program->short_code = $request->input('short_code');
 
         $program->save();
@@ -116,5 +104,11 @@ class ProgramController extends Controller
             'text' => 'Program deleted successfully!',
             'icon' => 'success'
         ]);
+    }
+
+    // Student Functionalities
+    public function studentGetProgram(){
+        $programs = Program::paginate(10);
+        return view('all-programs', compact('programs'));
     }
 }

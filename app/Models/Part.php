@@ -9,7 +9,14 @@ class Part extends Model
 {
     use HasFactory;
     protected $table = 'parts';
-    protected $fillable = ['program_id', 'name', 'description'];
+    protected $fillable = [
+    'program_id', 
+    'name', 
+    'description',
+    'max_credit',
+    'min_credit',
+    'program_duration',
+];
 
     public function program()
     {

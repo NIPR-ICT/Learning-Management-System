@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:user', 'biodata.updated'])->group(function () {
         Route::get('/dashboard', [HomeController::class, 'student'])->name('dashboard');
         Route::get('/update-biodata',[BiodataController::class,'create'])->name('biodata.update');
+        Route::get('/student-programs', [ProgramController::class, 'studentGetProgram'])->name('student.all.program');
     
     });
     
