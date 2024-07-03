@@ -65,4 +65,42 @@ public function showCoures($id){
     return view('admin.course-module', compact('lessons'));
 }
     
+
+
+public function edit($id)
+    {
+        $lesson = Lesson::findOrFail($id); // Fetch program by ID
+        return view('admin.update-lesson', compact('lesson')); // Pass program data to view
+    }
+
+
+    public function update(Request $request, Lesson $lesson)
+    {
+        // Validate the request data
+        $request->validate([
+            'title' => 'required|string',
+            'module_id' => 'required',
+            'course_id' => 'required',
+            'content' => 'required',
+            'order' => 'required|integer',
+        ]);
+
+        $lesson = Lesson::findOrFail($request->id);
+
+        // Update the program with the new data
+        $lesson->title = $request->input('title');
+        $lesson->module_id = $request->input('module_id');
+        $lesson->course_id = $request->input('course_id');
+        $lesson->content = $request->input('content');
+        $lesson->order = $request->input('order');
+
+        $lesson->save();
+
+        return redirect()->route('lesson.course.module', ['id' => $request->id])->with('alert', [
+            'title' => 'Success!',
+            'text' => 'Lesson updated successfully.',
+            'icon' => 'success'
+        ]);
+    }
+
 }

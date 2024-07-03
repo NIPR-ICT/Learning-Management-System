@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
@@ -29,9 +30,21 @@ require __DIR__.'/auth.php';
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['role:user'])->group(function () {
+    // Route::middleware(['role:user'])->group(function () {
+    //     Route::get('/dashboard', [HomeController::class, 'student'])->name('dashboard');
+    //     Route::get('/update-biodata', function(){
+    //         return view('bioupdate');
+    //     })->name('biodata.update');
+        
+    // });
+    Route::post('/update-biodata',[BiodataController::class,'store'])->name('store.biodata');
+    Route::middleware(['role:user', 'biodata.updated'])->group(function () {
         Route::get('/dashboard', [HomeController::class, 'student'])->name('dashboard');
+        Route::get('/update-biodata',[BiodataController::class,'create'])->name('biodata.update');
+        Route::get('/student-programs', [ProgramController::class, 'studentGetProgram'])->name('student.all.program');
+    
     });
+    
 
     Route::middleware(['role:admin'])->group(function () {
         Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
@@ -63,6 +76,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add-lesson', [LessonController::class, 'store'])->name('lesson.store');
         Route::get('/lesson-course/{id}', [LessonController::class, 'showCoures'])->name('lesson.course.module');
         Route::delete('/lesson/{id}', [LessonController::class, 'destroy'])->name('lesson.delete');
+        Route::get('/lesson-edit/{id}', [LessonController::class, 'edit'])->name('lesson.edit.form');
+        Route::put('/lesson-edit/{id}', [LessonController::class, 'update'])->name('lesson.update');
         Route::get('/add-material/{id}',[MaterialController::class,'create'])->name('add.material');
         Route::post('/add-material',[MaterialController::class,'store'])->name('material.store');
         Route::get('/all-material',[MaterialController::class,'index'])->name('all.materials');

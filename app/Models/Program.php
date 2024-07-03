@@ -14,10 +14,7 @@ class Program extends Model
     protected $fillable = [
         'title',
         'description',
-        'max_credit',
-        'min_credit',
         'created_by',
-        'program_duration',
         'short_code',
     ];
 

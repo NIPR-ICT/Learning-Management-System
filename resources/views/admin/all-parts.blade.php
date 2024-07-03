@@ -35,6 +35,8 @@
                                     <tr>
                                         <th class="w-1/5 py-3 px-4 uppercase font-semibold text-sm">Program Name</th>
                                         <th class="w-2/5 py-3 px-4 uppercase font-semibold text-sm">Part</th>
+                                        <th class="w-2/5 py-3 px-4 uppercase font-semibold text-sm">Min</th>
+                                        <th class="w-2/5 py-3 px-4 uppercase font-semibold text-sm">Max</th>
                                         <th class="w-2/5 py-3 px-4 uppercase font-semibold text-sm">Description</th>
                                         <th class="w-1/5 py-3 px-4 uppercase font-semibold text-sm">Actions</th>
                                     </tr>
@@ -45,6 +47,13 @@
                                             <td class="py-3 px-4">{{ $part->program->title }}</td>
                                             <td class="py-3 px-4">
                                                 {{ $part->name }}
+                                            </td>
+                                            <td class="py-3 px-4">
+                                                {{ $part->min_credit }}
+                                            </td>
+
+                                            <td class="py-3 px-4">
+                                                {{ $part->max_credit }}
                                             </td>
                                             <td class="py-3 px-4">
                                                 @php

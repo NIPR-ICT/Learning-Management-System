@@ -51,6 +51,24 @@
                                 </div>
 
                                 <div class="mb-4">
+                                    <label for="max_credit" class="block text-sm font-medium text-gray-700">Maximum Credit</label>
+                                    <input type="number" min="1" id="max_credit" name="max_credit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" :value="__('max_credit')">
+                                    <x-input-error :messages="$errors->get('max_credit')" class="mt-2" />
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="min_credit" class="block text-sm font-medium text-gray-700">Minimum Credit</label>
+                                    <input type="number" min="1" id="min_credit" name="min_credit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" :value="__('min_credit')">
+                                    <x-input-error :messages="$errors->get('min_credit')" class="mt-2" />
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="program_duration" class="block text-sm font-medium text-gray-700">Program Duration</label>
+                                    <input type="text" min="1" id="program_duration" name="program_duration" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" :value="__('program_duration')">
+                                    <x-input-error :messages="$errors->get('program_duration')" class="mt-2" />
+                                </div>
+
+                                <div class="mb-4">
                                     <label for="description" class="block text-sm font-medium text-gray-700">Part Description</label>
                                     <textarea id="description" name="description" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" style="resize: none" :value="__('Description')"></textarea>
                                     <x-input-error :messages="$errors->get('description')" class="mt-2" />

@@ -39,24 +39,6 @@
                                     <textarea id="description" name="description" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" style="resize: none">{{ old('description', $program->description) }}</textarea>
                                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                 </div>
-                                
-                                <div class="mb-4">
-                                    <label for="max_credit" class="block text-sm font-medium text-gray-700">Max Credit</label>
-                                    <input type="number" id="max_credit" name="max_credit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('max_credit', $program->max_credit) }}">
-                                    <x-input-error :messages="$errors->get('max_credit')" class="mt-2" />
-                                </div>
-                                
-                                <div class="mb-4">
-                                    <label for="min_credit" class="block text-sm font-medium text-gray-700">Min Credit</label>
-                                    <input type="number" id="min_credit" name="min_credit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('min_credit', $program->min_credit) }}">
-                                    <x-input-error :messages="$errors->get('min_credit')" class="mt-2" />
-                                </div>
-                                
-                                <div class="mb-4">
-                                    <label for="program_duration" class="block text-sm font-medium text-gray-700">Program Duration</label>
-                                    <input type="text" id="program_duration" name="program_duration" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('program_duration', $program->program_duration) }}">
-                                    <x-input-error :messages="$errors->get('program_duration')" class="mt-2" />
-                                </div>
 
                                 <div class="mb-4">
                                     <label for="short_code" class="block text-sm font-medium text-gray-700">Program Short Code</label>

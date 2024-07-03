@@ -38,22 +38,6 @@
                                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                 </div>
                                 <div class="mb-4">
-                                    <label for="max_credit" class="block text-sm font-medium text-gray-700">Max Credit</label>
-                                    <input type="number" id="max_credit" name="max_credit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" :value="__('max_credit')">
-                                    <x-input-error :messages="$errors->get('max_credit')" class="mt-2" />
-                                </div>
-                                <div class="mb-4">
-                                    <label for="min_credit" class="block text-sm font-medium text-gray-700">Min Credit</label>
-                                    <input type="number" id="min_credit" name="min_credit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm">
-                                    <x-input-error :messages="$errors->get('min_credit')" class="mt-2" />
-                                </div>
-                                <div class="mb-4">
-                                    <label for="program_duration" class="block text-sm font-medium text-gray-700">Program Duration</label>
-                                    <input type="text" id="program_duration" name="program_duration" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" :value="__('program_duration')">
-                                    <x-input-error :messages="$errors->get('program_duration')" class="mt-2" />
-                                </div>
-
-                                <div class="mb-4">
                                     <label for="short_code" class="block text-sm font-medium text-gray-700">Program Short Code</label>
                                     <input type="text" id="short_code" name="short_code" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" :value="__('short_code')">
                                     <x-input-error :messages="$errors->get('short_code')" class="mt-2" />
