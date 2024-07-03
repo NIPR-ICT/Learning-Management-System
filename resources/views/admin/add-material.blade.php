@@ -28,14 +28,16 @@
                             <form action="{{ route('material.store') }}" enctype="multipart/form-data" method="POST">
                                 @csrf
                                 <div class="mb-4">
-                                    <label for="lesson_id" class="block text-sm font-medium text-gray-700">Lesson Title</label>
-                                    <input type="text" id="lesson_id" name="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('title') }}" readonly>
+                                    <label for="lesson_name" class="block text-sm font-medium text-gray-700">Lesson Title</label>
+                                    <input type="text" id="lesson_name" name="lesson_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{$lesson->title, old('title') }}" readonly>
+                                    <input type="hidden" id="lesson_id" name="lesson_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{$lesson->id}}">
                                     <x-input-error :messages="$errors->get('lesson_id')" class="mt-2" />
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="course_name" class="block text-sm font-medium text-gray-700">Course Name</label>
-                                    <input type="text" id="course_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" readonly>
+                                    <input type="text" id="course_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{$lesson->course->title, old('title') }}" readonly>
+                                    <input type="hidden" id="course_id" name="course_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{$lesson->course_id}}">
                                     <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
                                 </div>
 

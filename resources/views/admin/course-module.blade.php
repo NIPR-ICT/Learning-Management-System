@@ -25,7 +25,7 @@
                 <div class="col-span-1 sm:col-span-3 p-4 sm:p-6"> <!-- Added p-4 and sm:p-6 for padding -->
                     <div class="container mx-auto">
                         <div class="flex justify-between items-center mb-4">
-                            <h1 class="text-2xl font-bold">All Modules</h1>
+                            <h1 class="text-2xl font-bold">All Lessons</h1>
                             <input id="searchInput" type="text" placeholder="Search..."
                                 class="px-4 py-2 border rounded shadow">
                         </div>
@@ -33,7 +33,7 @@
                             <table class="min-w-full bg-white">
                                 <thead class="bg-red-800 text-white text-left">
                                     <tr>
-                                        <th class="w-1/5 py-3 px-4 uppercase font-semibold text-sm">Module</th>
+                                        <th class="w-1/5 py-3 px-4 uppercase font-semibold text-sm">Lesson Title</th>
                                         <th class="w-2/5 py-3 px-4 uppercase font-semibold text-sm">Content</th>
                                         <th class="w-2/5 py-3 px-4 uppercase font-semibold text-sm">Order</th>
                                         <th class="w-1/5 py-3 px-4 uppercase font-semibold text-sm">Actions</th>
