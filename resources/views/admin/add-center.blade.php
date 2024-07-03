@@ -28,7 +28,7 @@
                                 @csrf
                                 
                                 <div class="mb-4">
-                                    <label for="name" class="block text-sm font-medium text-gray-700">Center Name</label>
+                                    <label for="name" class="block text-sm font-medium text-gray-700">Centre Name</label>
                                     <input type="text" id="title" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('name') }}">
                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
@@ -45,13 +45,13 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="code" class="block text-sm font-medium text-gray-700">Center Code</label>
+                                    <label for="code" class="block text-sm font-medium text-gray-700">Centre Code</label>
                                     <input type="text" id="code" name="code" placeholder="E.g ABJ" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('code') }}">
                                     <x-input-error :messages="$errors->get('code')" class="mt-2" />
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="address" class="block text-sm font-medium text-gray-700">Center Address</label>
+                                    <label for="address" class="block text-sm font-medium text-gray-700">Centre Address</label>
                                     <textarea id="address" name="address" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" style="resize: none">{{ old('address') }}</textarea>
                                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
                                 </div>

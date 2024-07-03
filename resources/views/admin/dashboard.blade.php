@@ -49,7 +49,7 @@
                                         <div class="bg-indigo-600 text-white rounded-lg shadow-md p-4 h-32">
                                             <div class="flex justify-between items-center h-full">
                                                 <div class="flex flex-col justify-between w-full">
-                                                    <h2 class="text-left text-lg font-bold">Total Program</h2>
+                                                    <h2 class="text-left text-lg font-bold">All Programme</h2>
                                                     <h1 class="text-right text-2xl">1</h1>
                                                     <div class="mt-2">
                                                         <div class="w-full bg-indigo-400 h-1 rounded">
