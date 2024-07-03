@@ -12,7 +12,7 @@
                 <li>
                     <a href="{{route('student.all.program')}}" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">
                         <i class="fas fa-book mr-2"></i>
-                        View All Programs
+                        View All Programmes
                     </a>
                 </li>
             </ul>
