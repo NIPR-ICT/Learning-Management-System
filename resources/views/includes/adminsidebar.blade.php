@@ -99,12 +99,12 @@
                     </a>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="#" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">
                         <i class="fas fa-cog mr-2"></i>
                         View All Courses
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>
