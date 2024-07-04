@@ -59,4 +59,9 @@ public function centers()
     {
         return $this->hasOne(Biodata::class);
     }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
 }

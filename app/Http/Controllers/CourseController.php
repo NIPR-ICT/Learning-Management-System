@@ -114,5 +114,44 @@ public function destroy($id)
         'icon' => 'success'
     ]);
 }
+
+// student functionalities
+
+public function coursebyParts($id){
+    $courses = Course::where('part_id', $id)->get();
+    $part=$part = Part::findOrFail($id);
+    return view('register-courses', compact('courses','part'));
+}
+
+public function register(Request $request)
+    {
+                // Validate the incoming request data
+                $validated = $request->validate([
+                    'part_id' => 'required|exists:parts,id',
+                    'courses' => 'required|array',
+                    'courses.*' => 'exists:courses,id', 
+                ]);
+        
+                $user = auth()->user();
+        
+                $part = Part::findOrFail($validated['part_id']);
+    
+                $selectedCourses = Course::whereIn('id', $validated['courses'])->get(['id', 'title', 'credit_unit', 'course_amount']);
+                $totalAmount = $selectedCourses->sum('course_amount');
+                $totalCredits = $selectedCourses->sum('credit_unit');
+
+                if($totalCredits===$part->max_credit || $totalCredits>=$part->min_credit){
+                    dd($totalAmount);
+                }else{
+                    return redirect()->route('course.register.student', ['id' => $part->id])->with('alert', [
+                        'title' => 'Error!',
+                        'text' => 'OOps! Course Registration Failed!',
+                        'icon' => 'error'
+                    ]);
+                }
+        
+   
+            }
+
 }
 

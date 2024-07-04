@@ -10,6 +10,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
+use App\Models\Lesson;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -42,7 +43,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [HomeController::class, 'student'])->name('dashboard');
         Route::get('/update-biodata',[BiodataController::class,'create'])->name('biodata.update');
         Route::get('/student-programs', [ProgramController::class, 'studentGetProgram'])->name('student.all.program');
-    
+        Route::get('/all-part/{id}', [PartController::class, 'studentFilterPart'])->name('program.part.student');
+        Route::get('/register-course/{id}', [CourseController::class, 'coursebyParts'])->name('course.register.student');
+        Route::post('/courses/register', [CourseController::class, 'register'])->name('courses.register');
     });
     
 
