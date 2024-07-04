@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student-programs', [ProgramController::class, 'studentGetProgram'])->name('student.all.program');
         Route::get('/all-part/{id}', [PartController::class, 'studentFilterPart'])->name('program.part.student');
         Route::get('/register-course/{id}', [CourseController::class, 'coursebyParts'])->name('course.register.student');
+        Route::post('/courses/register', [CourseController::class, 'register'])->name('courses.register');
     });
     
 

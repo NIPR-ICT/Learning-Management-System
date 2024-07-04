@@ -33,13 +33,15 @@
                             @if ($courses->isEmpty())
                                 <p class="text-center text-gray-600">No courses available.</p>
                             @else
-                                <form action="#" method="POST" id="courseForm">
+                                <form action="{{ route('courses.register') }}" method="POST" id="courseForm">
                                     @csrf
+                                    <input type="hidden" name="part_id" value="{{ $part->id }}">
                                     <div id="courseList">
                                         <!-- Automatically checked courses first -->
                                         @foreach ($courses->filter(fn($course) => $course->course_category === 'Core' || $course->course_category === 'General') as $course)
                                             <div class="flex items-center border-b border-gray-200 py-3">
                                                 <input type="checkbox" name="courses[]" value="{{ $course->id }}" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" checked disabled>
+                                                <input type="hidden" name="courses[]" value="{{ $course->id }}">
                                                 <div class="ml-4">
                                                     <p class="text-gray-900 text-sm font-medium">{{ $course->title }} (₦{{ $course->course_amount }})</p>
                                                 </div>
@@ -92,6 +94,18 @@
             let totalCredits = 0;
             let totalAmount = 0;
 
+            // Initial calculation of total credits and amount
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    totalCredits += parseInt(checkbox.closest('.flex').querySelector('.credit-unit').dataset.credit);
+                    totalAmount += parseInt(checkbox.closest('.flex').querySelector('.course-amount').dataset.amount);
+                }
+            });
+
+            totalCreditsElement.innerText = totalCredits;
+            totalAmountElement.innerText = totalAmount;
+
+            // Event listener for checkbox changes
             checkboxes.forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
                     totalCredits = calculateTotalCredits();
@@ -99,11 +113,6 @@
                     totalCreditsElement.innerText = totalCredits;
                     totalAmountElement.innerText = totalAmount;
                 });
-
-                if (checkbox.checked) {
-                    totalCredits += parseInt(checkbox.closest('.flex').querySelector('.credit-unit').dataset.credit);
-                    totalAmount += parseInt(checkbox.closest('.flex').querySelector('.course-amount').dataset.amount);
-                }
             });
 
             function calculateTotalCredits() {
@@ -125,9 +134,6 @@
                 });
                 return total;
             }
-
-            totalCreditsElement.innerText = totalCredits;
-            totalAmountElement.innerText = totalAmount;
         });
     </script>
 </x-app-layout>
