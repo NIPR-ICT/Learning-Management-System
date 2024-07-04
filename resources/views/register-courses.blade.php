@@ -24,7 +24,7 @@
                 <div class="col-span-1 sm:col-span-3 p-4 sm:p-6">
                     <!-- Note -->
                     <div class="mb-4 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
-                        <p>Select Part for the Program you want. Note: you must take part one before taking part 2.</p>
+                        <p>The Maximum credit unit is <strong>{{$part->max_credit}}</strong> and the minimum is <strong>{{$part->min_credit}}</strong></p>
                     </div>
 
                     <!-- List of Courses with Checkboxes -->
