@@ -66,4 +66,10 @@ class PartController extends Controller
             'icon' => 'success'
         ]);
     }
+
+    // student functionalities
+    public function studentFilterPart($id){
+        $parts = Part::where('program_id', $id)->paginate(10);
+        return view('all-parts', compact('parts'));
+    }
 }

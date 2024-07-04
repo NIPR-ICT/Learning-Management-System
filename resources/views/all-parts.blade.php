@@ -21,18 +21,25 @@
                 <!-- Sidebar -->
                 @include('includes.studentsidebar')
 
-                <div class="col-span-1 sm:col-span-3 p-4 sm:p-6"> <!-- Added p-4 and sm:p-6 for padding -->
+                <div class="col-span-1 sm:col-span-3 p-4 sm:p-6">
                     <div class="container mx-auto">
+                        <!-- Note -->
                         <div class="mb-4 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
-                            <p>Below is the list of programs we offer.</p>
+                            <p>Select Part for the Program you want. Note: you must take part one before taking part 2.</p>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                            @foreach ($programs as $program)
-                            <div class="bg-white rounded-lg shadow-md p-4">
-                                <h2 class="text-lg font-semibold mb-2">{{ $program->title }}</h2>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            @foreach ($parts as $part)
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h2 class="text-xl font-bold mb-2">{{ $part->name }} of {{ $part->program->title }}</h2>
+                                <div class="flex space-x-4 mb-4 text-xs">
+                                    <p class="text-gray-600"><strong>Max Credit:</strong> {{ $part->max_credit }}</p>
+                                    <p class="text-gray-600"><strong>Min Credit:</strong> {{ $part->min_credit }}</p>
+                                    <p class="text-gray-600"><strong>Duration:</strong> {{ $part->program_duration }}</p>
+                                </div>
                                 <p class="text-sm text-gray-600 mb-4">
                                     @php
-                                    $description = $program->description;
+                                    $description = $part->description;
                                     $words = explode(' ', $description);
                                     $shortened = implode(' ', array_slice($words, 0, 10)); // Adjust the number of words shown
                                     if (count($words) > 10) {
@@ -41,26 +48,21 @@
                                     @endphp
                                     {{ $shortened }}
                                 </p>
-                                <a href="{{route('program.part.student', $program->id)}}" class="bg-red-500 hover:bg-red-700 text-white font-light py-2 px-4 rounded inline-block">Enroll</a>
+                                <a href="{{ route('course.register.student', $part->id) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-block">View List of Courses</a>
                             </div>
                             @endforeach
                         </div>
+                        
+                        <!-- Pagination Links -->
                         <div class="mt-4">
-                            {{ $programs->links() }}
+                            {{ $parts->links() }}
                         </div>
                     </div>
                 </div>
-                
-                {{-- </div> --}}
-                
-                
-                
             </div>
         </div>
     </div>
 
     <!-- JavaScript Section -->
-
     @include('includes.script')
-
 </x-app-layout>

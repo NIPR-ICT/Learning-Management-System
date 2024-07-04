@@ -114,5 +114,12 @@ public function destroy($id)
         'icon' => 'success'
     ]);
 }
+
+// student functionalities
+
+public function coursebyParts($id){
+    $courses = Course::where('part_id', $id)->get();
+    return view('register-courses', compact('courses'));
+}
 }
 
