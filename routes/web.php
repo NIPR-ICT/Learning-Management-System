@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\CenterController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
@@ -48,6 +49,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/register-course/{id}', [CourseController::class, 'coursebyParts'])->name('course.register.student');
         Route::post('/courses/register', [CourseController::class, 'register'])->name('courses.register');
         Route::get('/checkout-summary', [PaymentController::class, 'checkout'])->name('register.checkout.summary');
+        Route::post('/apply-coupon', [CouponController::class, 'completeCheckout'])->name('apply.coupon');
+        Route::get('/check-out-preview', [PaymentController::class, 'finalCheckout'])->name('checkout.preview.final');
     });
     
 
@@ -94,7 +97,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit-center/{id}', [CenterController::class, 'edit'])->name('center.update');
         Route::put('/edit-center/{id}', [CenterController::class, 'update'])->name('center.store.update');
         Route::delete('/center/{id}', [CenterController::class, 'destroy'])->name('center.delete');
-
+        Route::get('/add-coupon', [CouponController::class, 'create'])->name('add.coupon');
+        Route::post('/add-coupon',[CouponController::class,'store'])->name('coupon.store');
+        Route::get('/all-coupon', [CouponController::class, 'index'])->name('all.coupons');
+        Route::delete('/coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.delete');
     });
 
     Route::middleware(['role:instructor'])->group(function () {

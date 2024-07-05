@@ -10,4 +10,8 @@ class PaymentController extends Controller
     {
         return view('course-registration-checkout');
     }
+
+    public function finalCheckout(){
+        return view('final-checkout');
+    }
 }

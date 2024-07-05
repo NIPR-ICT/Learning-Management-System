@@ -21,11 +21,11 @@
                 @include('includes.studentsidebar')
 
                 <!-- Main Content Area -->
-                @if (session()->has('totalAmount') && session()->has('part'))
+                @if (session()->has('totalAmount2') && session()->has('part'))
                 <div class="col-span-1 sm:col-span-2">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
-                            <h2 class="text-xl font-semibold mb-4">Checkout</h2>
+                            <h2 class="text-xl font-semibold mb-4">Checkout Payable Amount</h2>
                             <div class="mb-4">
                                 <label class="block text-gray-700">Course Title:</label>
                                 <?php $part = session('part'); ?>
@@ -33,17 +33,12 @@
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700">Amount:</label>
-                                <p class="text-lg font-medium">₦{{session('totalAmount') }}</p>
+                                <p class="text-lg font-medium">₦{{session('totalAmount2') }}</p>
                             </div>
                             <form action="{{ route('apply.coupon') }}" method="POST">
                                 @csrf
                             <div class="mb-4">
-                                <label id="coupon" class="block text-gray-700">Apply Coupon Code:</label>
-                                <input type="text" name="coupon" class="border-gray-300 rounded-lg shadow-sm mt-1 block w-full" placeholder="Enter coupon code">
-                            </div>
-                            <div class="mb-4">
-                      
-                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto">Complete Checkout</button>
+                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto">Pay</button>
                                 </form>
                             </div>
                         </div>
