@@ -8,6 +8,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PartController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Models\Lesson;
@@ -46,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/all-part/{id}', [PartController::class, 'studentFilterPart'])->name('program.part.student');
         Route::get('/register-course/{id}', [CourseController::class, 'coursebyParts'])->name('course.register.student');
         Route::post('/courses/register', [CourseController::class, 'register'])->name('courses.register');
+        Route::get('/checkout-summary', [PaymentController::class, 'checkout'])->name('register.checkout.summary');
     });
     
 

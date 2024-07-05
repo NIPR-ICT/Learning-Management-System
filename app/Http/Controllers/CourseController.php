@@ -125,7 +125,6 @@ public function coursebyParts($id){
 
 public function register(Request $request)
     {
-                // Validate the incoming request data
                 $validated = $request->validate([
                     'part_id' => 'required|exists:parts,id',
                     'courses' => 'required|array',
@@ -141,7 +140,12 @@ public function register(Request $request)
                 $totalCredits = $selectedCourses->sum('credit_unit');
 
                 if($totalCredits===$part->max_credit || $totalCredits>=$part->min_credit){
-                    dd($totalAmount);
+                    session([
+                        'totalAmount' => $totalAmount,
+                        'part' => $part,
+                        'selectedCourses' => $selectedCourses
+                    ]);
+                    return redirect()->route('register.checkout.summary');
                 }else{
                     return redirect()->route('course.register.student', ['id' => $part->id])->with('alert', [
                         'title' => 'Error!',
