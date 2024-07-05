@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enrollment;
+use App\Models\Part;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Unicodeveloper\Paystack\Facades\Paystack;
@@ -44,16 +47,36 @@ class PaymentController extends Controller
     {
         $paymentDetails = Paystack::getPaymentData();
     
-        if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success') {
+        if($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success') {
             $selectedCourses = $paymentDetails['data']['metadata']['selectedCourses'];
             $user_id = $paymentDetails['data']['metadata']['user_id'];
-            // Process the selected courses as needed
-            dd($user_id);
-    
-            return redirect()->route('home')->with('status', 'Payment Successful!');
+            $partData = $paymentDetails['data']['metadata']['part'];
+            $reference_id=$paymentDetails['data']['reference'];
+            $program_id=$partData['program_id'];
+            $part_id=$partData['id'];
+            $amount=$paymentDetails['data']['amount']/100;
+            foreach ($selectedCourses as $course) {
+                Enrollment::create([
+                    'user_id'=>$user_id,
+                    'course_id' => $course['id'], 
+                    'part_id'=>$part_id,
+                    'program_id'=>$program_id,
+                    'transaction_id'=>$reference_id
+                ]);
+            }
+            
+            Transaction::create([
+                'amount' => $amount,
+                'ref' => $reference_id, 
+                'user_id' => $user_id, 
+            ]);
+            return redirect()->route('dashboard')->with('alert', [
+                'title' => 'Payment Successful!',
+                'text' => 'Payment successfully!',
+                'icon' => 'success'
+            ]);
         }
     
-        return redirect()->route('home')->with('status', 'Payment Failed!');
     }
     
 }
