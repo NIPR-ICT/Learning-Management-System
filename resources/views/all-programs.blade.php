@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Student Dashboard') }}
+            {{ __('All Programs') }}
         </h2>
     </x-slot>
 
@@ -21,7 +21,7 @@
                 <!-- Sidebar -->
                 @include('includes.studentsidebar')
 
-                <div class="col-span-1 sm:col-span-3 p-4 sm:p-6"> <!-- Added p-4 and sm:p-6 for padding -->
+                <div class="col-span-1 sm:col-span-3 p-4 sm:p-6">
                     <div class="container mx-auto">
                         <div class="mb-4 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
                             <p>Below is the list of programs we offer.</p>
@@ -41,7 +41,11 @@
                                     @endphp
                                     {{ $shortened }}
                                 </p>
+                                @if ($program->is_enrolled)
+                                <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-light py-2 px-4 rounded inline-block">Start Program</a>
+                                @else
                                 <a href="{{route('program.part.student', $program->id)}}" class="bg-red-500 hover:bg-red-700 text-white font-light py-2 px-4 rounded inline-block">Enroll</a>
+                                @endif
                             </div>
                             @endforeach
                         </div>
@@ -50,17 +54,11 @@
                         </div>
                     </div>
                 </div>
-                
-                {{-- </div> --}}
-                
-                
-                
             </div>
         </div>
     </div>
 
     <!-- JavaScript Section -->
-
     @include('includes.script')
 
 </x-app-layout>

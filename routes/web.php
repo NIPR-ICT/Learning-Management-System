@@ -51,6 +51,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/checkout-summary', [PaymentController::class, 'checkout'])->name('register.checkout.summary');
         Route::post('/apply-coupon', [CouponController::class, 'completeCheckout'])->name('apply.coupon');
         Route::get('/check-out-preview', [PaymentController::class, 'finalCheckout'])->name('checkout.preview.final');
+        Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
+        Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment.callback');
     });
     
 

@@ -139,7 +139,7 @@ public function register(Request $request)
                 $totalAmount = $selectedCourses->sum('course_amount');
                 $totalCredits = $selectedCourses->sum('credit_unit');
 
-                if($totalCredits===$part->max_credit || $totalCredits>=$part->min_credit){
+                if($totalCredits == $part->max_credit || ($totalCredits >= $part->min_credit && $totalCredits <= $part->max_credit)){
                     session([
                         'totalAmount' => $totalAmount,
                         'part' => $part,
