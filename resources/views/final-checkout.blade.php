@@ -26,17 +26,21 @@
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
                             <h2 class="text-xl font-semibold mb-4">Checkout Payable Amount</h2>
+                            <form action="{{ route('apply.coupon') }}" method="POST">
+                                @csrf
                             <div class="mb-4">
                                 <label class="block text-gray-700">Course Title:</label>
                                 <?php $part = session('part'); ?>
                                 <p class="text-lg font-medium">{{ $part->name }} of {{ $part->program->title }}</p>
                             </div>
                             <div class="mb-4">
-                                <label class="block text-gray-700">Amount:</label>
+                                <label class="block text-gray-700">Discounted Amount:</label>
+                                <p class="text-lg font-medium">₦{{session('discounted') }}</p>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700">Payable Amount:</label>
                                 <p class="text-lg font-medium">₦{{session('totalAmount2') }}</p>
                             </div>
-                            <form action="{{ route('apply.coupon') }}" method="POST">
-                                @csrf
                             <div class="mb-4">
                                     <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto">Pay</button>
                                 </form>

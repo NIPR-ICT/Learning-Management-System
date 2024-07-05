@@ -82,7 +82,8 @@ class CouponController extends Controller
         session([
             'totalAmount2' => $totalAmount,
             'part' => $part,
-            'selectedCourses' => $selectedCourses
+            'selectedCourses' => $selectedCourses,
+            'discounted'=>0.00
         ]);
         return redirect()->route('checkout.preview.final');
     }
@@ -92,10 +93,12 @@ class CouponController extends Controller
         $percent=$checkCoupon->percentage_discount;
         $discount=$percent/100;
         $new_amount= $discount*$totalAmount;
+        $final_amount=$totalAmount-$new_amount;
         session([
-            'totalAmount2' => $new_amount,
+            'totalAmount2' => $final_amount,
             'part' => $part,
-            'selectedCourses' => $selectedCourses
+            'selectedCourses' => $selectedCourses,
+            'discounted'=>$new_amount,
         ]);
         return redirect()->route('checkout.preview.final');
     } elseif ($checkCoupon && $checkCoupon->end_date && Carbon::now()->gt($checkCoupon->end_date)) {
