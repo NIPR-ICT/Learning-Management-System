@@ -14,14 +14,14 @@ class CouponController extends Controller
     {
         $coupons = Coupon::orderBy('created_at', 'desc')->paginate(10);
 
-        return view('all-coupons', compact('coupons'));
+        return view('admin.all-coupons', compact('coupons'));
     }
 
 
     public function create()
     {
         $parts=Part::all();
-        return view('add-coupon', compact('parts'));
+        return view('admin.add-coupon', compact('parts'));
     }
 
     /**
