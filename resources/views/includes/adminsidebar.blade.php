@@ -86,6 +86,21 @@
                     </ul>
                 </li>
 
+                <li class="relative">
+                    <a href="#" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="true">
+                        <i class="fas fa-gift mr-2"></i>
+                        Manage Coupons
+                        <span class="ml-auto">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </a>
+                    <ul class="absolute hidden bg-red-500 text-white shadow-lg rounded-lg mt-2 py-2 w-48 top-0 left-0 z-10 space-y-2">
+                        <!-- Add rounded-lg for border radius -->
+                        <li><a href="{{route('add.coupon')}}" class="block px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">Create Coupon</a></li>
+                        <li><a href="{{route('all.coupons')}}" class="block px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">Manage Coupons</a></li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="{{route('all.modules.lesson')}}" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">
                         <i class="fas fa-book mr-2"></i>
