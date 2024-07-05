@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use App\Models\Program;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class ProgramController extends Controller
@@ -108,7 +110,18 @@ class ProgramController extends Controller
 
     // Student Functionalities
     public function studentGetProgram(){
+        $user_id = Auth::user()->id; 
+    
         $programs = Program::paginate(10);
+    
+        foreach ($programs as $program) {
+            $enrollment = Enrollment::where('user_id', $user_id)
+                                    ->where('program_id', $program->id)
+                                    ->first();
+    
+            $program->is_enrolled = $enrollment ? true : false;
+        }
+    
         return view('all-programs', compact('programs'));
     }
 }
