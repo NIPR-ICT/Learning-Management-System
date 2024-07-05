@@ -9,6 +9,7 @@
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "unicodeveloper/laravel-paystack": "^1.2",
         "yajra/laravel-datatables-buttons": "^11.0"
     },
     "require-dev": {

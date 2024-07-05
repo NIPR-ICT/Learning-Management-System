@@ -26,7 +26,7 @@
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
                             <h2 class="text-xl font-semibold mb-4">Checkout Payable Amount</h2>
-                            <form action="{{ route('apply.coupon') }}" method="POST">
+                            <form action="{{ route('pay') }}" method="POST">
                                 @csrf
                             <div class="mb-4">
                                 <label class="block text-gray-700">Course Title:</label>
