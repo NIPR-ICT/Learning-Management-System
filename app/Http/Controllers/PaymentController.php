@@ -58,11 +58,11 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
     $part_id = $partData['id'];
     $amount = $paymentDetails['data']['amount'] / 100;
     $discountedAmount=$paymentDetails['data']['metadata']['discountedAmount'];
-    dd($discountedAmount);
     $transaction = Transaction::create([
         'amount' => $amount,
         'ref' => $reference_id,
         'user_id' => $user_id,
+        'discountAmount' => $discountedAmount,
     ]);
 
     foreach ($selectedCourses as $course) {
@@ -71,7 +71,7 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
             'course_id' => $course['id'],
             'part_id' => $part_id,
             'program_id' => $program_id,
-            'transaction_id' => $transaction->id, // Use the transaction ID here
+            'transaction_id' => $transaction->id,
         ]);
     }
 
