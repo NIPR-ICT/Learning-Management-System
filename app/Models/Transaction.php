@@ -12,6 +12,7 @@ class Transaction extends Model
         'amount',
         'ref',
         'user_id',
+        'discountAmount',
     ];
 
     // Define the relationship with the User model
