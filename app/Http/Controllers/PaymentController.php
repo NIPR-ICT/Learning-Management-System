@@ -91,9 +91,13 @@ return redirect()->route('dashboard')->with('alert', [
 
     public function getUserPaymentHistory(){
         $userID = Auth::user()->id;
-       $loginUserTransactions= Transaction::where('user_id', $userID)->paginate(10);
-       return view('payment-history', compact('loginUserTransactions'));
+        $loginUserTransactions= Transaction::where('user_id', $userID)->orderBy('created_at', 'desc')->paginate(10);
+        return view('payment-history', compact('loginUserTransactions'));
+    }
 
+    public function AdminGetPaymentHistory(){
+        $allTransactions= Transaction::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.all-payment-history', compact('allTransactions'));
     }
     
 }

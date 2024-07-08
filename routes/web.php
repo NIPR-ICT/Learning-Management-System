@@ -104,6 +104,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add-coupon',[CouponController::class,'store'])->name('coupon.store');
         Route::get('/all-coupon', [CouponController::class, 'index'])->name('all.coupons');
         Route::delete('/coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.delete');
+        Route::get('/all-payment-history',[PaymentController::class, 'AdminGetPaymentHistory'])->name('all.payment.history');
     });
 
     Route::middleware(['role:instructor'])->group(function () {
