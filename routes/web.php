@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/check-out-preview', [PaymentController::class, 'finalCheckout'])->name('checkout.preview.final');
         Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
         Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment.callback');
+        Route::get('/payment-history',[PaymentController::class,'getUserPaymentHistory'])->name('user.payment.history');
     });
     
 

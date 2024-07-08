@@ -88,5 +88,12 @@ return redirect()->route('dashboard')->with('alert', [
 ]);
 
     }
+
+    public function getUserPaymentHistory(){
+        $userID = Auth::user()->id;
+       $loginUserTransactions= Transaction::where('user_id', $userID)->paginate(10);
+       return view('payment-history', compact('loginUserTransactions'));
+
+    }
     
 }
