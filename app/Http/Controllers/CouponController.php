@@ -90,7 +90,8 @@ class CouponController extends Controller
 
     $checkCoupon = Coupon::where('code', $coupon)->first();
     if ($checkCoupon && $checkCoupon->end_date && Carbon::now()->lte($checkCoupon->end_date)) {
-        $percent=$checkCoupon->percentage_discount;
+        if($part->id == $checkCoupon->part_id){
+            $percent=$checkCoupon->percentage_discount;
         $discount=$percent/100;
         $new_amount= $discount*$totalAmount;
         $final_amount=$totalAmount-$new_amount;
@@ -101,6 +102,13 @@ class CouponController extends Controller
             'discounted'=>$new_amount,
         ]);
         return redirect()->route('checkout.preview.final');
+        }
+        return redirect()->route('register.checkout.summary')->with('alert', [
+            'title' => 'Error!',
+            'text' => 'Coupon Not applicable for this part.',
+            'icon' => 'error'
+        ]);
+        
     } elseif ($checkCoupon && $checkCoupon->end_date && Carbon::now()->gt($checkCoupon->end_date)) {
         return redirect()->route('register.checkout.summary')->with('alert', [
             'title' => 'Error!',

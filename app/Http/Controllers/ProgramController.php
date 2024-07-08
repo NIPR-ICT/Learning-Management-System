@@ -111,9 +111,7 @@ class ProgramController extends Controller
     // Student Functionalities
     public function studentGetProgram(){
         $user_id = Auth::user()->id; 
-
         $programs = Program::paginate(10);
-    
         foreach ($programs as $program) {
             $enrollment = Enrollment::where('user_id', $user_id)
                                     ->where('program_id', $program->id)
@@ -121,7 +119,15 @@ class ProgramController extends Controller
     
             $program->is_enrolled = $enrollment ? true : false;
         }
-    
         return view('all-programs', compact('programs'));
+    }
+
+    public function studentBoughtCourses(){
+        $user_id = Auth::user()->id;
+
+        $programs = Program::whereHas('enrollments', function($query) use ($user_id) {
+        $query->where('user_id', $user_id);})->paginate(10);
+
+        return view('student-bought-program', compact('programs'));
     }
 }

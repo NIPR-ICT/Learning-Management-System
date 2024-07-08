@@ -40,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
     //     })->name('biodata.update');
         
     // });
+    Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
+    
     Route::post('/update-biodata',[BiodataController::class,'store'])->name('store.biodata');
     Route::middleware(['role:user', 'biodata.updated'])->group(function () {
         Route::get('/dashboard', [HomeController::class, 'student'])->name('dashboard');
@@ -54,6 +56,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
         Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment.callback');
         Route::get('/payment-history',[PaymentController::class,'getUserPaymentHistory'])->name('user.payment.history');
+        Route::get('/programmes', [ProgramController::class,'studentBoughtCourses'])->name('viewBy.bought.programme');
+        Route::post('/all-parts',[PartController::class,'studentPaidFilterPart'])->name('program.start');
+        Route::post('/courses',[CourseController::class,'listBoughtCoursesbyUser'])->name('list.courses');
+        // Route::get('/materials/{id}/download', [MaterialController::class, 'studentdownload'])->name('material.student.download');
     });
     
 
@@ -93,7 +99,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add-material',[MaterialController::class,'store'])->name('material.store');
         Route::get('/all-material',[MaterialController::class,'index'])->name('all.materials');
         Route::delete('/material/{id}', [MaterialController::class, 'destroy'])->name('material.delete');
-        Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
         Route::get('/add-center', [CenterController::class, 'create'])->name('add.center');
         Route::post('/add-center', [CenterController::class, 'store'])->name('center.store');
         Route::get('/all-centers', [CenterController::class, 'index'])->name('all.center');

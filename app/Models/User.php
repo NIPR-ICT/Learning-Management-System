@@ -64,4 +64,9 @@ public function centers()
     {
         return $this->belongsToMany(Course::class);
     }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }
