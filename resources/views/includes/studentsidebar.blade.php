@@ -15,6 +15,13 @@
                         View All Programmes
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{route('user.payment.history')}}" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">
+                        <i class="fas fa-money-check-alt mr-2"></i>
+                        View Payment History
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

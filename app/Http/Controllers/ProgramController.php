@@ -111,7 +111,7 @@ class ProgramController extends Controller
     // Student Functionalities
     public function studentGetProgram(){
         $user_id = Auth::user()->id; 
-    
+
         $programs = Program::paginate(10);
     
         foreach ($programs as $program) {

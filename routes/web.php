@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/check-out-preview', [PaymentController::class, 'finalCheckout'])->name('checkout.preview.final');
         Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
         Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment.callback');
+        Route::get('/payment-history',[PaymentController::class,'getUserPaymentHistory'])->name('user.payment.history');
     });
     
 
@@ -103,6 +104,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add-coupon',[CouponController::class,'store'])->name('coupon.store');
         Route::get('/all-coupon', [CouponController::class, 'index'])->name('all.coupons');
         Route::delete('/coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.delete');
+        Route::get('/all-payment-history',[PaymentController::class, 'AdminGetPaymentHistory'])->name('all.payment.history');
     });
 
     Route::middleware(['role:instructor'])->group(function () {
