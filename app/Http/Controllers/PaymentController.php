@@ -25,6 +25,7 @@ class PaymentController extends Controller
         $part = session('part');
         $totalAmount = session('totalAmount2');
         $selectedCourses = session('selectedCourses');
+        $disountedAmount=session('discounted');
         $paymentDetails = [
             'email' => Auth::user()->email,
             'amount' => $totalAmount * 100,
@@ -32,6 +33,7 @@ class PaymentController extends Controller
                 'selectedCourses' => $selectedCourses,
                 'part' => $part,
                 'user_id' => Auth::user()->id,
+                'discountedAmount'=>$disountedAmount,
             ],
             'callback_url' => route('payment.callback')
         ];
@@ -45,7 +47,7 @@ class PaymentController extends Controller
     
     public function handleGatewayCallback()
     {
-        $paymentDetails = Paystack::getPaymentData();
+$paymentDetails = Paystack::getPaymentData();
 
 if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success') {
     $selectedCourses = $paymentDetails['data']['metadata']['selectedCourses'];
@@ -55,8 +57,8 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
     $program_id = $partData['program_id'];
     $part_id = $partData['id'];
     $amount = $paymentDetails['data']['amount'] / 100;
-
-    // Create transaction first and get its ID
+    $discountedAmount=$paymentDetails['data']['metadata']['discountedAmount'];
+    dd($discountedAmount);
     $transaction = Transaction::create([
         'amount' => $amount,
         'ref' => $reference_id,
@@ -79,6 +81,11 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
         'icon' => 'success'
     ]);
 }
+return redirect()->route('dashboard')->with('alert', [
+    'title' => 'Payment Failed!',
+    'text' => 'Payment not successfully!',
+    'icon' => 'error'
+]);
 
     }
     

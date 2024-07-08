@@ -146,6 +146,18 @@ public function register(Request $request)
                         'selectedCourses' => $selectedCourses
                     ]);
                     return redirect()->route('register.checkout.summary');
+                }else if ($totalCredits < $part->min_credit) {
+                    return redirect()->route('course.register.student', ['id' => $part->id])->with('alert', [
+                        'title' => 'Error!',
+                        'text' => 'Total credits are less than the minimum required credits.',
+                        'icon' => 'error'
+                    ]);
+                }else if($totalCredits > $part->max_credit){
+                    return redirect()->route('course.register.student', ['id' => $part->id])->with('alert', [
+                        'title' => 'Error!',
+                        'text' => 'Total credits are more than the maximum allowed credits.',
+                        'icon' => 'error'
+                    ]);
                 }else{
                     return redirect()->route('course.register.student', ['id' => $part->id])->with('alert', [
                         'title' => 'Error!',
