@@ -27,4 +27,9 @@ class Part extends Model
     {
         return $this->hasMany(Course::class, 'part_id');
     }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class, 'part_id');
+    }
 }

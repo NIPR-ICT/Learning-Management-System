@@ -169,5 +169,34 @@ public function register(Request $request)
    
             }
 
+    public function listBoughtCoursesbyUser(Request $request){
+                $user = auth()->user();
+        $partId = $request->input('part_id');
+
+        if ($user && $partId) {
+            // Fetch enrollments with nested relationships
+            $enrollments = $user->enrollments()->where('part_id', $partId)
+                ->with(['course' => function ($query) {
+                    $query->orderBy('order', 'asc');
+                }])
+                ->with(['course.modules' => function ($query) {
+                    $query->orderBy('order', 'asc'); 
+                }])
+                ->with(['course.modules.lessons' => function ($query) {
+                    $query->orderBy('order', 'asc'); 
+                }])
+                ->with('course.modules.lessons.materials') 
+                ->paginate(10);
+
+            return view('bought-course-by-student', compact('enrollments'));
+        }
+
+        return redirect()->route('program.start')->with('alert', [
+            'title' => 'Error!',
+            'text' => 'Not Enrolled Yet',
+            'icon' => 'error'
+        ]);
+    }
+
 }
 

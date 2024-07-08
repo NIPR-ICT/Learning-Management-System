@@ -30,4 +30,9 @@ class Enrollment extends Model
     {
         return $this->belongsTo(Part::class);
     }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
 }

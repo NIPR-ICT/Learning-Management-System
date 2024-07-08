@@ -22,6 +22,13 @@
                         View Payment History
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{route('viewBy.bought.programme')}}" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">
+                        <i class="fas fa-book mr-2"></i>
+                        Enrolled Courses
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
