@@ -38,7 +38,7 @@
                                             @foreach ($module->lessons as $lesson)
                                             <div class="mb-4">
                                                 <h4 class="text-sm font-semibold mb-2">Lesson: {{ $lesson->title }}</h4>
-                                                <button class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none" onclick="toggleLesson(this)">Open Lesson</button>
+                                                <button class="bg-red-500 text-white px-4 py-2 rounded-md focus:outline-none" onclick="toggleLesson(this)">Open Lesson</button>
                                                 <div class="lesson-content mt-2 hidden">
                                                     <div class="lesson-description mb-4">
                                                         <p>{!! $lesson->content !!}</p>
