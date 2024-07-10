@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Part;
 use App\Models\Program;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -188,7 +189,8 @@ public function register(Request $request)
                 ->with('course.modules.lessons.materials') 
                 ->paginate(10);
 
-            return view('bought-course-by-student', compact('enrollments'));
+                session()->put('enrollments', $enrollments);
+                return redirect()->route('enrollment.index');
         }
 
         return redirect()->route('program.start')->with('alert', [
@@ -196,6 +198,13 @@ public function register(Request $request)
             'text' => 'Not Enrolled Yet',
             'icon' => 'error'
         ]);
+    }
+
+    public function enrollmentbyStudent()
+    {
+        $enrollments = session()->get('enrollments');
+
+        return view('bought-course-by-student', compact('enrollments'));
     }
 
 }
