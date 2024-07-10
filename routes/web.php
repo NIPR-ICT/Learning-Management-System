@@ -58,6 +58,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/payment-history',[PaymentController::class,'getUserPaymentHistory'])->name('user.payment.history');
         Route::get('/programmes', [ProgramController::class,'studentBoughtCourses'])->name('viewBy.bought.programme');
         Route::post('/all-parts',[PartController::class,'studentPaidFilterPart'])->name('program.start');
+        Route::get('/parts', [PartController::class, 'showParts'])->name('parts.index');
+        Route::get('/courses', [CourseController::class, 'enrollmentbyStudent'])->name('enrollment.index');
+
         Route::post('/courses',[CourseController::class,'listBoughtCoursesbyUser'])->name('list.courses');
         // Route::get('/materials/{id}/download', [MaterialController::class, 'studentdownload'])->name('material.student.download');
     });
