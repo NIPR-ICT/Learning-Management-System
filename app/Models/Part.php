@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Part extends Model
 {
@@ -12,6 +13,7 @@ class Part extends Model
     protected $fillable = [
     'program_id', 
     'name', 
+    'slug',
     'description',
     'max_credit',
     'min_credit',
@@ -31,5 +33,16 @@ class Part extends Model
     public function enrollments()
     {
         return $this->hasMany(Enrollment::class, 'part_id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($part) {
+            if ($part->isDirty('name')) {
+                $part->slug = Str::slug($part->name);
+            }
+        });
     }
 }

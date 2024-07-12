@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Course extends Model
 {
@@ -12,6 +13,7 @@ class Course extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'description',
         'part_id',
         'program_id',
@@ -57,5 +59,16 @@ class Course extends Model
     public function materials()
     {
         return $this->hasMany(Material::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($course) {
+            if ($course->isDirty('title')) {
+                $course->slug = Str::slug($course->title);
+            }
+        });
     }
 }
