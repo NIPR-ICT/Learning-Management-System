@@ -171,7 +171,7 @@ public function register(Request $request)
             }
 
     public function listBoughtCoursesbyUser(Request $request){
-                $user = auth()->user();
+        $user = auth()->user();
         $partId = $request->input('part_id');
 
         if ($user && $partId) {
@@ -188,7 +188,6 @@ public function register(Request $request)
                 }])
                 ->with('course.modules.lessons.materials') 
                 ->paginate(10);
-
                 session()->put('enrollments', $enrollments);
                 return redirect()->route('enrollment.index');
         }
