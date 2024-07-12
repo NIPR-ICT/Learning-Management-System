@@ -41,6 +41,7 @@ class CourseController extends Controller
                 'cover_image' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
                 'description' => 'required|string',
                 'credit_unit' => 'required|integer',
+                'featured' => 'nullable|boolean',
             ]);
         
             if ($request->hasFile('cover_image')) {
@@ -62,6 +63,7 @@ class CourseController extends Controller
                 'description' => $request->input('description'),
                 'created_by' => auth()->id(),
                 'credit_unit' => $request->input('credit_unit'),
+                'featured' => $request->boolean('featured', false),
             ]);
 
             $course->save();
@@ -98,6 +100,7 @@ public function storeupdate(Request $request, Course $course){
         'course_code' => 'required|string|max:255',
         'description' => 'nullable|string',
         'credit_unit' => 'required|integer',
+        'featured' => 'nullable|boolean',
     ]);
 
     $course = Course::findOrFail($request->id);
@@ -109,6 +112,7 @@ public function storeupdate(Request $request, Course $course){
     $course->course_code = $request->input('course_code');
     $course->description = $request->input('description');
     $course->credit_unit = $request->input('credit_unit');
+    $course->featured = $request->boolean('featured', false);
     $course->save();
     return redirect()->route('all.courses')->with('alert', [
         'title' => 'Success!',

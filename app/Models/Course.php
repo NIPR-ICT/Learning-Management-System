@@ -22,6 +22,7 @@ class Course extends Model
         'course_amount',
         'course_code',
         'cover_image',
+        'featured',
         'credit_unit',
     ];
 

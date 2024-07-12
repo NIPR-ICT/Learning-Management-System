@@ -93,6 +93,13 @@
                                     <x-input-error :messages="$errors->get('cover_image')" class="mt-2 text-sm text-red-600" />
                                 </div>
 
+                                <div class="mb-4">
+                                    <label for="featured" class="block text-sm font-medium text-gray-700">Featured</label>
+                                    <input type="checkbox" id="featured" name="featured" class="mt-1" value="1" {{ old('featured') ? 'checked' : '' }}>
+                                    <x-input-error :messages="$errors->get('featured')" class="mt-2" />
+                                </div>
+                                
+
                                 <div>
                                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Submit
