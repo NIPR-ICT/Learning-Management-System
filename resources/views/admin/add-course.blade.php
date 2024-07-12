@@ -25,7 +25,7 @@
                 <div class="col-span-1 sm:col-span-3">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
-                            <form action="{{ route('course.store') }}" method="POST">
+                            <form action="{{ route('course.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4">
                                     <label for="title" class="block text-sm font-medium text-gray-700">Course Title</label>
@@ -85,6 +85,12 @@
                                     <label for="credit_unit" class="block text-sm font-medium text-gray-700">Course Credit Unit</label>
                                     <input type="number" min="0" id="credit_unit" name="credit_unit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('credit_unit') }}">
                                     <x-input-error :messages="$errors->get('credit_unit')" class="mt-2" />
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="cover_image" class="block text-sm font-medium text-gray-700">Upload Cover Image for Course</label>
+                                    <input type="file" id="cover_image" name="cover_image" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <x-input-error :messages="$errors->get('cover_image')" class="mt-2 text-sm text-red-600" />
                                 </div>
 
                                 <div>

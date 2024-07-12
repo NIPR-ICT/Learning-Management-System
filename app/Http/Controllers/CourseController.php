@@ -9,6 +9,9 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -35,11 +38,19 @@ class CourseController extends Controller
                 'course_category' => 'required|string',
                 'course_amount' => 'required|integer',
                 'course_code' => 'required|string|unique:courses,course_code',
+                'cover_image' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
                 'description' => 'required|string',
                 'credit_unit' => 'required|integer',
             ]);
         
-            // Create a new Course instance and populate it with validated data
+            if ($request->hasFile('cover_image')) {
+                $file = $request->file('cover_image');
+                $timestamp = now()->timestamp;
+                $title = $request->input('title');
+                $fileName = Str::slug($title) . '-' . $timestamp . '.' . $file->getClientOriginalExtension();
+                $filePath = $file->storeAs('covers', $fileName, 'public');
+            }
+
             $course = new Course([
                 'title' => $request->input('title'),
                 'part_id' => $request->input('part_id'),
@@ -47,6 +58,7 @@ class CourseController extends Controller
                 'course_category' => $request->input('course_category'),
                 'course_amount' => $request->input('course_amount'),
                 'course_code' => $request->input('course_code'),
+                'cover_image' => $filePath ?? null,
                 'description' => $request->input('description'),
                 'created_by' => auth()->id(),
                 'credit_unit' => $request->input('credit_unit'),
@@ -108,6 +120,11 @@ public function storeupdate(Request $request, Course $course){
 public function destroy($id)
 {
     $course = Course::findOrFail($id);
+    Log::info('File path: ' . $course->cover_image); 
+    
+        if (!empty($course->cover_image) && Storage::disk('public')->exists($course->cover_image)) {
+            Storage::disk('public')->delete($course->cover_image);
+        }
     $course->delete();
     return redirect()->route('all.courses')->with('alert', [
         'title' => 'Deleted!',
