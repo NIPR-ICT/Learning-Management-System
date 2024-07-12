@@ -16,6 +16,7 @@ class Program extends Model
         'description',
         'created_by',
         'short_code',
+        'cover_image',
     ];
 
     public function user()

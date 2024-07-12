@@ -18,7 +18,8 @@ class Course extends Model
         'created_by',
         'course_category',
         'course_amount',
-        'course_code', 
+        'course_code',
+        'cover_image',
         'credit_unit',
     ];
 
