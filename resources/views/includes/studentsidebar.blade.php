@@ -7,7 +7,7 @@
             </h3>
             <ul class="space-y-2">
                 <!-- Dropdown for Manage Programs -->
-                
+
 
                 <li>
                     <a href="{{route('student.all.program')}}" class="flex items-center px-4 py-2 hover:bg-red-700 rounded-lg" data-has-submenu="false">
