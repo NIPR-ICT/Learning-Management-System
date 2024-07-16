@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
 
     Route::post('/update-biodata',[BiodataController::class,'store'])->name('store.biodata');
+
     Route::middleware(['role:user'])->group(function () {
     // Route::middleware(['role:user', 'biodata.updated'])->group(function () {
         Route::get('/student/dashboard', [HomeController::class, 'student'])->name('dashboard');
@@ -71,8 +72,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/programmes', [ProgramController::class,'studentBoughtCourses'])->name('viewBy.bought.programme');
         Route::post('/student/all-parts',[PartController::class,'studentPaidFilterPart'])->name('program.start');
         Route::post('/student/courses',[CourseController::class,'listBoughtCoursesbyUser'])->name('list.courses');
-        // Route::get('/materials/{id}/download', [MaterialController::class, 'studentdownload'])->name('material.student.download');
+        Route::get('/student/parts', [PartController::class, 'showParts'])->name('parts.index');
+        Route::get('student/courses', [CourseController::class, 'enrollmentbyStudent'])->name('enrollment.index');
 
+        // Route::get('/materials/{id}/download', [MaterialController::class, 'studentdownload'])->name('material.student.download');
 
         // testing
         Route::get('/student/course', function () {

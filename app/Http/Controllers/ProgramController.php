@@ -6,7 +6,9 @@ use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\DataTables;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ProgramController extends Controller
 {
@@ -34,16 +36,26 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:programs,title',
             'description' => 'required|string',
             'short_code' => 'required|string',
+            'cover_image' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
         ]);
+
+        if ($request->hasFile('cover_image')) {
+            $file = $request->file('cover_image');
+            $timestamp = now()->timestamp;
+            $title = $request->input('title');
+            $fileName = Str::slug($title) . '-' . $timestamp . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('covers', $fileName, 'public');
+        }
 
         $program = new Program([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'created_by' => auth()->id(), 
             'short_code' => $request->get('short_code'),
+            'cover_image' => $filePath ?? null,
         ]);
 
         $program->save();
@@ -96,8 +108,13 @@ class ProgramController extends Controller
 
     public function destroy($id)
     {
-        // Find the program by ID and delete it
         $program = Program::findOrFail($id);
+        Log::info('File path: ' . $program->cover_image); 
+    
+        if (!empty($program->cover_image) && Storage::disk('public')->exists($program->cover_image)) {
+            Storage::disk('public')->delete($program->cover_image);
+        }
+
         $program->delete();
 
         // Redirect back with a success message
