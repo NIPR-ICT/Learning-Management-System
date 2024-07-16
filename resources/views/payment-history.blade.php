@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Admin Dashboard') }}
@@ -72,7 +72,7 @@
         document.getElementById('searchInput').addEventListener('keyup', function() {
             var input = this.value.toLowerCase();
             var rows = document.querySelectorAll('#tableBody tr');
-            
+
             rows.forEach(function(row) {
                 var text = row.textContent.toLowerCase();
                 row.style.display = text.includes(input) ? '' : 'none';
@@ -82,4 +82,232 @@
 
     @include('includes.script')
 
-</x-app-layout>
+</x-app-layout> --}}
+
+@extends('welcome')
+<div class="breadcrumb-bar py-5">
+</div>
+  @section('content')
+
+<!-- Page Content -->
+<div class="page-content">
+    <div class="container">
+        <div class="row">
+
+            <!-- sidebar -->
+            @include('includes.layout-frontend.side-bar')
+            <!-- /Sidebar -->
+
+						<!-- Student Order History -->
+						<div class="col-xl-9 col-lg-9">
+                                    @if($loginUserTransactions->isEmpty())
+                                    <div class="settings-widget card-details">
+                                        <div class="settings-menu p-0">
+                                            <div class="profile-heading">
+                                                <h3>Order History</h3>
+                                            </div>
+                                            <div class="checkout-form">
+                                            <h6 >No transaction history.</h6>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    @else 
+							<div class="settings-widget card-details">
+								<div class="settings-menu p-0">
+									<div class="profile-heading">
+										<h3>Order History</h3>
+									</div>
+									<div class="checkout-form">
+
+										<!-- Order Tabs -->
+										<div class="wishlist-tab order-tab">
+											<ul class="nav">
+												<li class="nav-item">
+													<a href="javascript:void(0);" class="active" data-bs-toggle="tab" data-bs-target="#today">Today</a>
+												</li>
+												<li class="nav-item">
+													<a href="javascript:void(0);"   data-bs-toggle="tab" data-bs-target="#week">Week</a>
+												</li>
+												<li class="nav-item">
+													<a href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#month">Monthly</a>
+												</li>
+												<li class="nav-item">
+													<a href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#year">Yearly</a>
+												</li>
+											</ul>
+										</div>
+										<!-- /Order Tabs -->
+
+										<!-- Tab Content -->
+										<div class="tab-content">
+
+											<!-- Today -->
+											<div class="tab-pane show active" id="today">
+												<div class="table-responsive custom-table">
+
+
+                                                    <table class="table table-nowrap mb-0">
+														<thead>
+														  <tr>
+															<th>Transaction ID</th>
+															<th>Course Name</th>
+															<th>Amount</th>
+															<th>Discount Amount</th>
+															<th>Date</th>
+															<th></th>
+
+														  </tr>
+														</thead>
+														<tbody>
+
+                                                            @foreach ($loginUserTransactions as $transaction)
+                                                            <tr class="hover:bg-gray-200">
+                                                            <td >{{ $transaction->ref  }}</td>
+                                                            <td class="title-course">Course/Program Name</td>
+                                                            <td >{{ $transaction->amount }}</td>
+                                                            <td >{{ $transaction->discountAmount}}</td>
+                                                            <td >{{ $transaction->created_at}}</td>
+                                                            <td>
+                                                                <a href="javascript:void(0);" class="action-icon"><i class="bx bxs-download"></i></a>
+                                                            </td>
+                                                            </tr>
+                                                            @endforeach
+
+														</tbody>
+													</table>
+
+												</div>
+											</div>
+											<!-- /Today -->
+
+											<!-- Week -->
+											<div class="tab-pane fade" id="week">
+												<div class="table-responsive custom-table">
+													<table class="table table-nowrap mb-0">
+														<thead>
+														  <tr>
+															<th>Transaction ID</th>
+															<th>Course Name</th>
+															<th>Amount</th>
+															<th>Discount Amount</th>
+															<th>Date</th>
+															<th></th>
+														  </tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>#2643</td>
+																<td><span  class="title-course">Build Responsive Real World Websites with HTML5 and CSS3</span></td>
+																<td>March 24, 2024</td>
+																<td>$34</td>
+																<td>On Hold</td>
+																<td>
+																	<a href="javascript:void(0);" class="action-icon"><i class="bx bxs-download"></i></a>
+																</td>
+															</tr>
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<!-- /Week -->
+
+											<!-- Month -->
+											<div class="tab-pane fade" id="month">
+												<div class="table-responsive custom-table">
+													<table class="table table-nowrap mb-0">
+														<thead>
+														  <tr>
+															<th>Transaction ID</th>
+															<th>Course Name</th>
+															<th>Amount</th>
+															<th>Discount Amount</th>
+															<th>Date</th>
+															<th></th>
+														  </tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>#2643</td>
+																<td><span  class="title-course">Build Responsive Real World Websites with HTML5 and CSS3</span></td>
+																<td>March 24, 2024</td>
+																<td>$34</td>
+																<td>On Hold</td>
+																<td>
+																	<a href="javascript:void(0);" class="action-icon"><i class="bx bxs-download"></i></a>
+																</td>
+															</tr>
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<!-- /Month -->
+
+											<!-- Yearly -->
+											<div class="tab-pane fade" id="year">
+												<div class="table-responsive custom-table">
+													<table class="table table-nowrap mb-0">
+														<thead>
+														  <tr>
+															<th>Transaction ID</th>
+															<th>Course Name</th>
+															<th>Amount</th>
+															<th>Discount Amount</th>
+															<th>Date</th>
+															<th></th>
+														  </tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>#2643</td>
+																<td><span  class="title-course">Build Responsive Real World Websites with HTML5 and CSS3</span></td>
+																<td>March 24, 2024</td>
+																<td>$34</td>
+																<td>On Hold</td>
+																<td>
+																	<a href="javascript:void(0);" class="action-icon"><i class="bx bxs-download"></i></a>
+																</td>
+															</tr>
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<!-- /Yearly -->
+
+										</div>
+										<!-- /Tab Content -->
+									</div>
+								</div>
+							</div>
+
+							<div class="dash-pagination">
+								<div class="row align-items-center">
+									<div class="col-6">
+										<p>Page 1 of 2</p>
+									</div>
+									<div class="col-6">
+										<ul class="pagination">
+											<li class="active">
+												<a href="#">1</a>
+											</li>
+											<li>
+												<a href="#">2</a>
+											</li>
+											<li>
+												<a href="#"><i class="bx bx-chevron-right"></i></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                            @endif
+						</div>
+						<!-- /Student Order History -->
+
+                    </div>
+                </div>
+            </div>
+            @endsection
+            <!-- /Page Content -->

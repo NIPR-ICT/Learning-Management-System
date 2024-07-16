@@ -37,7 +37,7 @@ class CourseController extends Controller
                 'description' => 'required|string',
                 'credit_unit' => 'required|integer',
             ]);
-        
+
             // Create a new Course instance and populate it with validated data
             $course = new Course([
                 'title' => $request->input('title'),
@@ -52,26 +52,26 @@ class CourseController extends Controller
             ]);
 
             $course->save();
-        
+
         return redirect()->route('course.form')->with('alert', [
             'title' => 'Success!',
             'text' => 'Course created successfully.',
             'icon' => 'success'
         ]);
-        
+
     }
 
     public function courseDetail($id){
         $course = Course::with('creator')->findOrFail($id);
-        return view('admin.course-detail', compact('course')); 
-    
+        return view('admin.course-detail', compact('course'));
+
 }
 
 public function editCourse($id){
     $course = Course::with('creator')->findOrFail($id);
     $parts=Part::all();
     if($course){
-        return view('admin.update-course', compact('course', 'parts')); 
+        return view('admin.update-course', compact('course', 'parts'));
     }
 }
 
@@ -128,13 +128,13 @@ public function register(Request $request)
                 $validated = $request->validate([
                     'part_id' => 'required|exists:parts,id',
                     'courses' => 'required|array',
-                    'courses.*' => 'exists:courses,id', 
+                    'courses.*' => 'exists:courses,id',
                 ]);
-        
+
                 $user = auth()->user();
-        
+
                 $part = Part::findOrFail($validated['part_id']);
-    
+
                 $selectedCourses = Course::whereIn('id', $validated['courses'])->get(['id', 'title', 'credit_unit', 'course_amount']);
                 $totalAmount = $selectedCourses->sum('course_amount');
                 $totalCredits = $selectedCourses->sum('credit_unit');
@@ -165,8 +165,8 @@ public function register(Request $request)
                         'icon' => 'error'
                     ]);
                 }
-        
-   
+
+
             }
 
     public function listBoughtCoursesbyUser(Request $request){
@@ -180,12 +180,12 @@ public function register(Request $request)
                     $query->orderBy('order', 'asc');
                 }])
                 ->with(['course.modules' => function ($query) {
-                    $query->orderBy('order', 'asc'); 
+                    $query->orderBy('order', 'asc');
                 }])
                 ->with(['course.modules.lessons' => function ($query) {
-                    $query->orderBy('order', 'asc'); 
+                    $query->orderBy('order', 'asc');
                 }])
-                ->with('course.modules.lessons.materials') 
+                ->with('course.modules.lessons.materials')
                 ->paginate(10);
 
             return view('bought-course-by-student', compact('enrollments'));
@@ -197,6 +197,12 @@ public function register(Request $request)
             'icon' => 'error'
         ]);
     }
+///////////////////////////////////////////public view///////////////////////////////////////////////
+    public function CourseHome(){
+        $courses = Course::latest()->paginate(20);
+        return view('course', compact('courses'));
+    }
+
 
 }
 
