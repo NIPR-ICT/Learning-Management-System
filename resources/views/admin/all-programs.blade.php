@@ -123,10 +123,11 @@
             </div>
         </div>
         <!--end breadcrumb-->
-        <h6 class="mb-0 text-uppercase">All Programmes</h6>
-        <hr/>
+
         <div class="card">
             <div class="card-body">
+            <h6 class="mb-0 text-uppercase">All Programmes</h6>
+            <hr/>
                 <div class="table-responsive">
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
@@ -145,13 +146,14 @@
                                  {{Str::words($program->description, 25, '...') }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('program.edit', $program->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                                    <a href="{{ route('program.edit', $program->id) }}" class="btn btn-info">Edit <i class="fa fa-pencil"></i></a>
 
                                      <form action="{{ route('program.delete', $program->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this program?');" style="display:inline;">
                                          @csrf
                                          @method('DELETE')
-                                         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                         <button type="submit" class="btn btn-danger">
                                              Delete
+                                             <i class="fa fa-trash"></i>
                                          </button>
                                         </td>
                             </tr>
