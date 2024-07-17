@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Admin Dashboard') }}
@@ -84,7 +84,7 @@
 
     @include('includes.script')
 
-</x-app-layout>
+</x-app-layout> --}}
 
 
 @extends('admin.index')
@@ -126,7 +126,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($modules as $module)
+                            @foreach ($coupons as $coupon)
                                     <tr>
                                         <td >{{ $coupon->part->name }}</td>
                                         <td >{{ $coupon->percentage_discount }}</td>
