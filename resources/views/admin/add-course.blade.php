@@ -266,7 +266,7 @@
                         
 
                         <button class="btn btn-primary px-4">
-                            Update
+                            Save
                             <i class="bx bx-right-arrow-alt ms-2"></i>
                         </button>
                     </form>
