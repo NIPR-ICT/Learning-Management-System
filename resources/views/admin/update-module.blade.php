@@ -117,11 +117,11 @@
                         @csrf
                         @method('PUT')
                             <label for="title" class="form-label">Module Title</label>
-                            <input class="form-control w-75 form-control-lg mb-3"  name="title"  type="text" placeholder="" value="{{ old('title', $module->title) }}" aria-label=".form-control-lg example">
+                            <input class="form-control w-100 form-control-lg mb-3"  name="title"  type="text" placeholder="" value="{{ old('title', $module->title) }}" aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 
                                 <label for="course_id" class="form-label">Course Name</label>
-                                <select class="form-control w-75 form-control-lg mb-3" name="course_id" aria-label=".form-control-lg example" onchange="updateProgramOptions()">
+                                <select class="form-control w-100 form-control-lg mb-3" name="course_id" aria-label=".form-control-lg example" onchange="updateProgramOptions()">
                                     <option value="" disabled selected>Select a course</option>
                                     @foreach($courses as $course)
                                     <option value="{{ $course->id }}" {{ $course->id == $module->course_id ? 'selected' : '' }}>
@@ -133,12 +133,12 @@
                                 <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
 
                             <label for="order" class="form-label">Module Order</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="order" type="number" placeholder="" aria-label=".form-control-lg example" value="{{ old('order', $module->order) }}">
+                            <input class="form-control  w-100 form-control-lg mb-3" name="order" type="number" placeholder="" aria-label=".form-control-lg example" value="{{ old('order', $module->order) }}">
                             <x-input-error :messages="$errors->get('order')" class="mt-2" />
 
                                 
                             <label for="description" class="form-label">Description</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="description" type="text" placeholder="" aria-label=".form-control-lg example" value="{{ old('description', $module->description) }}">
+                            <input class="form-control  w-100 form-control-lg mb-3" name="description" type="text" placeholder="" aria-label=".form-control-lg example" value="{{ old('description', $module->description) }}">
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
 
                         <button class="btn btn-primary px-4" >

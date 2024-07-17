@@ -104,15 +104,15 @@
                         @csrf
                             <input type="hidden" name="id" value="{{$program->id}}">
                             <label for="title" class="form-label">Title</label>
-                            <input class="form-control w-75 form-control-lg mb-3"  name="title"  type="text" placeholder="" value="{{ old('title', $program->title) }}" aria-label=".form-control-lg example">
+                            <input class="form-control w-100 form-control-lg mb-3"  name="title"  type="text" placeholder="" value="{{ old('title', $program->title) }}" aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
                             <label for="description" class="form-label">Description</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="description" type="text" placeholder="" value="{{ old('description', $program->description) }}" aria-label=".form-control-lg example">
+                            <input class="form-control  w-100 form-control-lg mb-3" name="description" type="text" placeholder="" value="{{ old('description', $program->description) }}" aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
 
                             <label for="short_code" class="form-label">Program Short Code</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="short_code" type="text" placeholder="" value="{{ old('short_code', $program->short_code) }}" aria-label=".form-control-lg example">
+                            <input class="form-control  w-100 form-control-lg mb-3" name="short_code" type="text" placeholder="" value="{{ old('short_code', $program->short_code) }}" aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('short_code')" class="mt-2" />
 
 

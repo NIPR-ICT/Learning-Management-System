@@ -130,26 +130,26 @@
                         @method('PUT')
                         
                             <label for="title" class="form-label">Lesson Title</label>
-                            <input class="form-control w-75 form-control-lg mb-3"  name="title"  type="text" placeholder="" value="{{ old('title', $lesson->title) }}" readonly aria-label=".form-control-lg example">
+                            <input class="form-control w-100 form-control-lg mb-3"  name="title"  type="text" placeholder="" value="{{ old('title', $lesson->title) }}" readonly aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 
                                 <label for="course_name" class="form-label">Course Name</label>
-                                <input class="form-control w-75 form-control-lg mb-3"  name="course_name"  type="text" placeholder="" value="{{ $lesson->course->title }}" readonly aria-label=".form-control-lg example">
+                                <input class="form-control w-100 form-control-lg mb-3"  name="course_name"  type="text" placeholder="" value="{{ $lesson->course->title }}" readonly aria-label=".form-control-lg example">
                                 <input type="hidden" id="course_id" name="course_id" value="{{ $lesson->course_id }}">
                                 <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
 
                             <label for="module_name" class="form-label">Module Name</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="module_name" type="text" placeholder="" aria-label=".form-control-lg example" value="{{ $lesson->module->title }}" readonly>
+                            <input class="form-control  w-100 form-control-lg mb-3" name="module_name" type="text" placeholder="" aria-label=".form-control-lg example" value="{{ $lesson->module->title }}" readonly>
                             <input type="hidden" id="module_id" name="module_id" value="{{ $lesson->module_id }}">
                             <x-input-error :messages="$errors->get('module_id')" class="mt-2" />
 
                             <label for="order" class="form-label">Lesson Order</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="order" type="number" placeholder="" aria-label=".form-control-lg example" value="{{ old('order', $lesson->order) }}">
+                            <input class="form-control  w-100 form-control-lg mb-3" name="order" type="number" placeholder="" aria-label=".form-control-lg example" value="{{ old('order', $lesson->order) }}">
                             <x-input-error :messages="$errors->get('order')" class="mt-2" />
 
 
                                 <label for="content" class="form-label">Enter Lesson Content</label>
-                                <textarea class="form-control w-75 form-control-lg mb-3" id="content" name="content" rows="4"  style="resize: none" aria-label=".form-control-lg example">{{ old('content', $lesson->content) }}</textarea>
+                                <textarea class="form-control w-100 form-control-lg mb-3" id="content" name="content" rows="4"  style="resize: none" aria-label=".form-control-lg example">{{ old('content', $lesson->content) }}</textarea>
                                 <x-input-error :messages="$errors->get('content')" class="mt-2" />
 
                         <button class="btn btn-primary px-4" >

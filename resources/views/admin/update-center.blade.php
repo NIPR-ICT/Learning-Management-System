@@ -129,11 +129,11 @@
                         @csrf
                         @method('PUT')
                             <label for="name" class="form-label">Center Name</label>
-                            <input class="form-control w-75 form-control-lg mb-3"  type="text" id="title" name="name" value="{{ old('name', $center->name) }}" aria-label=".form-control-lg example">
+                            <input class="form-control w-100 form-control-lg mb-3"  type="text" id="title" name="name" value="{{ old('name', $center->name) }}" aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 
                                 <label for="state" class="form-label">State</label>
-                                <select class="form-control w-75 form-control-lg mb-3" id="state" name="state" aria-label=".form-control-lg example">
+                                <select class="form-control w-100 form-control-lg mb-3" id="state" name="state" aria-label=".form-control-lg example">
                                     <option value="">{{ __('Select a state') }}</option>
                                     @foreach (include(resource_path('states.php')) as $state)
                                         <option value="{{ $state }}" {{ $center->state == $state ? 'selected' : '' }}>{{ $state }}</option>
@@ -142,16 +142,16 @@
                                 <x-input-error :messages="$errors->get('state')" class="mt-2" />
 
                             <label for="order" class="form-label">Module Order</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="order" type="number" placeholder="" aria-label=".form-control-lg example" value="{{ old('order', $module->order) }}">
+                            <input class="form-control  w-100 form-control-lg mb-3" name="order" type="number" placeholder="" aria-label=".form-control-lg example" value="{{ old('order', $module->order) }}">
                             <x-input-error :messages="$errors->get('order')" class="mt-2" />
 
                                 
                             <label for="code" class="form-label">Center Code</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" type="text" id="code" name="code" placeholder="E.g ABJ" aria-label=".form-control-lg example" value="{{ old('code', $center->code) }}">
+                            <input class="form-control  w-100 form-control-lg mb-3" type="text" id="code" name="code" placeholder="E.g ABJ" aria-label=".form-control-lg example" value="{{ old('code', $center->code) }}">
                             <x-input-error :messages="$errors->get('code')" class="mt-2" />
 
                                 <label for="address" class="form-label">Center Address</label>
-                                <textarea class="form-control w-75 form-control-lg mb-3" id="address" name="address" rows="4"  style="resize: none" aria-label=".form-control-lg example">{{ old('address', $center->address) }}</textarea>
+                                <textarea class="form-control w-100 form-control-lg mb-3" id="address" name="address" rows="4"  style="resize: none" aria-label=".form-control-lg example">{{ old('address', $center->address) }}</textarea>
                                 <x-input-error :messages="$errors->get('address')" class="mt-2" />
 
 
