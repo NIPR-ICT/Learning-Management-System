@@ -225,14 +225,14 @@
                         @method('PUT')
 
                         <label for="title" class="form-label">Course Title</label>
-                        <input class="form-control w-75 form-control-lg mb-3" id="title" name="title"
+                        <input class="form-control w-100 form-control-lg mb-3" id="title" name="title"
                             type="text" placeholder="" value="{{ old('title', $course->title) }}"
                             aria-label=".form-control-lg example">
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
 
                         <label for="part_id" class="form-label">Part Name with Program</label>
-                        <select class="form-control w-75 form-control-lg mb-3" id="part_id" name="part_id"
+                        <select class="form-control w-100 form-control-lg mb-3" id="part_id" name="part_id"
                             aria-label=".form-control-lg example" onchange="updateProgramOptions()">
                             <option disabled>Select Program with Part</option>
                             @foreach ($parts as $part)
@@ -248,7 +248,7 @@
 
 
                         <label for="program_id" class="form-label">Confirm Program</label>
-                        <select class="form-control w-75 form-control-lg mb-3" id="program_id" name="program_id"
+                        <select class="form-control w-100 form-control-lg mb-3" id="program_id" name="program_id"
                             aria-label=".form-control-lg example">
                             <option disabled>Select Program</option>
                             @if ($course->part)
@@ -260,7 +260,7 @@
 
 
                             <label for="course_category" class="form-label">Course Category</label>
-                            <select class="form-control w-75 form-control-lg mb-3" id="course_category" name="course_category"
+                            <select class="form-control w-100 form-control-lg mb-3" id="course_category" name="course_category"
                                 aria-label=".form-control-lg example" onchange="updateProgramOptions()">
                                 <option disabled>Select Course Category</option>
                                         <option value="Core"
@@ -277,34 +277,37 @@
 
 
                         <label for="course_amount" class="form-label">Course Amount</label>
-                        <input class="form-control w-75 form-control-lg mb-3" type="number" id="course_amount" name="course_amount"
+                        <input class="form-control w-100 form-control-lg mb-3" type="number" id="course_amount" name="course_amount"
                            value="{{ old('course_amount', $course->course_amount) }}" 
                             aria-label=".form-control-lg example">
                         <x-input-error :messages="$errors->get('course_amount')" class="mt-2" />
 
                         <label for="course_code" class="form-label">Enter Course Code</label>
-                        <input class="form-control  w-75 form-control-lg mb-3" type="text" id="course_code" name="course_code" aria-label=".form-control-lg example" value="{{ old('course_code', $course->course_code) }}">
+                        <input class="form-control  w-100 form-control-lg mb-3" type="text" id="course_code" name="course_code" aria-label=".form-control-lg example" value="{{ old('course_code', $course->course_code) }}">
                         <x-input-error :messages="$errors->get('course_code')" class="mt-2" />
 
                             <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control w-75 form-control-lg mb-3" id="description" name="description" rows="4"  style="resize: none" aria-label=".form-control-lg example">{{ old('description', $course->description) }}</textarea>
+                                <textarea class="form-control w-100 form-control-lg mb-3" id="description" name="description" rows="4"  style="resize: none" aria-label=".form-control-lg example">{{ old('description', $course->description) }}</textarea>
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
 
 
                         <label for="credit_unit" class="form-label">Course Credit Unit</label>
-                        <input class="form-control  w-75 form-control-lg mb-3" min="0" id="credit_unit" name="credit_unit" type="number"
+                        <input class="form-control  w-100 form-control-lg mb-3" min="0" id="credit_unit" name="credit_unit" type="number"
                             placeholder="" aria-label=".form-control-lg example"
                             value="{{ old('credit_unit', $course->credit_unit) }}">
                         <x-input-error :messages="$errors->get('credit_unit')" class="mt-2" />
 
 
-                        <label for="featured" class="form-label">Featured</label>
-                        <input class="form-control  w-75 form-control-lg mb-3" type="checkbox" id="featured" name="featured"
-                            aria-label=".form-control-lg example"
-                            value="1" {{ old('featured', $course->featured) ? 'checked' : '' }}>
-                            <span class="text-gray-700">Yes</span>
-                        <x-input-error :messages="$errors->get('featured')" class="mt-2" />
-
+                            <label for="featured" class="form-label">Featured</label>
+                            <div class="form-check w-100 mb-3">
+                                <input class="form-check-input form-control-lg" type="checkbox" id="featured" name="featured"
+                                       aria-label=".form-control-lg example" value="1" 
+                                       {{ old('featured', $course->featured) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="featured">Yes</label>
+                            </div>
+                            <x-input-error :messages="$errors->get('featured')" class="mt-2" />
+                            
+<br/>
                         
 
                         <button class="btn btn-primary px-4">
