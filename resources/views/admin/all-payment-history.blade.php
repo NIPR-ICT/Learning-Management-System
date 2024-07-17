@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Admin Dashboard') }}
@@ -74,7 +74,7 @@
         document.getElementById('searchInput').addEventListener('keyup', function() {
             var input = this.value.toLowerCase();
             var rows = document.querySelectorAll('#tableBody tr');
-            
+
             rows.forEach(function(row) {
                 var text = row.textContent.toLowerCase();
                 row.style.display = text.includes(input) ? '' : 'none';
@@ -84,4 +84,74 @@
 
     @include('includes.script')
 
-</x-app-layout>
+</x-app-layout> --}}
+
+@extends('admin.index')
+  @section('slot')
+  <div class="page-wrapper">
+    <div class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Payment History</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">List</li>
+                    </ol>
+                </nav>
+            </div>
+            {{-- <div class="ms-auto">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Add Programme</button>
+
+                </div>
+            </div> --}}
+        </div>
+        <!--end breadcrumb-->
+
+        <div class="card">
+            <div class="card-body">
+            <h6 class="mb-0 text-uppercase">All Payment History</h6>
+            <hr/>
+                <div class="table-responsive">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                            <th>Amount</th>
+                                            <th>User</th>
+                                            <th>Discount</th>
+                                            <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($allTransactions as $transaction)
+                                            <tr class="hover:bg-gray-200">
+                                            <td class="py-3 px-4">{{ $transaction->ref }}</td>
+                                            <td class="py-3 px-4">{{ $transaction->amount }}</td>
+                                            <td class="py-3 px-4">{{ $transaction->user->name}}</td>
+                                            <td class="py-3 px-4">{{ $transaction->discountAmount}}</td>
+                                            <td class="py-3 px-4">{{ $transaction->created_at}}</td>
+                                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Amount</th>
+                                <th>User</th>
+                                <th>Discount</th>
+                                <th>Date</th>
+                            </tr>
+                        </tfoot>
+                        {{ $allTransactions->links() }}
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+  @endsection
