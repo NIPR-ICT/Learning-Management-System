@@ -25,6 +25,8 @@
 	<link rel="stylesheet" href="{{asset('backend-assets/assets/css/dark-theme.css')}}"/>
 	<link rel="stylesheet" href="{{asset('backend-assets/assets/css/semi-dark.css')}}"/>
 	<link rel="stylesheet" href="{{asset('backend-assets/assets/css/header-colors.css')}}"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
 	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
 </head>
 
@@ -211,6 +213,7 @@
 	
     <script src="{{asset('backend-assets/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 	<script src="{{asset('backend-assets/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable({
