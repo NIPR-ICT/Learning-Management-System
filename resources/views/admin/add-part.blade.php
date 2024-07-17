@@ -148,16 +148,16 @@
                         </select>
 
                             <label for="formFile" class="form-label">Maximum Credit</label>
-                            <input min="1" type="number" class="form-control w-75 form-control-lg mb-3" name="max_credit"  placeholder="" aria-label=".form-control-lg example">
+                            <input min="1" type="number" class="form-control w-100 form-control-lg mb-3" name="max_credit"  placeholder="" aria-label=".form-control-lg example">
 
                             <label for="formFile" class="form-label">Minimum Credit</label>
-                            <input min="1"  type="number" class="form-control  w-75 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
+                            <input min="1"  type="number" class="form-control  w-100 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
 
                             <label for="formFile" class="form-label">Program Duration</label>
-                            <input min="1" type="number" class="form-control  w-75 form-control-lg mb-3" name="program_duration"  placeholder="" aria-label=".form-control-lg example">
+                            <input min="1" type="number" class="form-control  w-100 form-control-lg mb-3" name="program_duration"  placeholder="" aria-label=".form-control-lg example">
 
                             <label for="description" class="block text-sm font-medium text-gray-700">Part Description</label>
-                                    <textarea id="description" name="description" rows="4" class="" style="resize: none" :value="__('Description')"></textarea>
+                                    <textarea class="form-control w-100 form-control-lg mb-3" id="description" name="description" rows="4" class="" style="resize: none" :value="__('Description')"></textarea>
 
                             <button class="btn btn-primary px-4" >
                             Save
