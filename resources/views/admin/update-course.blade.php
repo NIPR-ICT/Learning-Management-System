@@ -91,6 +91,16 @@
                                     <x-input-error :messages="$errors->get('credit_unit')" class="mt-2" />
                                 </div>
 
+                                <div class="mb-4">
+                                    <label for="featured" class="block text-sm font-medium text-gray-700">Featured</label>
+                                    <div class="flex items-center mt-1">
+                                        <input type="checkbox" id="featured" name="featured" class="mr-2" value="1" {{ old('featured', $course->featured) ? 'checked' : '' }}>
+                                        <span class="text-gray-700">Yes</span>
+                                    </div>
+                                    <x-input-error :messages="$errors->get('featured')" class="mt-2" />
+                                </div>
+
+
                                 <div>
                                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Update

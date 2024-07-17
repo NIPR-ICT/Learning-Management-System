@@ -24,7 +24,7 @@
                 <div class="col-span-1 sm:col-span-3">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
-                            <form action="{{route('program.store')}}" method="POST">
+                            <form action="{{route('program.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4">
                                     <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
@@ -34,7 +34,7 @@
 
                                 <div class="mb-4">
                                     <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                                    <textarea id="description" name="description" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" style="resize: none" :value="__('Description')"></textarea>
+                                    <textarea id="description" name="description" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" style="resize: none" :value="__('description')"></textarea>
                                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                 </div>
                                 <div class="mb-4">
@@ -42,6 +42,13 @@
                                     <input type="text" id="short_code" name="short_code" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" :value="__('short_code')">
                                     <x-input-error :messages="$errors->get('short_code')" class="mt-2" />
                                 </div>
+
+                                <div class="mb-4">
+                                    <label for="cover_image" class="block text-sm font-medium text-gray-700">Upload programme Cover Image</label>
+                                    <input type="file" id="cover_image" name="cover_image" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <x-input-error :messages="$errors->get('cover_image')" class="mt-2 text-sm text-red-600" />
+                                </div>
+
                                 <div>
                                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Submit

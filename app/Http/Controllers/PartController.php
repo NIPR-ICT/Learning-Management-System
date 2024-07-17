@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Part;
 use Illuminate\Http\Request;
 use App\Models\Program;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -77,13 +78,21 @@ class PartController extends Controller
     public function studentPaidFilterPart(Request $request){
         $userId = Auth::id();
         $programId = $request->input('program_id');
-    
+
         // Fetch parts related to the logged-in user and specified program_id
         $parts = Part::whereHas('enrollments', function ($query) use ($userId, $programId) {
             $query->where('user_id', $userId)
                   ->where('program_id', $programId);
         })->paginate(10);
-    
+
+        session()->put('parts', $parts);
+        return redirect()->route('parts.index');
+    }
+
+    public function showParts()
+    {
+        // Get the parts from the session
+        $parts = session()->get('parts');
         return view('student-enroll-part', compact('parts'));
     }
 }

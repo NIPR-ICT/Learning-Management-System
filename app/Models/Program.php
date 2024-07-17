@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Program extends Model
 {
@@ -13,9 +14,11 @@ class Program extends Model
     // Define the fillable properties
     protected $fillable = [
         'title',
+        'slug',
         'description',
         'created_by',
         'short_code',
+        'cover_image',
     ];
 
     public function user()
@@ -31,5 +34,17 @@ class Program extends Model
 public function enrollments()
     {
         return $this->hasMany(Enrollment::class);
+    }
+    
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($program) {
+            if ($program->isDirty('title')) {
+                $program->slug = Str::slug($program->title);
+            }
+        });
     }
 }
