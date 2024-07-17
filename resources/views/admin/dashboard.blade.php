@@ -496,7 +496,7 @@
                     </div>
 
                 </div>
-             </div><!--end row-->
+        </div><!--end row-->
 
              <div class="row row-cols-1 row-cols-lg-3">
                  <div class="col d-flex">
