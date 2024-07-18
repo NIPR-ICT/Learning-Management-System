@@ -145,21 +145,21 @@
 					</div>
 					<div class="owl-carousel mentoring-course owl-theme aos" data-aos="fade-up">
 						@foreach ($program as $item)
-
-                        @endforeach
                         <div class="feature-box text-center " >
 							<div class="feature-bg" >
 								<div class="feature-header">
 									<div class="feature-icon">
-										<img src="{{ $item->cover_image }}" alt="Img">
+										<img src="{{ url('storage/'.$item->cover_image) }}"  alt="{{ $item->title }}">
 									</div>
 									<div class="feature-cont">
 										<div class="feature-text">{{ $item->title }}</div>
 									</div>
 								</div>
-								<p>40 Instructors</p>
+								<p>{{ $item->short_code }}</p>
 							</div>
 						</div>
+                        @endforeach
+
 					</div>
 				</div>
 			</section>
