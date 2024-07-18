@@ -217,7 +217,7 @@
 
                             <label for="course_category" class="form-label">Course Category</label>
                             <select class="form-control w-100 form-control-lg mb-3" id="course_category" name="course_category"
-                                aria-label=".form-control-lg example" onchange="updateProgramOptions()">
+                                aria-label=".form-control-lg example">
                                 <option disabled selected>Select Course Category</option>
                                 <option value="Core">Core Course</option>
                                 <option value="Elective">Elective Course</option>
