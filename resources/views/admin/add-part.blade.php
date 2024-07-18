@@ -151,7 +151,7 @@
                             <input min="1" type="number" class="form-control w-100 form-control-lg mb-3" name="max_credit"  placeholder="" aria-label=".form-control-lg example">
 
                             <label for="formFile" class="form-label">Minimum Credit</label>
-                            <input min="1"  type="number" class="form-control  w-100 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
+                            <input min="1"  type="number" class="form-control  w-100 form-control-lg mb-3" name="min_credit"  placeholder="" aria-label=".form-control-lg example">
 
                             <label for="formFile" class="form-label">Program Duration</label>
                             <input min="1" type="number" class="form-control  w-100 form-control-lg mb-3" name="program_duration"  placeholder="" aria-label=".form-control-lg example">

@@ -68,7 +68,7 @@
                                             </td>
                                             <td class="py-3 px-4 space-x-2">
 
-                                                 {{ route('program.destroy', $program->id) }}  
+                                                 {{ route('program.destroy', $program->id) }}
                                                 <form action="{{ route('part.delete', $part->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Part?');" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -195,7 +195,7 @@
                                 <th>Actions</th>
                             </tr>
                         </tfoot>
-                        {{ $allTransactions->links() }}
+                        {{ $parts->links() }}
                     </table>
                 </div>
             </div>
