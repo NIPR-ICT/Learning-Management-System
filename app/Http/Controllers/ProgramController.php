@@ -49,11 +49,12 @@ class ProgramController extends Controller
             $fileName = Str::slug($title) . '-' . $timestamp . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('covers', $fileName, 'public');
         }
-
+        // dd('got here');
         $program = new Program([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
-            'created_by' => auth()->id(), 
+            'slug' => Str::slug($title),
+            'created_by' => auth()->id(),
             'short_code' => $request->get('short_code'),
             'cover_image' => $filePath ?? null,
         ]);
@@ -109,8 +110,8 @@ class ProgramController extends Controller
     public function destroy($id)
     {
         $program = Program::findOrFail($id);
-        Log::info('File path: ' . $program->cover_image); 
-    
+        Log::info('File path: ' . $program->cover_image);
+
         if (!empty($program->cover_image) && Storage::disk('public')->exists($program->cover_image)) {
             Storage::disk('public')->delete($program->cover_image);
         }
@@ -127,13 +128,13 @@ class ProgramController extends Controller
 
     // Student Functionalities
     public function studentGetProgram(){
-        $user_id = Auth::user()->id; 
+        $user_id = Auth::user()->id;
         $programs = Program::paginate(10);
         foreach ($programs as $program) {
             $enrollment = Enrollment::where('user_id', $user_id)
                                     ->where('program_id', $program->id)
                                     ->first();
-    
+
             $program->is_enrolled = $enrollment ? true : false;
         }
         return view('all-programs', compact('programs'));

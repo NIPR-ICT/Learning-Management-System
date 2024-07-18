@@ -52,21 +52,21 @@
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.svg">
 
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}')}}">
 
 		<!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+		<link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css')}}">
+		<link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css')}}">
 
 		<!-- Owl Carousel CSS -->
-		<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-		<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+		<link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css')}}">
+		<link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css')}}">
 
 		<!-- Feathericon CSS -->
-        <link rel="stylesheet" href="assets/plugins/feather/feather.css">
+        <link rel="stylesheet" href="{{ asset('assets/plugins/feather/feather.css')}}">
 
 		<!-- Main CSS -->
-		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 
 	</head>
 	<body>
@@ -81,7 +81,7 @@
 					<div class="owl-carousel login-slide owl-theme aos" data-aos="fade-up">
 						<div class="welcome-login">
 							<div class="login-banner">
-								<img src="assets/img/login-img.png" class="img-fluid" alt="Logo">
+								<img src="{{ asset('assets/img/login-img.png')}}" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>DreamsLMS Courses.</h2>
@@ -90,7 +90,7 @@
 						</div>
 						<div class="welcome-login">
 							<div class="login-banner">
-								<img src="assets/img/login-img.png" class="img-fluid" alt="Logo">
+								<img src="{{ asset('assets/img/login-img.png')}}" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>DreamsLMS Courses.</h2>
@@ -99,7 +99,7 @@
 						</div>
 						<div class="welcome-login">
 							<div class="login-banner">
-								<img src="assets/img/login-img.png" class="img-fluid" alt="Logo">
+								<img src="{{ asset('assets/img/login-img.png')}}" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>DreamsLMS Courses.</h2>
@@ -116,7 +116,7 @@
 					<div class="login-wrapper">
 						<div class="loginbox">
 							<div class="img-logo">
-								<img src="assets/img/logo.svg" class="img-fluid" alt="Logo">
+								<img src="{{ asset('assets/img/logo.svg')}}" class="img-fluid" alt="Logo">
 								<div class="back-home">
 									<a href="\">Back to Home</a>
 								</div>
@@ -163,16 +163,16 @@
 	   <!-- /Main Wrapper -->
 
 		<!-- jQuery -->
-		<script src="assets/js/jquery-3.7.1.min.js"></script>
+		<script src="{{ asset('assets/js/jquery-3.7.1.min.js')}}"></script>
 
 		<!-- Bootstrap Core JS -->
-		<script src="assets/js/bootstrap.bundle.min.js"></script>
+		<script src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 
 		<!-- Owl Carousel -->
-		<script src="assets/js/owl.carousel.min.js"></script>
+		<script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
 
 		<!-- Custom JS -->
-		<script src="assets/js/script.js"></script>
+		<script src="{{ asset('assets/js/script.js')}}"></script>
 
 	</body>
 </html>
