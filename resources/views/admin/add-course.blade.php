@@ -186,7 +186,6 @@
                     <hr />
                     <form action="{{ route('course.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
 
                         <label for="title" class="form-label">Course Title</label>
                         <input class="form-control w-100 form-control-lg mb-3" id="title" name="title"
