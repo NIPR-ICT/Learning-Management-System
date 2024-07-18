@@ -152,7 +152,7 @@
                                 <x-input-error :messages="$errors->get('content')" class="mt-2" />
 
                         <button class="btn btn-primary px-4" >
-                            Update
+                            Save
                             <i class="bx bx-right-arrow-alt ms-2"></i>
                         </button>
                         </form>
@@ -162,8 +162,7 @@
 
     </div>
 </div>
-  @endsection
-  <script src="https://cdn.tiny.cloud/1/dci5szikf4daw17kiq5crzw8azz6oi0bzgb896fs3po9skmj/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/dci5szikf4daw17kiq5crzw8azz6oi0bzgb896fs3po9skmj/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
     tinymce.init({
       selector: 'textarea',
@@ -172,4 +171,6 @@
     });
   </script>
 
+  @endsection
+  
 

@@ -121,14 +121,13 @@
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 
                                 <label for="course_id" class="form-label">Course Name</label>
-                                <select class="form-control w-100 form-control-lg mb-3" name="course_id" aria-label=".form-control-lg example" onchange="updateProgramOptions()">
-                                    <option value="" disabled selected>Select a course</option>
-                                    @foreach($courses as $course)
-                                    <option value="{{ $course->id }}" {{ $course->id == $module->course_id ? 'selected' : '' }}>
-                                            {{ $course->name }}
-                                        </option>
-                                        @endforeach
-                                </select>
+                                <select class="form-control w-100 form-control-lg mb-3" name="course_id" aria-label=".form-control-lg example">
+                                    <option disabled>Select Course</option>
+                                    @foreach ($courses as $course)
+<option value="{{ $course->id }}" {{ $course->id == $module->course_id ? 'selected' : '' }}>
+    {{ $course->title }}
+</option>
+@endforeach
                                 
                                 <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
 

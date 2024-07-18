@@ -163,8 +163,7 @@
 
     </div>
 </div>
-  @endsection
-  <script src="https://cdn.tiny.cloud/1/dci5szikf4daw17kiq5crzw8azz6oi0bzgb896fs3po9skmj/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/dci5szikf4daw17kiq5crzw8azz6oi0bzgb896fs3po9skmj/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
     tinymce.init({
       selector: 'textarea',
@@ -172,5 +171,7 @@
       toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
     });
   </script>
+  @endsection
+  
 
 
