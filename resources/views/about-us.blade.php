@@ -28,8 +28,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="terms-content">
-
+                        @if (empty($aboutUs))
+                        No data yet :(
+                        @else
                         {{ $aboutUs->content }}
+                        @endif
                     </div>
 
 
