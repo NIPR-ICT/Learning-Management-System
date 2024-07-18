@@ -11,6 +11,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PartController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PreliminaryPageController;
 use App\Http\Controllers\ProfileController;
@@ -161,6 +162,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/all-coupon', [CouponController::class, 'index'])->name('all.coupons');
         Route::delete('/admin/coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.delete');
         Route::get('/admin/all-payment-history',[PaymentController::class, 'AdminGetPaymentHistory'])->name('all.payment.history');
+
+
+        Route::resource('slide', PartnerController::class);
     });
 
     Route::middleware(['role:instructor'])->group(function () {
