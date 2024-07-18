@@ -98,7 +98,7 @@
                                     <input type="checkbox" id="featured" name="featured" class="mt-1" value="1" {{ old('featured') ? 'checked' : '' }}>
                                     <x-input-error :messages="$errors->get('featured')" class="mt-2" />
                                 </div>
-                                
+
 
                                 <div>
                                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -184,19 +184,27 @@
 
                     <h6 class="mb-0 text-uppercase">Course</h6>
                     <hr />
-                    <form action="{{ route('course.store') }}" method="POST" enctype="multipart/form-data">
+
+                    @if (session('errors'))
+                        <div class="mb-4 text-sm text-red-600">
+                            {{ session('errors') }}
+                        </div>
+                        @endif
+
+                    <form action="{{ route('course.store') }}" method="POST"
+                    enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
+                        {{-- @method('PUT') --}}
 
                         <label for="title" class="form-label">Course Title</label>
                         <input class="form-control w-100 form-control-lg mb-3" id="title" name="title"
-                            type="text" placeholder="" value="{{ old('title') }}"
+                            type="text" placeholder="" value="{{ old('title') }}" required
                             aria-label=".form-control-lg example">
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
 
                         <label for="part_id" class="form-label">Part Name with Program</label>
-                        <select class="form-control w-100 form-control-lg mb-3" id="part_id" name="part_id"
+                        <select class="form-control w-100 form-control-lg mb-3" id="part_id" name="part_id" required
                             aria-label=".form-control-lg example" onchange="updateProgramOptions()">
                             <option disabled selected>Select Program with Part</option>
                                         @foreach ($parts as $part)
@@ -209,7 +217,7 @@
 
 
                         <label for="program_id" class="form-label">Confirm Program</label>
-                        <select class="form-control w-100 form-control-lg mb-3" id="program_id" name="program_id"
+                        <select class="form-control w-100 form-control-lg mb-3" id="program_id" name="program_id" required
                             aria-label=".form-control-lg example">
                             <option disabled selected>Select Program</option>
                                     </select>
@@ -217,7 +225,7 @@
 
 
                             <label for="course_category" class="form-label">Course Category</label>
-                            <select class="form-control w-100 form-control-lg mb-3" id="course_category" name="course_category"
+                            <select class="form-control w-100 form-control-lg mb-3" id="course_category" name="course_category" required
                                 aria-label=".form-control-lg example" onchange="updateProgramOptions()">
                                 <option disabled selected>Select Course Category</option>
                                 <option value="Core">Core Course</option>
@@ -228,13 +236,13 @@
 
 
                         <label for="course_amount" class="form-label">Course Amount</label>
-                        <input class="form-control w-100 form-control-lg mb-3" type="number" id="course_amount" name="course_amount"
-                           value="{{ old('course_amount') }}" 
+                        <input class="form-control w-100 form-control-lg mb-3" type="number" id="course_amount" name="course_amount" required
+                           value="{{ old('course_amount') }}"
                             aria-label=".form-control-lg example">
                         <x-input-error :messages="$errors->get('course_amount')" class="mt-2" />
 
                         <label for="course_code" class="form-label">Enter Course Code</label>
-                        <input class="form-control  w-100 form-control-lg mb-3" type="text" id="course_code" name="course_code" aria-label=".form-control-lg example" value="{{ old('course_code') }}">
+                        <input class="form-control  w-100 form-control-lg mb-3" type="text" id="course_code" required name="course_code" aria-label=".form-control-lg example" value="{{ old('course_code') }}">
                         <x-input-error :messages="$errors->get('course_code')" class="mt-2" />
 
                             <label for="description" class="form-label">Description</label>
@@ -261,9 +269,9 @@
                                        aria-label=".form-control-lg example" value="1" {{ old('featured') ? 'checked' : '' }}>
                             </div>
                             <x-input-error :messages="$errors->get('featured')" class="mt-2" />
-                            
+
 <br/>
-                        
+
 
                         <button class="btn btn-primary px-4">
                             Update

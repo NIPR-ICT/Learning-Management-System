@@ -31,6 +31,7 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
+        dd($request);
             $request->validate([
                 'title' => 'required|string|unique:courses,title',
                 'part_id' => 'required',
@@ -47,7 +48,7 @@ class CourseController extends Controller
 
             // Create a new Course instance and populate it with validated data
 
-        
+                dd('got here');
             if ($request->hasFile('cover_image')) {
                 $file = $request->file('cover_image');
                 $timestamp = now()->timestamp;
@@ -55,6 +56,7 @@ class CourseController extends Controller
                 $fileName = Str::slug($title) . '-' . $timestamp . '.' . $file->getClientOriginalExtension();
                 $filePath = $file->storeAs('covers', $fileName, 'public');
             }
+
 
 
             $course = new Course([
@@ -129,8 +131,8 @@ public function storeupdate(Request $request, Course $course){
 public function destroy($id)
 {
     $course = Course::findOrFail($id);
-    Log::info('File path: ' . $course->cover_image); 
-    
+    Log::info('File path: ' . $course->cover_image);
+
         if (!empty($course->cover_image) && Storage::disk('public')->exists($course->cover_image)) {
             Storage::disk('public')->delete($course->cover_image);
         }
