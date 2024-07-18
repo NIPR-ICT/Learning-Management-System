@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Program;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,4 +19,10 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
+    ///////////////////////////////////public /////////////////////////////////////////////////
+
+    public function home(){
+        $program = Program::latest()->get();
+        return view('home', compact('program'));
+    }
 }

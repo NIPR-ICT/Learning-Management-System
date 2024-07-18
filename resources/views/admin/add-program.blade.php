@@ -103,8 +103,13 @@
 
                     <h6 class="mb-0 text-uppercase">Programme</h6>
                     <hr/>
-                    <form action="{{route('program.store')}}" method="POST">
+                    <form action="{{route('program.store')}}"  enctype="multipart/form-data" method="POST">
                         @csrf
+                        @if (session('errors'))
+                        <div class="mb-4 text-sm text-red-600">
+                            {{ session('errors') }}
+                        </div>
+                        @endif
                             <label for="formFile" class="form-label">Title</label>
                             <input class="form-control w-75 form-control-lg mb-3"  name="title"  type="text" placeholder="" aria-label=".form-control-lg example">
 
@@ -113,21 +118,15 @@
 
                             <label for="formFile" class="form-label">Program Short Code</label>
                             <input class="form-control  w-75 form-control-lg mb-3" name="short_code" type="text" placeholder="" aria-label=".form-control-lg example">
+
+                            <label for="formFile" class="form-label">Image</label>
+                            <input class="form-control  w-75 form-control-lg mb-3" name="cover_image" type="file" placeholder="" aria-label=".form-control-lg example">
                         <button class="btn btn-primary px-4" >
                             Save
                             <i class="bx bx-right-arrow-alt ms-2"></i>
                         </button>
                         </form>
                 </div>
-
-
-
-
-
-
-
-
-
 
             </div>
         </div>
