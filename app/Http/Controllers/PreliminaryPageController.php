@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\PreliminaryPage;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PreliminaryPageController extends Controller
 {
@@ -74,6 +77,12 @@ class PreliminaryPageController extends Controller
 
     public function aboutUs(){
         $aboutUs = PreliminaryPage::where('type','about')->first();
-        return view('about-us', compact('aboutUs'));
+        $user = count(User::where('role','user')->get());
+        $enrolled = count(DB::table('enrollments')
+        ->select('user_id', 'course_id')
+        ->distinct()
+        ->get());
+        $course = count(Course::all());
+        return view('about-us', compact('aboutUs', 'user','course', 'enrolled'));
     }
 }
