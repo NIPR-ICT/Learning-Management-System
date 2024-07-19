@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Student Dashboard') }}
@@ -60,3 +60,68 @@
     @include('includes.script')
 
 </x-app-layout>
+
+
+ --}}
+
+
+@extends('welcome')
+@section('content')
+
+<div class="breadcrumb-bar py-5"></div>
+@include('components.sweetalert')
+<!-- Page Content -->
+<div class="page-content">
+    
+    <div class="container">
+        <div class="row">
+            
+            <!-- Sidebar -->
+            <div class="col-xl-3 col-lg-3">
+                @include('includes.layout-frontend.side-bar')
+            </div>
+            <!-- /Sidebar -->
+
+            <!-- Student Dashboard -->
+            <div class="col-xl-9 col-lg-9">
+                @if (session()->has('totalAmount2') && session()->has('part'))
+    <div class="col-md-8">
+        <div class="card shadow-sm rounded-lg">
+            <div class="card-body text-dark">
+                <h2 class="card-title h4 mb-4">Checkout Payable Amount</h2>
+                <form action="{{ route('pay') }}" method="POST">
+                    @csrf
+                    <div class="mb-4">
+                        <label class="form-label text-dark">Course Title:</label>
+                        <?php $part = session('part'); ?>
+                        <p class="h5">{{ $part->name }} of {{ $part->program->title }}</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-dark">Discounted Amount:</label>
+                        <p class="h5">₦{{session('discounted') }}</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-dark">Payable Amount:</label>
+                        <p class="h5">₦{{session('totalAmount2') }}</p>
+                    </div>
+                    <div class="mb-4">
+                        <button type="submit" class="btn btn-danger w-100 w-sm-auto">Pay</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@else
+    <script type="text/javascript">
+        window.location = "{{ url()->previous() }}";
+    </script>
+@endif
+
+            </div>
+            
+            <!-- /Student Dashboard -->
+
+        </div>
+    </div>
+</div>
+@endsection

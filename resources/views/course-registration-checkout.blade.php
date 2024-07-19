@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Student Dashboard') }}
@@ -60,4 +60,65 @@
 
     @include('includes.script')
 
-</x-app-layout>
+</x-app-layout> --}}
+
+
+@extends('welcome')
+@section('content')
+
+<div class="breadcrumb-bar py-5"></div>
+@include('components.sweetalert')
+<!-- Page Content -->
+<div class="page-content">
+    
+    <div class="container">
+        <div class="row">
+            
+            <!-- Sidebar -->
+            <div class="col-xl-3 col-lg-3">
+                @include('includes.layout-frontend.side-bar')
+            </div>
+            <!-- /Sidebar -->
+
+            <!-- Student Dashboard -->
+            <div class="col-xl-9 col-lg-9">
+                @if (session()->has('totalAmount') && session()->has('part'))
+                <div class="col-12 col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h2 class="h5 mb-4">Checkout</h2>
+                            <div class="mb-4">
+                                <label class="form-label">Course Title:</label>
+                                <?php $part = session('part'); ?>
+                                <p class="h6">{{ $part->name }} of {{ $part->program->title }}</p>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Amount:</label>
+                                <p class="h6">₦{{session('totalAmount') }}</p>
+                            </div>
+                            <form action="{{ route('apply.coupon') }}" method="POST">
+                                @csrf
+                                <div class="mb-4">
+                                    <label for="coupon" class="form-label">Apply Coupon Code:</label>
+                                    <input type="text" name="coupon" id="coupon" class="form-control" placeholder="Enter coupon code">
+                                </div>
+                                <div class="mb-4">
+                                    <button type="submit" class="btn btn-danger w-100 w-lg-auto">Complete Checkout</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <script type="text/javascript">
+                    window.location = "{{ url()->previous() }}";
+                </script>
+                @endif
+            </div>
+            
+            <!-- /Student Dashboard -->
+
+        </div>
+    </div>
+</div>
+@endsection
