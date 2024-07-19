@@ -1,4 +1,4 @@
-<div class="col-xl-3 col-lg-3 theiaStickySidebar">
+<div class="col-xl-12 col-lg-12 theiaStickySidebar">
     <div class="settings-widget dash-profile">
         <div class="settings-menu">
             <div class="profile-bg">
@@ -8,7 +8,7 @@
             </div>
             <div class="profile-group">
                 <div class="profile-name text-center">
-                    <h4><a href="student-profile.html">{{auth()->user()->name}}</a></h4>
+                    <h4><a href="#">{{auth()->user()->name}}</a></h4>
                     <p>Student</p>
                 </div>
             </div>
@@ -35,9 +35,16 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('viewBy.bought.programme')}}" class="nav-link">
-                        <i class="bx bxs-graduation"></i>My Programme
+                        <i class="bx bxs-graduation"></i>Enrolled Programme
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{route('user.payment.history')}}" class="nav-link">
+                        <i class="bx bxs-graduation"></i>View Payment History
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{route('student.course')}}" class="nav-link">
                         <i class="bx bxs-book"></i>Enrolled Course

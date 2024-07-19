@@ -604,7 +604,7 @@
                   </div>
              </div><!--end row--> --}}
 
-    </div>
+    {{-- </div> --}}
 </div>
 <script src="{{asset('backend-assets/assets/js/index.js')}}"></script>
 
