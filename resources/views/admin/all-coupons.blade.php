@@ -153,7 +153,7 @@
                             </tr>
                         </tfoot>
                     </table>
-                    {{ $coupons->links() }}
+                    {{ $coupons->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

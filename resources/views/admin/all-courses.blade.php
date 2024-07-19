@@ -167,7 +167,7 @@
                             </tr>
                         </tfoot>
                     </table>
-                    {{ $courses->links() }}
+                    {{ $courses->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

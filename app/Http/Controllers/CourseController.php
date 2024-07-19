@@ -214,14 +214,14 @@ public function register(Request $request)
                     $query->orderBy('order', 'asc');
                 }])
                 ->with('course.modules.lessons.materials')
-                ->paginate(10);
+                ->paginate(5);
                 session()->put('enrollments', $enrollments);
                 return redirect()->route('enrollment.index');
         }
 
         return redirect()->route('program.start')->with('alert', [
             'title' => 'Error!',
-            'text' => 'Not Enrolled Yet',
+            'text' => 'Opps! Not Enrolled Yet',
             'icon' => 'error'
         ]);
     }

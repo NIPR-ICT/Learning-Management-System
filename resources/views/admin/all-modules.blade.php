@@ -175,7 +175,7 @@
                             </tr>
                         </tfoot>
                     </table>
-                    {{ $modules->links() }}
+                    {{ $modules->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>
