@@ -7,10 +7,9 @@
 <div class="page-content">
     <div class="container">
         <div class="row">
-
-            <!-- sidebar -->
-            @include('includes.layout-frontend.side-bar')
-            <!-- /Sidebar -->
+            <div class="col-xl-3 col-lg-3">
+                @include('includes.layout-frontend.side-bar')
+            </div>
 
     <!-- Student Settings -->
     <div class="col-xl-9 col-lg-9">

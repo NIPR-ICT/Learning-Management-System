@@ -1,9 +1,11 @@
 @extends('welcome')
 @section('content')
-<div class="breadcrumb-bar py-5"></div>
 
+<div class="breadcrumb-bar py-5"></div>
+@include('components.sweetalert')
 <!-- Page Content -->
 <div class="page-content">
+    
     <div class="container">
         <div class="row">
             
@@ -15,6 +17,9 @@
 
             <!-- Student Dashboard -->
             <div class="col-xl-9 col-lg-9">
+                <div class="mb-4 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
+                    <p>The Maximum credit unit is <strong>{{$part->max_credit}}</strong> and the minimum is <strong>{{$part->min_credit}}</strong></p>
+                </div>
                 <div class="container mx-auto">
                     <div class="bg-white p-3">
                         @if ($courses->isEmpty())
@@ -75,7 +80,6 @@
         </div>
     </div>
 </div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
