@@ -48,7 +48,6 @@ class CourseController extends Controller
 
             // Create a new Course instance and populate it with validated data
 
-                dd('got here');
             if ($request->hasFile('cover_image')) {
                 $file = $request->file('cover_image');
                 $timestamp = now()->timestamp;

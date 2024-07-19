@@ -41,7 +41,16 @@ class Part extends Model
 
         static::saving(function ($part) {
             if ($part->isDirty('name')) {
-                $part->slug = Str::slug($part->name);
+                // Generate slug based on name and program_id
+                $slug = Str::slug($part->name);
+        
+                // Append program_id to the slug
+                if ($part->program_id) {
+                    $slug .= '-' . $part->program_id;
+                }
+        
+                // Assign the slug to the part
+                $part->slug = $slug;
             }
         });
     }
