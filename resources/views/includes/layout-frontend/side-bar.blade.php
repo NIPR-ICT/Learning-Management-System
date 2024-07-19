@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('student.wishlist')}}" class="nav-link">
+                    <a href="{{route('user.wishlist')}}" class="nav-link">
                         <i class="bx bxs-heart"></i>Wishlist
                     </a>
                 </li>
