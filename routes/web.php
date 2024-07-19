@@ -145,7 +145,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/edit-module/{id}', [ModuleController::class, 'editModule'])->name('module.edit');
         Route::put('/admin/module/{id}', [ModuleController::class, 'storeupdate'])->name('module.update');
         Route::delete('/admin/module/{id}', [ModuleController::class, 'destroy'])->name('module.delete');
-        Route::get('all-modules', [LessonController::class, 'index'])->name('all.modules.lesson');
+        Route::get('/all-modules', [LessonController::class, 'index'])->name('all.modules.lesson');
         Route::get('/admin/add-lesson/{id}', [LessonController::class,'create'])->name('add.lesson');
         Route::post('/admin/add-lesson', [LessonController::class, 'store'])->name('lesson.store');
         Route::get('/admin/lesson-course/{id}', [LessonController::class, 'showCoures'])->name('lesson.course.module');

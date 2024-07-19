@@ -111,16 +111,16 @@
                         </div>
                         @endif
                             <label for="formFile" class="form-label">Title</label>
-                            <input class="form-control w-75 form-control-lg mb-3"  name="title"  type="text" placeholder="" aria-label=".form-control-lg example">
+                            <input class="form-control w-100 form-control-lg mb-3"  name="title"  type="text" placeholder="" aria-label=".form-control-lg example">
 
                             <label for="formFile" class="form-label">Description</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="description" type="text" placeholder="" aria-label=".form-control-lg example">
+                            <input class="form-control  w-100 form-control-lg mb-3" name="description" type="text" placeholder="" aria-label=".form-control-lg example">
 
                             <label for="formFile" class="form-label">Program Short Code</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="short_code" type="text" placeholder="" aria-label=".form-control-lg example">
+                            <input class="form-control  w-100 form-control-lg mb-3" name="short_code" type="text" placeholder="" aria-label=".form-control-lg example">
 
                             <label for="formFile" class="form-label">Image</label>
-                            <input class="form-control  w-75 form-control-lg mb-3" name="cover_image" type="file" placeholder="" aria-label=".form-control-lg example">
+                            <input class="form-control  w-100 form-control-lg mb-3" name="cover_image" type="file" placeholder="" aria-label=".form-control-lg example">
                         <button class="btn btn-primary px-4" >
                             Save
                             <i class="bx bx-right-arrow-alt ms-2"></i>

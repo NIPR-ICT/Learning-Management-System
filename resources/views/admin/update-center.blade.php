@@ -141,10 +141,6 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('state')" class="mt-2" />
 
-                            <label for="order" class="form-label">Module Order</label>
-                            <input class="form-control  w-100 form-control-lg mb-3" name="order" type="number" placeholder="" aria-label=".form-control-lg example" value="{{ old('order', $module->order) }}">
-                            <x-input-error :messages="$errors->get('order')" class="mt-2" />
-
                                 
                             <label for="code" class="form-label">Center Code</label>
                             <input class="form-control  w-100 form-control-lg mb-3" type="text" id="code" name="code" placeholder="E.g ABJ" aria-label=".form-control-lg example" value="{{ old('code', $center->code) }}">

@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="{{asset('backend-assets/assets/css/header-colors.css')}}"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
-	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+	<title>Public Relations and  Leadership  Academy</title>
 </head>
 
 <body>

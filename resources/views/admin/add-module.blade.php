@@ -111,7 +111,7 @@
                     <form action="{{ route('module.store') }}" method="POST">
                         @csrf
                         <label for="formFile" class="form-label"> Title </label>
-                        <input   class="form-control w-75 form-control-lg mb-3"  name="title" type="text" placeholder="" aria-label=".form-control-lg example">
+                        <input   class="form-control w-100 form-control-lg mb-3"  name="title" type="text" placeholder="" aria-label=".form-control-lg example">
 
                         <label for="title" class="form-label"> Course</label>
                         <select class="form-select mb-3" name="course_id" aria-label="Default select example">
@@ -122,11 +122,11 @@
                         </select>
 
                             <label for="formFile" class="form-label">Module Order</label>
-                            <input type="number" min="1" id="order" name="order" class="form-control  w-75 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
+                            <input type="number" min="1" id="order" name="order" class="form-control  w-100 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
 
 
                             <label for="description" class="block text-sm font-medium text-gray-700">Part Description</label>
-                                    <textarea id="description" name="description" rows="4" class="" style="resize: none" :value="__('Description')"></textarea>
+                                    <textarea id="description" name="description" rows="4" class="form-control w-100 form-control-lg mb-3" style="resize: none" :value="__('Description')"></textarea>
 
                             <button class="btn btn-primary px-4" >
                             Save

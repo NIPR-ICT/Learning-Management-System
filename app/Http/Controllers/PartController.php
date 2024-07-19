@@ -28,10 +28,13 @@ class PartController extends Controller
     {
         $request->validate([
             'program_id' => 'required',
-            'name' => ['required', 'string', Rule::unique('parts')->where(function ($query) use ($request) {
-                    return $query->where('program_id', $request->input('program_id'));
-                }),
-            ],
+            'name' => [
+    'required', 
+    'string', 
+    Rule::unique('parts')->where(function ($query) use ($request) {
+        return $query->where('program_id', $request->input('program_id'));
+    }),
+],
             'description' => 'required|string',
             'max_credit' => 'required|integer',
             'min_credit' => 'required|integer',
