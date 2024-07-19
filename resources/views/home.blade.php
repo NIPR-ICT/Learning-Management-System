@@ -206,7 +206,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="course-share d-flex align-items-center justify-content-center">
-                                                            <a href="#"><i class="fa-regular fa-heart"></i></a>
+                                                            <a  id="{{ $item->id }}" onclick="addToWishList(this.id)" href="javascript:void(0)" title="Add to wishlist"><i class="fa-regular fa-heart"></i></a>
                                                         </div>
                                                     </div>
                                                     <h3 class="title instructor-text"><a href="course-details.html">{{ $item->title }}</a></h3>
@@ -231,6 +231,7 @@
                                                             <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
                                                         </div>
                                                         <div class="all-btn all-category d-flex align-items-center">
+                                                            <a href="checkout.html"onclick="addToCart('{{ $item->id }}' )"  class="btn btn-primary"></a>
                                                             <a href="checkout.html" class="btn btn-primary">BUY NOW</a>
                                                         </div>
                                                     </div>

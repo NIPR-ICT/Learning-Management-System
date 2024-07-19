@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CouponController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PreliminaryPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Lesson;
 use App\Models\PreliminaryPage;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +42,11 @@ Route::get('/contact-us', [ContactUsController::class, 'ContactHome'])->name('co
 Route::get('/course', [CourseController::class, 'CourseHome'])->name('course.view');
 Route::get('/blog', [BlogController::class, 'BlogHome'])->name('blog.view');
 Route::get('/blog/{id}', [BlogController::class, 'BlogDetail'])->name('blog-detail.view');
+Route::get('/wishlist', [WishlistController::class, 'getWishlist'])->name('wishlist');
+Route::post('/add-to-wishlist/{course_id}', [WishlistController::class, 'AddToWishList']);
+Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlist']);
 
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 Route::middleware(['auth'])->group(function () {
     // Route::middleware(['role:user'])->group(function () {
@@ -50,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
     //     })->name('biodata.update');
 
     // });
+
     Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
 
     Route::post('/update-biodata',[BiodataController::class,'store'])->name('store.biodata');
@@ -80,9 +87,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/course', function () {
             return view('student.course');
         })->name('student.course');
-        Route::get('/student/wishlist', function () {
-            return view('student.wishlist');
-        })->name('student.wishlist');
+        Route::get('/student/wishlist', [WishlistController::class, 'studentWishList'])->name('user.wishlist');
         Route::get('/student/review', function () {
             return view('student.review');
         })->name('student.review');

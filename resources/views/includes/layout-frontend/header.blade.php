@@ -129,9 +129,14 @@
                             <img src="{{asset('assets/img/icon/wish.svg')}}" alt="img">
                         </a>
                         <div class="wishes-list dropdown-menu dropdown-menu-right">
+                            <div class="wish-header">
+                                <a class=" my-4"  href=" {{ route('wishlist') }}">View All</a>
+                                <a class=" my-4" id="wishQty"  href="#"></a>
+
+                            </div>
                             <div class="wish-content">
-                                <ul>
-                                    <li>
+                                <ul id="wishlist">
+                                    {{-- <li>
                                         <div class="media">
                                             <div class="d-flex media-wide">
                                                 <div class="avatar">
@@ -149,45 +154,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="d-flex media-wide">
-                                                <div class="avatar">
-                                                    <a href="course-details.html">
-                                                        <img alt="Img" src="{{asset('assets/img/course/course-14.jpg')}}">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="course-details.html">Build Responsive Real...</a></h6>
-                                                    <p>Jenis R.</p>
-                                                    <h5>$200 <span>$99.00</span></h5>
-                                                    <div class="remove-btn">
-                                                        <a href="#" class="btn">Add to cart</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="d-flex media-wide">
-                                                <div class="avatar">
-                                                    <a href="course-details.html">
-                                                        <img alt="Img" src="{{asset('assets/img/course/course-15.jpg')}}">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="course-details.html">C# Developers Double ...</a></h6>
-                                                    <p>Jesse Stevens</p>
-                                                    <h5>$200 <span>$99.00</span></h5>
-                                                    <div class="remove-btn">
-                                                        <a href="#" class="btn">Remove</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    </li> --}}
+
                                 </ul>
                             </div>
                         </div>
