@@ -125,21 +125,21 @@
 
                         <h6 class="mb-0 text-uppercase">Course Module</h6>
                         <hr/>
-                        <form action="{{ route('module.store') }}" method="POST">
+                        <form action="{{ route('material.store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
                             <label for="formFile" class="form-label"> Lesson Title </label>
-                            <input value="{{$lesson->title, old('title') }}" readonly  class="form-control w-75 form-control-lg mb-3"  id="lesson_name" name="lesson_name" type="text" placeholder="" aria-label=".form-control-lg example">
+                            <input value="{{$lesson->title, old('title') }}" readonly  class="form-control w-100 form-control-lg mb-3"  id="lesson_name" name="lesson_name" type="text" placeholder="" aria-label=".form-control-lg example">
                             <input type="hidden" id="lesson_id" name="lesson_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{$lesson->id}}">
 
                                 <label for="formFile" class="form-label"> Course Title</label>
-                                <input  value="{{$lesson->course->title, old('title') }}" readonly class="form-control w-75 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
+                                <input  value="{{$lesson->course->title, old('title') }}" readonly class="form-control w-100 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
                                 <input type="hidden" id="course_id" name="course_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{$lesson->course_id}}">
 
                                 <label for="formFile" class="form-label"> Title</label>
-                                <input type="text" id="title" name="title"class="form-control w-75 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
+                                <input type="text" id="title" name="title"class="form-control w-100 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
 
-                                <label for="description" class="block text-sm font-medium text-gray-700">Part Description</label>
-                                <textarea id="description" name="description" rows="4" class="" style="resize: none" :value="__('Description')"></textarea>
+                                <label for="description" class="block text-sm font-medium text-gray-700">Material Description</label>
+                                <textarea id="description" class="form-control w-100 form-control-lg mb-3" name="description" rows="4" class="" style="resize: none" :value="__('Description')"></textarea>
 
 
                     </div>
@@ -160,7 +160,7 @@
 
 
                     <label for="formFile" class="form-label"> Upload file</label>
-                    <input type="file" id="file_path" name="file_path" class="form-control w-75 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
+                    <input type="file" id="file_path" name="file_path" class="form-control w-100 form-control-lg mb-3" name="description"  placeholder="" aria-label=".form-control-lg example">
                     <button class="btn btn-primary px-4" >
                         Save
                         <i class="bx bx-right-arrow-alt ms-2"></i>

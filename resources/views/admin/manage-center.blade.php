@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Admin Dashboard') }}
@@ -85,4 +85,82 @@
 
     @include('includes.script')
 
-</x-app-layout>
+</x-app-layout> --}}
+
+
+
+@extends('admin.index')
+  @section('slot')
+  <div class="page-wrapper">
+    <div class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Centres</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">List</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Add Centre</button>
+                </div>
+            </div>
+        </div>
+        <!--end breadcrumb-->
+
+        <div class="card">
+            <div class="card-body">
+            <h6 class="mb-0 text-uppercase">All Centre</h6>
+            <hr/>
+                <div class="table-responsive">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th >Name</th>
+                                <th >State</th>
+                                <th >code</th>
+                                <th >Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($centers as $center)
+                            <tr class="hover:bg-gray-200">
+                                <td>{{ $center->name }}</td>
+                                <td>{{ $center->state }}</td>
+                                <td>{{ $center->code }}</td>
+                                <td class="py-3 px-4 flex space-x-2">
+                                    <a href="{{ route('center.update', $center->id) }}" class="btn btn-info">Edit</a>
+                                    <form action="{{ route('center.delete', $center->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Course?');" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th >Title</th>
+                                <th >Part</th>
+                                <th >Program</th>
+                                <th >Actions</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    {{ $centers->links() }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+  @endsection
+
