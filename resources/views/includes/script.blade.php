@@ -131,7 +131,7 @@
                                                 <div class="media-body">
                                                     <h6><a href="course-details.html">${value.course.title}</a></h6>
                                                    <!-- <p>By Dave Franco</p> -->
-                                                    <h5>${value.course.course_amount}</h5>
+                                                    <h5>&#8358;${value.course.course_amount}</h5>
                                                     <div class="remove-btn">
                                                         <a href="#" id="${value.id}" onclick="wishlistRemove(this.id)" class="btn ">Remove</a>
                                                         <a href="#" class="btn">Add to cart</a>
@@ -150,18 +150,19 @@
 
     /// End WishList Remove //
 
-    function addToCart(courseId,){
+    function addToCart(courseId,instructorId,slug,title){
         $.ajax({
             type: "POST",
             dataType: 'json',
             data: {
-                _token: '{{ csrf_token() }}'
-                // course_name: courseName,
-                // course_name_slug: slug,
-                // instructor: instructorId
+                _token: '{{ csrf_token() }}',
+                course_name: title,
+                course_name_slug: slug,
+                instructor: instructorId
             },
             url: "/cart/data/store/"+ courseId,
             success: function(data) {
+                miniCart();
                 // Start Message
                 const Toast = Swal.mixin({
                   toast: true,
@@ -190,5 +191,44 @@
         })
     }
 
+    function miniCart(){
+        $.ajax({
+            type: 'GET',
+            url: '/course/mini/cart',
+            dataType: 'json',
+            success:function(response){
+                $('span[id="cartSubTotal"]').text(response.cartTotal);
+                $('#cartQty').text(response.cartQty);
+                var miniCart = ""
+                $.each(response.carts, function(key,value){
+                    miniCart += `
+
+                        <li>
+                                        <div class="media">
+                                            <div class="d-flex media-wide">
+                                                <div class="avatar">
+                                                    <a href="course-details.html">
+                                                        <img alt="Img" src="storage/${value.options.image}">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6><a href="course-details.html">${value.name}</a></h6>
+                                                  <!--  <p>By Dave Franco</p> -->
+                                                    <h5>&#8358;${value.price}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="remove-btn">
+                                                <a href="#" class="btn">Remove</a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                        `
+                });
+                $('#miniCart').html(miniCart);
+            }
+        })
+    }
+    miniCart();
     </script>
 

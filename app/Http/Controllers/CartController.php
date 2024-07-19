@@ -26,10 +26,10 @@ class CartController extends Controller
                 'id' => $id,
                 'name' => $request->course_name,
                 'qty' => 1,
-                'price' => $course->selling_price,
+                'price' => $course->course_amount,
                 'weight' => 1,
                 'options' => [
-                    'image' => $course->course_image,
+                    'image' => $course->cover_image,
                     'slug' => $request->course_name_slug,
                     'instructor' => $request->instructor,
                 ],
@@ -41,10 +41,10 @@ class CartController extends Controller
                 'id' => $id,
                 'name' => $request->course_name,
                 'qty' => 1,
-                'price' => $course->discount_price,
+                'price' => $course->course_amount,
                 'weight' => 1,
                 'options' => [
-                    'image' => $course->course_image,
+                    'image' => $course->cover_image,
                     'slug' => $request->course_name_slug,
                     'instructor' => $request->instructor,
                 ],
@@ -54,4 +54,32 @@ class CartController extends Controller
         return response()->json(['success' => 'Successfully Added on Your Cart']);
 
     }// End Method
+
+    public function CartData(){
+
+        $carts = Cart::content();
+        $cartTotal = Cart::total();
+        $cartQty = Cart::count();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartTotal' => $cartTotal,
+            'cartQty' => $cartQty,
+        ));
+
+    }// End Method
+
+    public function AddMiniCart(){
+
+        $carts = Cart::content();
+        $cartTotal = Cart::total();
+        $cartQty = Cart::count();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartTotal' => $cartTotal,
+            'cartQty' => $cartQty,
+        ));
+
+    }// End Method 
 }

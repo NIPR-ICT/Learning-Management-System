@@ -42,11 +42,16 @@ Route::get('/contact-us', [ContactUsController::class, 'ContactHome'])->name('co
 Route::get('/course', [CourseController::class, 'CourseHome'])->name('course.view');
 Route::get('/blog', [BlogController::class, 'BlogHome'])->name('blog.view');
 Route::get('/blog/{id}', [BlogController::class, 'BlogDetail'])->name('blog-detail.view');
+// wishlist
 Route::get('/wishlist', [WishlistController::class, 'getWishlist'])->name('wishlist');
 Route::post('/add-to-wishlist/{course_id}', [WishlistController::class, 'AddToWishList']);
 Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlist']);
 
+// cart
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+Route::get('/cart/data/', [CartController::class, 'CartData']);
+
+Route::get('/course/mini/cart/', [CartController::class, 'AddMiniCart']);
 
 Route::middleware(['auth'])->group(function () {
     // Route::middleware(['role:user'])->group(function () {

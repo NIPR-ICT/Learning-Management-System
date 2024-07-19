@@ -54,71 +54,15 @@
                         </a>
                         <div class="wishes-list dropdown-menu dropdown-menu-right">
                             <div class="wish-header">
-                                <a href="javascript:void(0)">View Cart</a>
+                                <a href="javascript:void(0)">View Cart  <strong class="pl-3" id="cartQty"></strong>  </a>
                                 <a href="javascript:void(0)" class="float-end">Checkout</a>
                             </div>
                             <div class="wish-content">
-                                <ul>
-                                    <li>
-                                        <div class="media">
-                                            <div class="d-flex media-wide">
-                                                <div class="avatar">
-                                                    <a href="course-details.html">
-                                                        <img alt="Img" src="{{asset('assets/img/course/course-04.jpg')}}">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="course-details.html">Learn Angular...</a></h6>
-                                                    <p>By Dave Franco</p>
-                                                    <h5>$200 <span>$99.00</span></h5>
-                                                </div>
-                                            </div>
-                                            <div class="remove-btn">
-                                                <a href="#" class="btn">Remove</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="d-flex media-wide">
-                                                <div class="avatar">
-                                                    <a href="course-details.html">
-                                                        <img alt="Img" src="{{asset('assets/img/course/course-14.jpg')}}">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="course-details.html">Build Responsive Real...</a></h6>
-                                                    <p>Jenis R.</p>
-                                                    <h5>$200 <span>$99.00</span></h5>
-                                                </div>
-                                            </div>
-                                            <div class="remove-btn">
-                                                <a href="#" class="btn">Remove</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <div class="d-flex media-wide">
-                                                <div class="avatar">
-                                                    <a href="course-details.html">
-                                                        <img alt="Img" src="{{asset('assets/img/course/course-15.jpg')}}">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="course-details.html">C# Developers Double ...</a></h6>
-                                                    <p>Jesse Stevens</p>
-                                                    <h5>$200 <span>$99.00</span></h5>
-                                                </div>
-                                            </div>
-                                            <div class="remove-btn">
-                                                <a href="#" class="btn">Remove</a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                <ul id="miniCart">
+
                                 </ul>
                                 <div class="total-item">
-                                    <h6>Subtotal : $ 600</h6>
+                                    <h6  id="cartSubTotal"> <span  id="cartSubTotal"></span> </h6>
                                     <h5>Total : $ 600</h5>
                                 </div>
                             </div>
@@ -136,25 +80,7 @@
                             </div>
                             <div class="wish-content">
                                 <ul id="wishlist">
-                                    {{-- <li>
-                                        <div class="media">
-                                            <div class="d-flex media-wide">
-                                                <div class="avatar">
-                                                    <a href="course-details.html">
-                                                        <img alt="Img" src="{{asset('assets/img/course/course-04.jpg')}}">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="course-details.html">Learn Angular...</a></h6>
-                                                    <p>By Dave Franco</p>
-                                                    <h5>$200 <span>$99.00</span></h5>
-                                                    <div class="remove-btn">
-                                                        <a href="#" class="btn">Add to cart</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li> --}}
+
 
                                 </ul>
                             </div>
