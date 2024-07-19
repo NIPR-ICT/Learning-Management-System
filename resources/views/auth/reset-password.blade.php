@@ -81,7 +81,7 @@
 					<div class="owl-carousel login-slide owl-theme aos" data-aos="fade-up">
 						<div class="welcome-login">
 							<div class="login-banner">
-								<img src="{{ asset('assets/img/login-img.png')}}" class="img-fluid" alt="Logo">
+								<img src="{{asset('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>DreamsLMS Courses.</h2>
@@ -116,7 +116,7 @@
 					<div class="login-wrapper">
 						<div class="loginbox">
 							<div class="img-logo">
-								<img src="{{ asset('assets/img/logo.svg')}}" class="img-fluid" alt="Logo">
+								<img src="{{asset('assets/img/logo.png')}}"class="img-fluid" alt="Logo">
 								<div class="back-home">
 									<a href="\">Back to Home</a>
 								</div>
