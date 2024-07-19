@@ -231,8 +231,8 @@
                                                             <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
                                                         </div>
                                                         <div class="all-btn all-category d-flex align-items-center">
-                                                            <a href="checkout.html"onclick="addToCart('{{ $item->id }}' )"  class="btn btn-primary"></a>
-                                                            <a href="checkout.html" class="btn btn-primary">BUY NOW</a>
+                                                            <button  onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}' )"  class="btn btn-primary"> <strong>+</strong><img src="{{asset('assets/img/icon/cart.svg')}}" alt="img"></button>
+                                                            {{-- <a href="checkout.html" class="btn btn-primary">BUY NOW</a> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -393,7 +393,9 @@
 											<span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
 										</div>
 										<div class="all-btn all-category d-flex align-items-center">
-											<a href="checkout.html" class="btn btn-primary">BUY NOW</a>
+											{{-- <a href="checkout.html" class="btn btn-primary">BUY NOW</a> --}}
+                                            <button  onclick="addToCart({{ $courses->id }},'{{ $courses->creator->name }}','{{ $courses->slug }}','{{ $courses->title }}' )"  class="btn btn-primary"> <strong>+</strong><img src="{{asset('assets/img/icon/cart.svg')}}" alt="img"></button>
+
 										</div>
 									</div>
 								</div>
