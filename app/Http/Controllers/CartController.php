@@ -89,4 +89,24 @@ class CartController extends Controller
         return response()->json(['success' => 'Course Remove From Cart']);
 
     }// End Method 
+
+    public function MyCart(){
+
+        return view('cart');
+
+    } // End Method 
+
+    public function GetCartCourse(){
+
+        $carts = Cart::content();
+        $cartTotal = Cart::total();
+        $cartQty = Cart::count();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartTotal' => $cartTotal,
+            'cartQty' => $cartQty,
+        ));
+
+    }// End Method 
 }
