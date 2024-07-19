@@ -167,7 +167,7 @@
                             </tr>
                         </tfoot>
                     </table>
-                    {{ $materials->links() }}
+                    {{ $materials->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

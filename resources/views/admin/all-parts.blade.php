@@ -195,7 +195,7 @@
                                 <th>Actions</th>
                             </tr>
                         </tfoot>
-                        {{ $parts->links() }}
+                        {{ $parts->links('pagination::bootstrap-4') }}
                     </table>
                 </div>
             </div>
