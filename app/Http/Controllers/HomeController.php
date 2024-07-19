@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index(){
-        return view('admin.dashboard');
+        $totalStudents = \App\Models\User::where('role', 'student')->count();
+        $totalAmount = \App\Models\Transaction::sum('amount');
+        $totalCourses = \App\Models\Course::count();
+        $totalPrograms = \App\Models\Program::count();
+        return view('admin.dashboard', compact('totalStudents','totalAmount', 'totalCourses', 'totalPrograms'));
     }
 
     public function instructor(){
