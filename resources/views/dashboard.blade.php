@@ -136,7 +136,7 @@
                         <div class="card dash-info flex-fill">
                             <div class="card-body">
                                 <h5>Completed Courses</h5>
-                                <h2>13</h2>
+                                <h2>6</h2>
                             </div>
                         </div>
                     </div>
