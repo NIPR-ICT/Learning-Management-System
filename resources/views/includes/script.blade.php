@@ -197,7 +197,7 @@
             url: '/course/mini/cart',
             dataType: 'json',
             success:function(response){
-                $('span[id="cartSubTotal"]').text(response.cartTotal);
+                $('#cartSubTotal').text(response.cartTotal);
                 $('#cartQty').text(response.cartQty);
                 var miniCart = ""
                 $.each(response.carts, function(key,value){
@@ -218,7 +218,7 @@
                                                 </div>
                                             </div>
                                             <div class="remove-btn">
-                                                <a href="#" class="btn">Remove</a>
+                                                <a href="#" id="${value.rowId}" onclick="miniCartRemove(this.id)" class="btn">Remove</a>
                                             </div>
                                         </div>
                                     </li>
@@ -230,5 +230,41 @@
         })
     }
     miniCart();
+
+     // Mini Cart Remove Start
+     function miniCartRemove(rowId){
+        $.ajax({
+            type: 'GET',
+            url: '/minicart/course/remove/'+rowId,
+            dataType: 'json',
+            success:function(data){
+            miniCart();
+            // Start Message
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000
+            })
+            if ($.isEmptyObject(data.error)) {
+
+                    Toast.fire({
+                    type: 'success',
+                    icon: 'success',
+                    title: data.success,
+                    })
+            }else{
+
+              Toast.fire({
+                    type: 'error',
+                    icon: 'error',
+                    title: data.error,
+                    })
+                }
+              // End Message
+            }
+        })
+    }
+    // End Mini Cart Remove
     </script>
 
