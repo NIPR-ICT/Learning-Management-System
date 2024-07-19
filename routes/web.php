@@ -53,6 +53,16 @@ Route::get('/cart/data/', [CartController::class, 'CartData']);
 Route::get('/course/mini/cart/', [CartController::class, 'AddMiniCart']);
 Route::get('/minicart/course/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
+// course 
+Route::get('/course/{id}/{slug}', [CourseController::class, 'courseDetail'])->name('course.details.view');
+
+
+// Cart All Route 
+Route::controller(CartController::class)->group(function(){
+    Route::get('/mycart','MyCart')->name('mycart'); 
+    Route::get('/get-cart-course','GetCartCourse');
+});
+
 Route::middleware(['auth'])->group(function () {
     // Route::middleware(['role:user'])->group(function () {
     //     Route::get('/dashboard', [HomeController::class, 'student'])->name('dashboard');

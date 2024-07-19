@@ -54,7 +54,7 @@
                         </a>
                         <div class="wishes-list dropdown-menu dropdown-menu-right">
                             <div class="wish-header">
-                                <a href="javascript:void(0)">View Cart  <strong class="pl-3" id="cartQty"></strong>  </a>
+                                <a href="{{ route('mycart') }}">View Cart  <strong class="pl-3" id="cartQty"></strong>  </a>
                                 <a href="javascript:void(0)" class="float-end">Checkout</a>
                             </div>
                             <div class="wish-content">
@@ -62,8 +62,8 @@
 
                                 </ul>
                                 <div class="total-item">
-                                    <h6>&#8358; <span  id="cartSubTotal"></span> </h6>
-                                    <h5>Total : &#8358;</h5>
+                                    <h6>&#8358;  </h6>
+                                    <h5>Total : &#8358; <span  id="cartSubTotal"></span></h5>
                                 </div>
                             </div>
                         </div>

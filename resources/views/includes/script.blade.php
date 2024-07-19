@@ -239,6 +239,7 @@
             dataType: 'json',
             success:function(data){
             miniCart();
+            cart()
             // Start Message
             const Toast = Swal.mixin({
                   toast: true,
@@ -266,5 +267,67 @@
         })
     }
     // End Mini Cart Remove
+
+    function cart(){
+        $.ajax({
+            type: 'GET',
+            url: '/get-cart-course',
+            dataType: 'json',
+            success:function(response){
+                $('#cartTotal').text('Total '+response.cartTotal);
+                $('#cartQtyz').text(response.cartQty );
+                // alert(response.cartTotal)
+                var rows = ""
+                $.each(response.carts, function(key,value){
+                    rows += ` 
+                                <div class="col-lg-12 col-md-12 d-flex">
+                                    <div class="course-box course-design list-course d-flex">
+                                        <div class="product">
+                                            <div class="product-img">
+                                                <a href="course-details.html">
+                                                    <img class="img-fluid" alt="Img" src="storage/${value.options.image}">
+                                                </a>
+                                                <div class="price">
+                                                    <h3 class="free-color">&#8358;${value.price}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <div class="head-course-title">
+                                                    <h3 class="title"><a href="course-details.html"> ${value.name}</a></h3>
+                                                </div>
+                                                <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
+                                                    <div class="rating-img d-flex align-items-center">
+                                                        <img src="assets/img/icon/icon-01.svg" alt="Img">
+                                                        <p>12+ Lesson</p>
+                                                    </div>
+                                                    <div class="course-view d-flex align-items-center">
+                                                        <img src="assets/img/icon/icon-02.svg" alt="Img">
+                                                        <p>9hr 30min</p>
+                                                    </div>
+                                                </div>
+                                                <div class="rating">							
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
+                                                </div>
+                                            </div>
+                                            <div class="cart-remove">
+                                                <a href="javascript:void(0);"  id="${value.rowId}" onclick="miniCartRemove(this.id)"  class="btn btn-primary">Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+
+                `
+                });
+                $('#cartPage').html(rows);
+            }
+        })
+    }
+    cart()
     </script>
 

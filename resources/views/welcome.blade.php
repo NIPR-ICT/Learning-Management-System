@@ -4,7 +4,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-		<title>Dreams LMS</title>
+		<title>Public Relations and Leadership Acadamey </title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.svg')}}">

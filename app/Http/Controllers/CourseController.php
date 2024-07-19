@@ -82,10 +82,9 @@ class CourseController extends Controller
 
     }
 
-    public function courseDetail($id){
+    public function courseDetail($id,$slug){
         $course = Course::with('creator')->findOrFail($id);
         return view('admin.course-detail', compact('course'));
-
 }
 
 public function editCourse($id){
@@ -227,7 +226,7 @@ public function register(Request $request)
     }
 ///////////////////////////////////////////public view///////////////////////////////////////////////
     public function CourseHome(){
-        $courses = Course::latest()->paginate(20);
+        $courses = Course::with('creator','modules')->latest()->paginate(20);
         return view('course', compact('courses'));
     }
 
