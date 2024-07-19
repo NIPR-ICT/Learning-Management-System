@@ -62,8 +62,8 @@
 
                                 </ul>
                                 <div class="total-item">
-                                    <h6  id="cartSubTotal"> <span  id="cartSubTotal"></span> </h6>
-                                    <h5>Total : $ 600</h5>
+                                    <h6>&#8358; <span  id="cartSubTotal"></span> </h6>
+                                    <h5>Total : &#8358;</h5>
                                 </div>
                             </div>
                         </div>

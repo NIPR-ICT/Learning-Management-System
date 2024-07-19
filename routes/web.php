@@ -50,8 +50,8 @@ Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlist'
 // cart
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 Route::get('/cart/data/', [CartController::class, 'CartData']);
-
 Route::get('/course/mini/cart/', [CartController::class, 'AddMiniCart']);
+Route::get('/minicart/course/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
 Route::middleware(['auth'])->group(function () {
     // Route::middleware(['role:user'])->group(function () {
@@ -93,6 +93,7 @@ Route::middleware(['auth'])->group(function () {
             return view('student.course');
         })->name('student.course');
         Route::get('/student/wishlist', [WishlistController::class, 'studentWishList'])->name('user.wishlist');
+
         Route::get('/student/review', function () {
             return view('student.review');
         })->name('student.review');
