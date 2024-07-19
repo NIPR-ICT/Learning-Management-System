@@ -221,7 +221,7 @@ public function register(Request $request)
 
         return redirect()->route('program.start')->with('alert', [
             'title' => 'Error!',
-            'text' => 'Not Enrolled Yet',
+            'text' => 'Opps! Not Enrolled Yet',
             'icon' => 'error'
         ]);
     }
