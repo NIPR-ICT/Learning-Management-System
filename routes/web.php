@@ -188,6 +188,11 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/admin/store-part/{id}', [PartController::class, 'update'])->name('parts.store');
         Route::get('/admin/add-charge', [ChargesController::class, 'create'])->name('charge.form');
         Route::post('/admin/add-charge', [ChargesController::class, 'store'])->name('charge.store');
+        Route::get('/admin/all-charge', [ChargesController::class, 'index'])->name('all.charges');
+        Route::delete('/admin/delete-charge/{id}', [ChargesController::class, 'destroy'])->name('charge.delete');
+        Route::get('/charges/{charge}/edit', [ChargesController::class, 'edit'])->name('charges.edit');
+        Route::put('/charges/{charge}', [ChargesController::class, 'update'])->name('charges.update');   
+
         Route::resource('slide', PartnerController::class);
     });
 

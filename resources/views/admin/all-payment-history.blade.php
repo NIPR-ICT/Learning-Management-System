@@ -147,7 +147,6 @@
                             </tr>
                         </tfoot>
                         {{ $allTransactions->links('pagination::bootstrap-4') }}
-                        {{ $allTransactions->links() }}
                     </table>
                 </div>
             </div>

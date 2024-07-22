@@ -88,6 +88,7 @@
 
 
 @extends('admin.index')
+@include('components.sweetalert')
   @section('slot')
   <div class="page-wrapper">
     <div class="page-content">

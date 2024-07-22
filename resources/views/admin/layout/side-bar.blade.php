@@ -129,7 +129,7 @@
             <ul>
                 <li> <a href="{{ route('charge.form') }}"><i class='bx bx-plus'></i>Add Charge</a>
                 </li>
-                <li> <a href="{{ route('all.part') }}"><i class='bx bx-radio-circle'></i>Manage all Charges</a>
+                <li> <a href="{{ route('all.charges') }}"><i class='bx bx-radio-circle'></i>Manage all Charges</a>
                 </li>
 
             </ul>
@@ -137,7 +137,7 @@
 
         <li>
             <a href="{{ route('all.modules.lesson') }}">
-                <div class="parent-icon"><i class="bx bx-category"></i></div>
+                <div class="parent-icon"><i class="bx bx-plus"></i></div>
                 <div class="menu-title">Add Lessons</div>
             </a>
         </li>
