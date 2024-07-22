@@ -99,33 +99,33 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Programme Part</div>
+            <div class="breadcrumb-title pe-3">Programme Level</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item " aria-current="page">Programme Part</li>
+                        <li class="breadcrumb-item " aria-current="page">Programme Level</li>
                         <li class="breadcrumb-item active" aria-current="page">Create</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary">List of Programme Part</button>
+                    <button type="button" class="btn btn-primary">List of Programme Level</button>
 
                 </div>
             </div>
         </div>
         <!--end breadcrumb-->
-        <h6 class="mb-0 text-uppercase">Create Programme Part</h6>
+        <h6 class="mb-0 text-uppercase">Create Programme Level</h6>
         <hr/>
         <div class="card">
             <div class="card-body">
 
 
 
-                    <h6 class="mb-0 text-uppercase">Programme Part</h6>
+                    <h6 class="mb-0 text-uppercase">Programme Level</h6>
                     <hr/>
                     <form action="{{route('part.store')}}" method="POST">
                         @csrf
@@ -137,14 +137,14 @@
                             @endforeach
                         </select>
 
-                        <label for="title" class="form-label">Part Name</label>
+                        <label for="title" class="form-label">Select Program Level</label>
                         <select class="form-select mb-3" name="name"  aria-label="Default select example">
                             <option selected>Open this select menu</option>
-                            <option value="Part I">Part I</option>
-                            <option value="Part II">Part II</option>
-                            <option value="Part III">Part III</option>
-                            <option value="Part IV">Part IV</option>
-                            <option value="Part V">Part V</option>
+                            <option value="Level I">Level I</option>
+                            <option value="Level II">Level II</option>
+                            <option value="Level III">Level III</option>
+                            <option value="Level IV">Level IV</option>
+                            <option value="Level V">Level V</option>
                         </select>
 
                             <label for="formFile" class="form-label">Maximum Credit</label>

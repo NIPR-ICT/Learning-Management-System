@@ -131,7 +131,7 @@
                         <thead>
                             <tr>
                                 <th >Title</th>
-                                <th >Part</th>
+                                <th >Level</th>
                                 <th >Program</th>
                                 <th >Actions</th>
                             </tr>
@@ -161,7 +161,7 @@
                         <tfoot>
                             <tr>
                                 <th >Title</th>
-                                <th >Part</th>
+                                <th >Level</th>
                                 <th >Program</th>
                                 <th >Actions</th>
                             </tr>

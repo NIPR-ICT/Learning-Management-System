@@ -183,8 +183,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/all-coupon', [CouponController::class, 'index'])->name('all.coupons');
         Route::delete('/admin/coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.delete');
         Route::get('/admin/all-payment-history',[PaymentController::class, 'AdminGetPaymentHistory'])->name('all.payment.history');
-
-
+        Route::get('/admin/edit-part/{id}', [PartController::class, 'edit'])->name('show.edit.form');
+        Route::put('/admin/store-part/{id}', [PartController::class, 'update'])->name('parts.store');
         Route::resource('slide', PartnerController::class);
     });
 

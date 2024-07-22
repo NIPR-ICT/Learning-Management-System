@@ -119,7 +119,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Part</th>
+                                <th>Level</th>
                                 <th>Percentage</th>
                                 <th>Code</th>
                                 <th>Actions</th>
@@ -146,7 +146,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Part</th>
+                                <th>Level</th>
                                 <th>Percentage</th>
                                 <th>Code</th>
                                 <th>Actions</th>

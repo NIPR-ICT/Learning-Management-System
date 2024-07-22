@@ -145,7 +145,7 @@
                         <thead>
                             <tr>
                                 <th>Program Name</th>
-                                <th>Part</th>
+                                <th>Level</th>
                                 <th>Min</th>
                                 <th>Max</th>
                                 <th>Description</th>
@@ -172,7 +172,7 @@
                                             </td>
                                             <td class="py-3 px-4 space-x-2">
 
-                                                {{-- {{ route('program.destroy', $program->id) }} --}}
+                                                <a href="{{ route('show.edit.form', $part->id) }}" class="btn btn-info">Edit</a>
                                                 <form action="{{ route('part.delete', $part->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Part?');" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -188,7 +188,7 @@
                         <tfoot>
                             <tr>
                                 <th>Program Name</th>
-                                <th>Part</th>
+                                <th>Level</th>
                                 <th>Min</th>
                                 <th>Max</th>
                                 <th>Description</th>

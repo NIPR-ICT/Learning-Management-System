@@ -118,10 +118,10 @@
                     <form action="{{route('coupon.store')}}" method="POST">
                         @csrf
 
-                        <label for="state" class="form-label">Select Program with Part</label>
+                        <label for="state" class="form-label">Select Program with Level</label>
                             <select class="form-control w-100 form-control-lg mb-3" id="part_id" name="part_id"
                                 aria-label=".form-control-lg example">
-                                <option disabled selected>Select Program with part</option>
+                                <option disabled selected>Select Program with Level</option>
                                         @foreach ($parts as $part)
                                             <option value="{{ $part->id }}">{{ $part->name }} of {{ $part->program->title }} </option>
                                         @endforeach

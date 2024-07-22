@@ -59,6 +59,46 @@ class PartController extends Controller
         ]);
     }
 
+    public function edit(string $id)
+    {
+        $programs = Program::all();
+        $part = Part::findOrFail($id); 
+        return view('admin.update-part', compact('part','programs'));
+    }
+
+
+    public function update(Request $request, Part $part)
+    {
+         // Validate the request
+    $request->validate([
+        'program_id' => 'required|exists:programs,id',
+        'name' =>'required|string',
+        'description' => 'required|string',
+        'max_credit' => 'required|integer',
+        'min_credit' => 'required|integer',
+        'program_duration' => 'required|string',
+    ]);
+
+    $part = Part::findOrFail($request->id);
+
+        $part->program_id = $request->input('program_id');
+        $part->name = $request->input('name');
+        $part->description = $request->input('description');
+        $part->max_credit = $request->input('max_credit');
+        $part->min_credit = $request->input('min_credit');
+        $part->program_duration = $request->input('program_duration');
+
+     if($part->save()){
+
+    return redirect()->route('all.part')->with('alert', [
+        'title' => 'Success!',
+        'text' => 'Part updated successfully.',
+        'icon' => 'success'
+    ]);
+}
+    }
+
+
     public function destroy($id)
     {
         // Find the program by ID and delete it
@@ -98,4 +138,6 @@ class PartController extends Controller
         $parts = session()->get('parts');
         return view('student-enroll-part', compact('parts'));
     }
+
+
 }
