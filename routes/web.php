@@ -4,6 +4,7 @@ use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CenterController;
+use App\Http\Controllers\ChargesController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CourseController;
@@ -185,6 +186,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/all-payment-history',[PaymentController::class, 'AdminGetPaymentHistory'])->name('all.payment.history');
         Route::get('/admin/edit-part/{id}', [PartController::class, 'edit'])->name('show.edit.form');
         Route::put('/admin/store-part/{id}', [PartController::class, 'update'])->name('parts.store');
+        Route::get('/admin/add-charge', [ChargesController::class, 'create'])->name('charge.form');
+        Route::post('/admin/add-charge', [ChargesController::class, 'store'])->name('charge.store');
         Route::resource('slide', PartnerController::class);
     });
 

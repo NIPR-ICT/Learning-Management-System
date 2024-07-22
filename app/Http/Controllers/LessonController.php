@@ -16,7 +16,7 @@ class LessonController extends Controller
     }
 
     public function create($id){
-        $module=Module::findOrFail($id);;
+        $module=Module::findOrFail($id);
         return view('admin.add-lesson', compact('module'));
     }
 
