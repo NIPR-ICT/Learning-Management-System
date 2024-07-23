@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChargesPayment;
 use App\Models\Enrollment;
 use App\Models\Part;
 use App\Models\Transaction;
@@ -23,17 +24,20 @@ class PaymentController extends Controller
     public function redirectToGateway(Request $request)
     {
         $part = session('part');
-        $totalAmount = session('totalAmount2');
+        $totalAmount = session('totalAmount');
+        $totalPayableAmount=session('totalPayableAmount');
         $selectedCourses = session('selectedCourses');
         $disountedAmount=session('discounted');
+        $extra_services=session('extra_services');
         $paymentDetails = [
             'email' => Auth::user()->email,
-            'amount' => $totalAmount * 100,
+            'amount' => $totalPayableAmount * 100,
             'metadata' => [
                 'selectedCourses' => $selectedCourses,
                 'part' => $part,
                 'user_id' => Auth::user()->id,
                 'discountedAmount'=>$disountedAmount,
+                'extra_services'=>$extra_services,
             ],
             'callback_url' => route('payment.callback')
         ];
@@ -51,6 +55,7 @@ $paymentDetails = Paystack::getPaymentData();
 
 if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success') {
     $selectedCourses = $paymentDetails['data']['metadata']['selectedCourses'];
+    $extra_services = $paymentDetails['data']['metadata']['extra_services'];
     $user_id = $paymentDetails['data']['metadata']['user_id'];
     $partData = $paymentDetails['data']['metadata']['part'];
     $reference_id = $paymentDetails['data']['reference'];
@@ -71,6 +76,18 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
             'course_id' => $course['id'],
             'part_id' => $part_id,
             'program_id' => $program_id,
+            'transaction_id' => $transaction->id,
+        ]);
+    }
+
+    
+    foreach ($extra_services as $charge) {
+        ChargesPayment::create([
+            'charge_id' => $charge['id'],
+            'amount' => $charge['amount'],
+            'program_id' => $charge['program_id'],
+            'part_id' => $charge['part_id'],
+            'user_id' => $user_id,
             'transaction_id' => $transaction->id,
         ]);
     }

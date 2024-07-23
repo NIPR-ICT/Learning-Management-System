@@ -97,6 +97,7 @@
 </x-app-layout> --}}
 
 @extends('welcome')
+@include('components.sweetalert')
 <div class="breadcrumb-bar py-5">
 </div>
   @section('content')

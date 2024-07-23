@@ -136,6 +136,7 @@
                                 <option value="{{ $program->id }}">{{ $program->title }}</option>
                             @endforeach
                         </select>
+                        <x-input-error :messages="$errors->get('program_id')" class="mt-2" />
 
                         <label for="title" class="form-label">Select Program Level</label>
                         <select class="form-select mb-3" name="name"  aria-label="Default select example">
@@ -146,19 +147,28 @@
                             <option value="Level IV">Level IV</option>
                             <option value="Level V">Level V</option>
                         </select>
+                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
                             <label for="formFile" class="form-label">Maximum Credit</label>
                             <input min="1" type="number" class="form-control w-100 form-control-lg mb-3" name="max_credit"  placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('max_credit')" class="mt-2" />
 
                             <label for="formFile" class="form-label">Minimum Credit</label>
                             <input min="1"  type="number" class="form-control  w-100 form-control-lg mb-3" name="min_credit"  placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('min_credit')" class="mt-2" />
 
                             <label for="formFile" class="form-label">Program Duration</label>
                             <input min="1" type="text" class="form-control  w-100 form-control-lg mb-3" name="program_duration"  placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('program_duration')" class="mt-2" />
+
+                            <label for="formFile" class="form-label">Level Accessing Order</label>
+                            <input min="1" type="number" class="form-control  w-100 form-control-lg mb-3" name="accessing_order"  placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('accessing_order')" class="mt-2" />
 
                             <label for="description" class="block text-sm font-medium text-gray-700">Part Description</label>
                                     <textarea class="form-control w-100 form-control-lg mb-3" id="description" name="description" rows="4" class="" style="resize: none" :value="__('Description')"></textarea>
-
+                                    <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                                        
                             <button class="btn btn-primary px-4" >
                             Save
                             <i class="bx bx-right-arrow-alt ms-2"></i>

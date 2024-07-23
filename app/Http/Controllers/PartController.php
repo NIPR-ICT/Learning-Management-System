@@ -39,6 +39,7 @@ class PartController extends Controller
             'max_credit' => 'required|integer',
             'min_credit' => 'required|integer',
             'program_duration' => 'required|string',
+            'accessing_order'=>'required|unique:parts,accessing_order'
         ]);
         
 
@@ -49,6 +50,7 @@ class PartController extends Controller
             'max_credit' => $request->get('max_credit'),
             'min_credit' => $request->get('min_credit'),
             'program_duration' => $request->get('program_duration'),
+            'accessing_order' => $request->get('accessing_order'),
         ]);
 
         $part->save();
@@ -77,6 +79,7 @@ class PartController extends Controller
         'max_credit' => 'required|integer',
         'min_credit' => 'required|integer',
         'program_duration' => 'required|string',
+        'accessing_order'=>'required'
     ]);
 
     $part = Part::findOrFail($request->id);
@@ -87,6 +90,7 @@ class PartController extends Controller
         $part->max_credit = $request->input('max_credit');
         $part->min_credit = $request->input('min_credit');
         $part->program_duration = $request->input('program_duration');
+        $part->accessing_order = $request->input('accessing_order');
 
      if($part->save()){
 

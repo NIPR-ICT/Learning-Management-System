@@ -18,6 +18,7 @@ class Part extends Model
     'max_credit',
     'min_credit',
     'program_duration',
+    'accessing_order',
 ];
 
     public function program()

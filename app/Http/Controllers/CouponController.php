@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coupon;
+use App\Models\ExtraCharge;
 use App\Models\Part;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -78,12 +79,20 @@ class CouponController extends Controller
     $selectedCourses = session('selectedCourses');
     $coupon = $request->input('coupon');
 
+       $extraServices = ExtraCharge::where('part_id', $part->id)
+     ->get(['id', 'amount', 'item', 'program_id', 'part_id']);
+
+    $extra_services_amount = $extraServices->sum('amount');
+
     if (empty($coupon)) {
         session([
             'totalAmount2' => $totalAmount,
             'part' => $part,
             'selectedCourses' => $selectedCourses,
-            'discounted'=>0.00
+            'discounted'=>0.00,
+            'extra_services' => $extraServices,
+            'extra_services_amount'=>$extra_services_amount,
+            'totalPayableAmount'=>$totalAmount+$extra_services_amount,
         ]);
         return redirect()->route('checkout.preview.final');
     }
@@ -100,6 +109,10 @@ class CouponController extends Controller
             'part' => $part,
             'selectedCourses' => $selectedCourses,
             'discounted'=>$new_amount,
+            'extra_services' => $extraServices,
+            'extra_services_amount'=>$extra_services_amount,
+            'totalPayableAmount'=>$final_amount+$extra_services_amount,
+            
         ]);
         return redirect()->route('checkout.preview.final');
         }
