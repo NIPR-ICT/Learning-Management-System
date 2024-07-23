@@ -82,7 +82,7 @@ class CourseController extends Controller
 
     }
 
-    public function courseDetail($id,$slug){
+    public function courseDetail($id){
         $course = Course::with('creator')->findOrFail($id);
         return view('admin.course-detail', compact('course'));
 }

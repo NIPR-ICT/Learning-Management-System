@@ -4,6 +4,7 @@ use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CenterController;
+use App\Http\Controllers\ChargesController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CourseController;
@@ -183,7 +184,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/all-coupon', [CouponController::class, 'index'])->name('all.coupons');
         Route::delete('/admin/coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.delete');
         Route::get('/admin/all-payment-history',[PaymentController::class, 'AdminGetPaymentHistory'])->name('all.payment.history');
-
+        Route::get('/admin/edit-part/{id}', [PartController::class, 'edit'])->name('show.edit.form');
+        Route::put('/admin/store-part/{id}', [PartController::class, 'update'])->name('parts.store');
+        Route::get('/admin/add-charge', [ChargesController::class, 'create'])->name('charge.form');
+        Route::post('/admin/add-charge', [ChargesController::class, 'store'])->name('charge.store');
+        Route::get('/admin/all-charge', [ChargesController::class, 'index'])->name('all.charges');
+        Route::delete('/admin/delete-charge/{id}', [ChargesController::class, 'destroy'])->name('charge.delete');
+        Route::get('/charges/{charge}/edit', [ChargesController::class, 'edit'])->name('charges.edit');
+        Route::put('/charges/{charge}', [ChargesController::class, 'update'])->name('charges.update');   
 
         Route::resource('slide', PartnerController::class);
     });

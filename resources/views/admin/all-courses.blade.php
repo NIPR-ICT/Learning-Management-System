@@ -99,6 +99,7 @@
 
 
 @extends('admin.index')
+@include('components.sweetalert')
   @section('slot')
   <div class="page-wrapper">
     <div class="page-content">
@@ -131,7 +132,7 @@
                         <thead>
                             <tr>
                                 <th >Title</th>
-                                <th >Part</th>
+                                <th >Level</th>
                                 <th >Program</th>
                                 <th >Actions</th>
                             </tr>
@@ -161,7 +162,7 @@
                         <tfoot>
                             <tr>
                                 <th >Title</th>
-                                <th >Part</th>
+                                <th >Level</th>
                                 <th >Program</th>
                                 <th >Actions</th>
                             </tr>

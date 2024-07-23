@@ -99,33 +99,33 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Programme Part</div>
+            <div class="breadcrumb-title pe-3">Programme Level</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item " aria-current="page">Programme Part</li>
+                        <li class="breadcrumb-item " aria-current="page">Programme Level</li>
                         <li class="breadcrumb-item active" aria-current="page">Create</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary">List of Programme Part</button>
+                    <button type="button" class="btn btn-primary">List of Programme Level</button>
 
                 </div>
             </div>
         </div>
         <!--end breadcrumb-->
-        <h6 class="mb-0 text-uppercase">Create Programme Part</h6>
+        <h6 class="mb-0 text-uppercase">Create Programme Level</h6>
         <hr/>
         <div class="card">
             <div class="card-body">
 
 
 
-                    <h6 class="mb-0 text-uppercase">Programme Part</h6>
+                    <h6 class="mb-0 text-uppercase">Programme Level</h6>
                     <hr/>
                     <form action="{{route('part.store')}}" method="POST">
                         @csrf
@@ -136,29 +136,39 @@
                                 <option value="{{ $program->id }}">{{ $program->title }}</option>
                             @endforeach
                         </select>
+                        <x-input-error :messages="$errors->get('program_id')" class="mt-2" />
 
-                        <label for="title" class="form-label">Part Name</label>
+                        <label for="title" class="form-label">Select Program Level</label>
                         <select class="form-select mb-3" name="name"  aria-label="Default select example">
                             <option selected>Open this select menu</option>
-                            <option value="Part I">Part I</option>
-                            <option value="Part II">Part II</option>
-                            <option value="Part III">Part III</option>
-                            <option value="Part IV">Part IV</option>
-                            <option value="Part V">Part V</option>
+                            <option value="Level I">Level I</option>
+                            <option value="Level II">Level II</option>
+                            <option value="Level III">Level III</option>
+                            <option value="Level IV">Level IV</option>
+                            <option value="Level V">Level V</option>
                         </select>
+                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
                             <label for="formFile" class="form-label">Maximum Credit</label>
                             <input min="1" type="number" class="form-control w-100 form-control-lg mb-3" name="max_credit"  placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('max_credit')" class="mt-2" />
 
                             <label for="formFile" class="form-label">Minimum Credit</label>
                             <input min="1"  type="number" class="form-control  w-100 form-control-lg mb-3" name="min_credit"  placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('min_credit')" class="mt-2" />
 
                             <label for="formFile" class="form-label">Program Duration</label>
                             <input min="1" type="text" class="form-control  w-100 form-control-lg mb-3" name="program_duration"  placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('program_duration')" class="mt-2" />
+
+                            <label for="formFile" class="form-label">Level Accessing Order</label>
+                            <input min="1" type="number" class="form-control  w-100 form-control-lg mb-3" name="accessing_order"  placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('accessing_order')" class="mt-2" />
 
                             <label for="description" class="block text-sm font-medium text-gray-700">Part Description</label>
                                     <textarea class="form-control w-100 form-control-lg mb-3" id="description" name="description" rows="4" class="" style="resize: none" :value="__('Description')"></textarea>
-
+                                    <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                                        
                             <button class="btn btn-primary px-4" >
                             Save
                             <i class="bx bx-right-arrow-alt ms-2"></i>
