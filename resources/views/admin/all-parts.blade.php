@@ -147,6 +147,7 @@
                             <tr>
                                 <th>Program Name</th>
                                 <th>Level</th>
+                                <th>Accessing Order</th>
                                 <th>Min</th>
                                 <th>Max</th>
                                 <th>Description</th>
@@ -159,6 +160,9 @@
                                             <td >{{ $part->program->title }}</td>
                                             <td >
                                                 {{ $part->name }}
+                                            </td>
+                                            <td >
+                                                {{ $part->accessing_order }}
                                             </td>
                                             <td >
                                                 {{ $part->min_credit }}

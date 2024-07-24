@@ -14,7 +14,7 @@ class PartController extends Controller
 
     public function index(Request $request)
     {
-        $parts = Part::paginate(10);
+        $parts = Part::orderBy('accessing_order', 'desc')->paginate(10);
 
         return view('admin.all-parts', compact('parts'));
     }
@@ -35,11 +35,17 @@ class PartController extends Controller
         return $query->where('program_id', $request->input('program_id'));
     }),
 ],
+
+'accessing_order' => [
+    'required',  
+    Rule::unique('parts')->where(function ($query) use ($request) {
+        return $query->where('program_id', $request->input('program_id'));
+    }),
+],
             'description' => 'required|string',
             'max_credit' => 'required|integer',
             'min_credit' => 'required|integer',
             'program_duration' => 'required|string',
-            'accessing_order'=>'required|unique:parts,accessing_order'
         ]);
         
 
@@ -118,7 +124,7 @@ class PartController extends Controller
 
     // student functionalities
     public function studentFilterPart($id){
-        $parts = Part::where('program_id', $id)->paginate(10);
+        $parts = Part::where('program_id', $id)->orderBy('accessing_order', 'asc')->paginate(10);
         return view('all-parts', compact('parts'));
     }
 

@@ -24,6 +24,7 @@ class Course extends Model
         'cover_image',
         'featured',
         'credit_unit',
+        'standalone',
     ];
 
     /**
