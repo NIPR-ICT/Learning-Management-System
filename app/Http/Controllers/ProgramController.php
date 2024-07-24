@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enrollment;
+use App\Models\EnrollmentTrack;
+use App\Models\Part;
 use Illuminate\Http\Request;
 use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
@@ -133,14 +135,37 @@ class ProgramController extends Controller
     // Student Functionalities
     public function studentGetProgram(){
         $user_id = Auth::user()->id;
-        $programs = Program::orderBy('accessing_order', 'asc')->paginate(10);
-        foreach ($programs as $program) {
-            $enrollment = Enrollment::where('user_id', $user_id)
-                                    ->where('program_id', $program->id)
-                                    ->first();
 
-            $program->is_enrolled = $enrollment ? true : false;
+        // Fetch programs ordered by accessing_order
+        $programs = Program::orderBy('accessing_order', 'asc')->get();
+    
+        // Initialize variable to track if the previous program is completed
+        $previousProgramCompleted = true;
+    
+        foreach ($programs as $program) {
+            // Check enrollment status
+            $enrollmentTracks = EnrollmentTrack::where('user_id', $user_id)
+                                               ->where('program_id', $program->id)
+                                               ->get();
+            $partsCount = Part::where('program_id', $program->id)->count();
+            $enrolledPartsCount = $enrollmentTracks->count();
+    
+            $program->is_enrolled = $enrolledPartsCount > 0;
+            $program->all_parts_enrolled = $enrolledPartsCount == $partsCount;
+    
+            // Determine if the program should be enabled or disabled
+            if ($previousProgramCompleted) {
+                if ($program->all_parts_enrolled) {
+                    $program->disable = false; // Enable if all parts are completed
+                } else {
+                    $program->disable = false; // Enable if at least one part is enrolled
+                    $previousProgramCompleted = false;
+                }
+            } else {
+                $program->disable = true; // Disable programs after the first active program
+            }
         }
+    
         return view('all-programs', compact('programs'));
     }
 
