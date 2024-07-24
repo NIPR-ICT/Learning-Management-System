@@ -115,13 +115,21 @@
 
                             <label for="formFile" class="form-label">Description</label>
                             <input class="form-control  w-100 form-control-lg mb-3" name="description" type="text" placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('description')" class="mt-2" />
 
                             <label for="formFile" class="form-label">Program Short Code</label>
                             <input class="form-control  w-100 form-control-lg mb-3" name="short_code" type="text" placeholder="" aria-label=".form-control-lg example">
-
+                            <x-input-error :messages="$errors->get('short_code')" class="mt-2" />
+                            
+                            <label for="formFile" class="form-label">Level Accessing Order</label>
+                            <input min="1" type="number" class="form-control  w-100 form-control-lg mb-3" name="accessing_order"  placeholder="" aria-label=".form-control-lg example">
+                            <x-input-error :messages="$errors->get('accessing_order')" class="mt-2" />
+                    
                             <label for="formFile" class="form-label">Image</label>
                             <input class="form-control  w-100 form-control-lg mb-3" name="cover_image" type="file" placeholder="" aria-label=".form-control-lg example">
-                        <button class="btn btn-primary px-4" >
+                            <x-input-error :messages="$errors->get('cover_image')" class="mt-2" />
+
+                            <button class="btn btn-primary px-4" >
                             Save
                             <i class="bx bx-right-arrow-alt ms-2"></i>
                         </button>
