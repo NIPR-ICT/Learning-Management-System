@@ -43,6 +43,7 @@ class CourseController extends Controller
                 'description' => 'required|string',
                 'credit_unit' => 'required|integer',
                 'featured' => 'nullable|boolean',
+                'standalone' => 'nullable|boolean',
             ]);
 
 
@@ -70,6 +71,7 @@ class CourseController extends Controller
                 'created_by' => auth()->id(),
                 'credit_unit' => $request->input('credit_unit'),
                 'featured' => $request->boolean('featured', false),
+                'standalone' => $request->boolean('standalone', false),
             ]);
 
             $course->save();
@@ -106,6 +108,7 @@ public function storeupdate(Request $request, Course $course){
         'description' => 'nullable|string',
         'credit_unit' => 'required|integer',
         'featured' => 'nullable|boolean',
+        'standalone' => 'nullable|boolean',
     ]);
 
     $course = Course::findOrFail($request->id);
@@ -118,6 +121,7 @@ public function storeupdate(Request $request, Course $course){
     $course->description = $request->input('description');
     $course->credit_unit = $request->input('credit_unit');
     $course->featured = $request->boolean('featured', false);
+    $course->standalone = $request->boolean('standalone', false);
     $course->save();
     return redirect()->route('all.courses')->with('alert', [
         'title' => 'Success!',
