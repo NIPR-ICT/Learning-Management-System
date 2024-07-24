@@ -40,6 +40,7 @@ class ProgramController extends Controller
             'description' => 'required|string',
             'short_code' => 'required|string',
             'cover_image' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'accessing_order' => 'required',
         ]);
 
         if ($request->hasFile('cover_image')) {
@@ -56,6 +57,7 @@ class ProgramController extends Controller
             'slug' => Str::slug($title),
             'created_by' => auth()->id(),
             'short_code' => $request->get('short_code'),
+            'accessing_order' => $request->get('accessing_order'),
             'cover_image' => $filePath ?? null,
         ]);
 
@@ -89,6 +91,7 @@ class ProgramController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'short_code' => 'required',
+            'accessing_order' => 'required',
         ]);
 // hh
         $program = Program::findOrFail($request->id);
@@ -97,6 +100,7 @@ class ProgramController extends Controller
         $program->title = $request->input('title');
         $program->description = $request->input('description');
         $program->short_code = $request->input('short_code');
+        $program->accessing_order = $request->input('accessing_order');
 
         $program->save();
 

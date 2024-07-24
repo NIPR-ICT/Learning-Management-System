@@ -19,6 +19,7 @@ class Program extends Model
         'created_by',
         'short_code',
         'cover_image',
+        'accessing_order',
     ];
 
     public function user()
