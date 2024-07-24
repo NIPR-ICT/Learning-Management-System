@@ -17,7 +17,7 @@ class ProgramController extends Controller
      */
     public function index(Request $request)
     {
-        $programs = Program::paginate(10);
+        $programs = Program::orderBy('accessing_order', 'desc')->paginate(10);
 
         return view('admin.all-programs', compact('programs'));
     }
@@ -40,7 +40,7 @@ class ProgramController extends Controller
             'description' => 'required|string',
             'short_code' => 'required|string',
             'cover_image' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
-            'accessing_order' => 'required',
+            'accessing_order' => 'required||unique:programs,accessing_order',
         ]);
 
         if ($request->hasFile('cover_image')) {
@@ -133,7 +133,7 @@ class ProgramController extends Controller
     // Student Functionalities
     public function studentGetProgram(){
         $user_id = Auth::user()->id;
-        $programs = Program::paginate(10);
+        $programs = Program::orderBy('accessing_order', 'asc')->paginate(10);
         foreach ($programs as $program) {
             $enrollment = Enrollment::where('user_id', $user_id)
                                     ->where('program_id', $program->id)
