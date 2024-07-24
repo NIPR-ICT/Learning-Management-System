@@ -202,10 +202,10 @@
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
 
-                        <label for="part_id" class="form-label">Part Name with Program</label>
+                        <label for="part_id" class="form-label">Level Name with Program</label>
                         <select class="form-control w-100 form-control-lg mb-3" id="part_id" name="part_id" required
                             aria-label=".form-control-lg example" onchange="updateProgramOptions()">
-                            <option disabled selected>Select Program with Part</option>
+                            <option disabled selected>Select Program with Level</option>
                                         @foreach ($parts as $part)
                                             <option value="{{ $part->id }}" data-program="{{ $part->program->title }}" data-program-id="{{ $part->program->id }}">
                                                 {{ $part->name }} of {{ $part->program->title }}

@@ -39,6 +39,7 @@ class PartController extends Controller
             'max_credit' => 'required|integer',
             'min_credit' => 'required|integer',
             'program_duration' => 'required|string',
+            'accessing_order'=>'required|unique:parts,accessing_order'
         ]);
         
 
@@ -49,6 +50,7 @@ class PartController extends Controller
             'max_credit' => $request->get('max_credit'),
             'min_credit' => $request->get('min_credit'),
             'program_duration' => $request->get('program_duration'),
+            'accessing_order' => $request->get('accessing_order'),
         ]);
 
         $part->save();
@@ -58,6 +60,48 @@ class PartController extends Controller
             'icon' => 'success'
         ]);
     }
+
+    public function edit(string $id)
+    {
+        $programs = Program::all();
+        $part = Part::findOrFail($id); 
+        return view('admin.update-part', compact('part','programs'));
+    }
+
+
+    public function update(Request $request, Part $part)
+    {
+         // Validate the request
+    $request->validate([
+        'program_id' => 'required|exists:programs,id',
+        'name' =>'required|string',
+        'description' => 'required|string',
+        'max_credit' => 'required|integer',
+        'min_credit' => 'required|integer',
+        'program_duration' => 'required|string',
+        'accessing_order'=>'required'
+    ]);
+
+    $part = Part::findOrFail($request->id);
+
+        $part->program_id = $request->input('program_id');
+        $part->name = $request->input('name');
+        $part->description = $request->input('description');
+        $part->max_credit = $request->input('max_credit');
+        $part->min_credit = $request->input('min_credit');
+        $part->program_duration = $request->input('program_duration');
+        $part->accessing_order = $request->input('accessing_order');
+
+     if($part->save()){
+
+    return redirect()->route('all.part')->with('alert', [
+        'title' => 'Success!',
+        'text' => 'Part updated successfully.',
+        'icon' => 'success'
+    ]);
+}
+    }
+
 
     public function destroy($id)
     {
@@ -98,4 +142,6 @@ class PartController extends Controller
         $parts = session()->get('parts');
         return view('student-enroll-part', compact('parts'));
     }
+
+
 }
