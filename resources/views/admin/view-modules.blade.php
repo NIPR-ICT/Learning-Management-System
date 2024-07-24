@@ -33,29 +33,40 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
+                                <th>Program</th>
+                                <th >Course(Level)</th>
                                 <th >Module</th>
-                                <th >Course</th>
                                 <th >Description</th>
-                                <th >Order</th>
                                 <th >Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($modules as $module)
                             <tr class="hover:bg-gray-200">
-                                <td>{{ $module->title }}</td>
-                                <td>{{ $module->course->title }}</td>
+                                @php
+                                $levelTitle = App\Models\Part::find($module->course->part_id);
+                                $programTitle = App\Models\Program::find($module->course->program_id);
+                                @endphp
+                                <td>{{ $programTitle->title }}</td>
+                                <td>{{ $module->course->title  }} <br>
+                                    @php
+                                        $levelTitle = App\Models\Part::find($module->course->part_id);
+                                        $programTitle = App\Models\Program::find($module->course->program_id);
+                                    @endphp
+                                     ({{ $levelTitle->name }})
+                                </td>
+                                <td>{{ '('.$module->order.') '. $module->title }}</td>
                                 <td >
                                     {{Str::words($module->description, 15, '...') }}
                                 </td>
-                                <td>{{ $module->order}}</td>
                                 <td class="py-3 px-4 flex space-x-2">
-                                    <a href="{{ route('add.lesson', $module->id) }}" class="btn btn-success">Add Lesson</a>
-                                    <a href="{{ route('lesson.course.module', $module->id) }}" class="btn btn-warning">View Lesson</a>
+                                    <a href="{{ route('lesson.course.module', $module->id) }}" class="btn btn-warning"><i class="fa fa-eye"></i> View</a>
+                                    <a href="{{ route('add.lesson', $module->id) }}" class="btn btn-success"><i class="fa fa-plus"></i>Add</a>
                                     <form action="{{ route('lesson.delete', $module->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Lesson?');" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
                                             Delete
                                         </button>
                                     </form>
@@ -65,9 +76,10 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th >Title</th>
-                                <th >Part</th>
-                                <th >Program</th>
+                                <th>Program</th>
+                                <th >Course(Level)</th>
+                                <th >Module</th>
+                                <th >Description</th>
                                 <th >Actions</th>
                             </tr>
                         </tfoot>

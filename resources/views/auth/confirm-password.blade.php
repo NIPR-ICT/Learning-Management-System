@@ -70,7 +70,7 @@
 								<img src="{{asset('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
-								<h2>Welcome to <br>DreamsLMS Courses.</h2>
+								<h2>Welcome to <br>Public Relation and Leadership Courses.</h2>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
 							</div>
 						</div>
@@ -79,7 +79,7 @@
 								<img src="assets/img/login-img.png" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
-								<h2>Welcome to <br>DreamsLMS Courses.</h2>
+								<h2>Welcome to <br>Public Relation and Leadership Courses.</h2>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
 							</div>
 						</div>
@@ -88,7 +88,7 @@
 								<img src="assets/img/login-img.png" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
-								<h2>Welcome to <br>DreamsLMS Courses.</h2>
+								<h2>Welcome to <br>Public Relation and Leadership Courses.</h2>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
 							</div>
 						</div>
