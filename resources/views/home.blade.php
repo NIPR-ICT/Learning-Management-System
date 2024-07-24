@@ -145,6 +145,7 @@
 					</div>
 					<div class="owl-carousel mentoring-course owl-theme aos" data-aos="fade-up">
 						@foreach ($program as $item)
+                        <a href="{{ route('program', $item->id) }}">
                         <div class="feature-box text-center " >
 							<div class="feature-bg" >
 								<div class="feature-header">
@@ -158,6 +159,7 @@
 								<p>{{ $item->short_code }}</p>
 							</div>
 						</div>
+                        </a>
                         @endforeach
 
 					</div>
@@ -209,7 +211,7 @@
                                                             <a  id="{{ $item->id }}" onclick="addToWishList(this.id)" href="javascript:void(0)" title="Add to wishlist"><i class="fa-regular fa-heart"></i></a>
                                                         </div>
                                                     </div>
-                                                    <h3 class="title instructor-text"><a href="course-details.html">{{ $item->title }}</a></h3>
+                                                    <h3 class="title instructor-text"><a href="{{ route('course.details.view',[$item->id,$item->slug]) }}">{{ $item->title }}</a></h3>
                                                     <p>{{ $item->program->title }}</p>
                                                     <div class="course-info d-flex align-items-center">
                                                         <div class="rating-img d-flex align-items-center">
@@ -372,7 +374,7 @@
 											<a href="#"><i class="fa-regular fa-heart"></i></a>
 										</div>
 									</div>
-									<h3 class="title"><a href="course-details.html">{{ $courses->title }}</a></h3>
+									<h3 class="title"><a href="{{ route('course.details.view', [$courses->id, $courses->slug]) }}">{{ $courses->title }}</a></h3>
 									<div class="course-info d-flex align-items-center">
 										<div class="rating-img d-flex align-items-center">
 											<img src="assets/img/icon/icon-01.svg" alt="Img" class="img-fluid">

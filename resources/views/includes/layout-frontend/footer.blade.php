@@ -12,7 +12,10 @@
                             <img src="{{asset('assets/img/logo.png')}}" alt="logo">
                         </div>
                         <div class="footer-about-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris</p>
+                            @php
+                                $about = \App\Models\PreliminaryPage::where('type', 'about')->first();
+                            @endphp
+                            <p>{{ Str::words($about->content, 25, '...')  }}</p>
                         </div>
                     </div>
                     <!-- /Footer Widget -->
@@ -23,13 +26,13 @@
 
                     <!-- Footer Widget -->
                     <div class="footer-widget footer-menu">
-                        <h2 class="footer-title">For Instructor</h2>
+                        <h2 class="footer-title">Useful links</h2>
                         <ul>
-                            <li><a href="instructor-profile.html">Profile</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
-                            <li><a href="instructor-list.html">Instructor</a></li>
-                            <li><a href="instructor-dashboard.html"> Dashboard</a></li>
+                            <li><a href="{{ route('about.view') }}">About Us</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="{{ route('blog.view') }}">Articles</a></li>
+                            <li><a href="#">Become an Instructor</a></li>
                         </ul>
                     </div>
                     <!-- /Footer Widget -->
@@ -42,11 +45,11 @@
                     <div class="footer-widget footer-menu">
                         <h2 class="footer-title">For Student</h2>
                         <ul>
-                            <li><a href="student-profile.html">Profile</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
-                            <li><a href="students-list.html">Student</a></li>
-                            <li><a href="student-dashboard.html"> Dashboard</a></li>
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('contact.view') }}">Profile</a></li>
+                            <li><a href="#">Student</a></li>
+                            <li><a href="#"> Dashboard</a></li>
                         </ul>
                     </div>
                     <!-- /Footer Widget -->
@@ -74,7 +77,7 @@
                             </p>
                             <p class="mb-0">
                                 <img src="{{asset('assets/img/icon/icon-21.svg')}}" alt="Img" class="img-fluid">
-                                +19 123-456-7890
+                                +234 810 2345 234
                             </p>
                         </div>
                     </div>
@@ -97,14 +100,14 @@
                     <div class="col-md-6">
                         <div class="privacy-policy">
                             <ul>
-                                <li><a href="term-condition.html">Terms</a></li>
-                                <li><a href="privacy-policy.html">Privacy</a></li>
+                                {{-- <li><a href="term-condition.html">Terms</a></li>
+                                <li><a href="privacy-policy.html">Privacy</a></li> --}}
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="copyright-text">
-                            <p class="mb-0">&copy; 2024 DreamsLMS. All rights reserved.</p>
+                            <p class="mb-0">&copy; 2024 Public Relations and Leadership Academy. All rights reserved.</p>
                         </div>
                     </div>
                 </div>

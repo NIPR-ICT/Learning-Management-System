@@ -34,7 +34,7 @@ class HomeController extends Controller
     public function home(){
         $program = Program::latest()->get();
         $trendingInstructor = User::with('course')->where('role', 'instructor')->get();
-        $courses = Course::with('modules','creator','lessons','program')->latest()->take(8)->get();
+        $courses = Course::with('modules','creator','lessons','program')->latest()->take(6)->get();
         $partners = Partner::latest()->take(12)->get();
         $blog = Blog::with('category')->latest()->take(12)->get();
         $mostEnrolledCourses = DB::table('enrollments')
@@ -45,4 +45,6 @@ class HomeController extends Controller
         ->get();
         return view('home', compact('program', 'courses','mostEnrolledCourses','trendingInstructor', 'partners', 'blog'));
     }
+
+    
 }

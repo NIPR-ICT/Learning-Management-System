@@ -234,7 +234,6 @@ public function register(Request $request)
     public function enrollmentbyStudent()
     {
         $enrollments = session()->get('enrollments');
-
         return view('bought-course-by-student', compact('enrollments'));
     }
 

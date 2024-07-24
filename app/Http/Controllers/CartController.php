@@ -7,6 +7,7 @@ use App\Models\Course;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -88,13 +89,13 @@ class CartController extends Controller
         Cart::remove($rowId);
         return response()->json(['success' => 'Course Remove From Cart']);
 
-    }// End Method 
+    }// End Method
 
     public function MyCart(){
 
         return view('cart');
 
-    } // End Method 
+    } // End Method
 
     public function GetCartCourse(){
 
@@ -108,5 +109,46 @@ class CartController extends Controller
             'cartQty' => $cartQty,
         ));
 
-    }// End Method 
+    }// End Method
+
+    public function checkout(){
+
+        if (Auth::check()) {
+
+            if (Cart::total() > 0) {
+                $carts = Cart::content();
+                $cartTotal = Cart::total();
+                $cartQty = Cart::count();
+
+                return view('checkout',compact('carts','cartTotal','cartQty'));
+            } else{
+
+                $notification = array(
+                    'message' => 'Add At list One Course',
+                    'alert-type' => 'error'
+                );
+                return redirect()->to('/')->with($notification);
+
+            }
+
+        }else{
+
+            $notification = array(
+                'message' => 'You Need to Login First',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('login')->with($notification);
+
+        }
+
+    }// End Method
+
+    public function checkoutSingle($id){
+        $item = Course::findorFail($id);
+        $carts['cart'] = $item;
+        $cartTotal = $item->course_amount;
+        $cartQty = 1;
+        return view('item', compact('carts', 'cartTotal', 'cartQty'));
+    }
+
 }

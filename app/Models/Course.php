@@ -52,6 +52,10 @@ class Course extends Model
         return $this->hasMany(Module::class, 'course_id', 'id');
     }
 
+    public function enrollments(){
+        return $this->hasMany(Enrollment::class, 'course_id', 'id');
+    }
+
     public function lessons()
     {
         return $this->hasManyThrough(Lesson::class, Module::class, 'course_id', 'module_id');
