@@ -148,4 +148,10 @@ class ProgramController extends Controller
 
         return view('student-bought-program', compact('programs'));
     }
+    //////////////////////////////// public view////////////////////////////////////////////////
+
+    public function programReg($id){
+        $program = Program::findOrFail($id);
+        return view('program', compact('program'));
+    }
 }

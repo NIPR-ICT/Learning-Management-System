@@ -53,13 +53,15 @@ Route::get('/cart/data/', [CartController::class, 'CartData']);
 Route::get('/course/mini/cart/', [CartController::class, 'AddMiniCart']);
 Route::get('/minicart/course/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
-// course 
+//checkout
+Route::get('checkout', [CartController::class, 'checkout'])->name('checkout.view');
+
+// course
 Route::get('/course/{id}/{slug}', [CourseController::class, 'courseDetail'])->name('course.details.view');
 
-
-// Cart All Route 
+// Cart All Route
 Route::controller(CartController::class)->group(function(){
-    Route::get('/mycart','MyCart')->name('mycart'); 
+    Route::get('/mycart','MyCart')->name('mycart');
     Route::get('/get-cart-course','GetCartCourse');
 });
 
@@ -97,6 +99,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('student/courses', [CourseController::class, 'enrollmentbyStudent'])->name('enrollment.index');
 
         // Route::get('/materials/{id}/download', [MaterialController::class, 'studentdownload'])->name('material.student.download');
+
+        // program
+        Route::get('/program/{id}', [ProgramController::class, 'programReg'])->name('program');
 
         // testing
         Route::get('/student/course', function () {

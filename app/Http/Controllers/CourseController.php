@@ -83,8 +83,8 @@ class CourseController extends Controller
     }
 
     public function courseDetail($id,$slug){
-        $course = Course::with('creator')->findOrFail($id);
-        return view('admin.course-detail', compact('course'));
+        $course = Course::with('creator','program','enrollments','modules', 'part', 'lessons', 'materials')->findOrFail($id);
+        return view('course-details', compact('course'));
 }
 
 public function editCourse($id){
@@ -234,7 +234,6 @@ public function register(Request $request)
     public function enrollmentbyStudent()
     {
         $enrollments = session()->get('enrollments');
-
         return view('bought-course-by-student', compact('enrollments'));
     }
 

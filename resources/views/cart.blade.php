@@ -21,7 +21,7 @@
     <!-- /Breadcrumb -->
   @section('content')
 
-  
+
 <!-- Cart -->
 <section class="course-content cart-widget">
     <div class="container">
@@ -34,7 +34,7 @@
                         </div>
                         <div class="cart-group">
                             <div class="row" id="cartPage">
-                              
+
                             </div>
                         </div>
                         <div class="cart-total">
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="check-outs">
-                                        <a href="checkout.html" class="btn btn-primary">Checkout</a>
+                                        <a href="{{ route('checkout.view') }}" class="btn btn-primary">Checkout</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
