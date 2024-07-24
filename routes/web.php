@@ -85,6 +85,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/update-biodata',[BiodataController::class,'create'])->name('biodata.update');
         Route::get('/student/student-programs', [ProgramController::class, 'studentGetProgram'])->name('student.all.program');
         Route::get('/student/all-part/{id}', [PartController::class, 'studentFilterPart'])->name('program.part.student');
+
+        Route::get('/onboard/program/{id}', [PartController::class, 'studentFilterPartView'])->name('program.level');
+
+
         Route::get('/student/register-course/{id}', [CourseController::class, 'coursebyParts'])->name('course.register.student');
         Route::post('/student/courses/register', [CourseController::class, 'register'])->name('courses.register');
         Route::get('/student/checkout-summary', [PaymentController::class, 'checkout'])->name('register.checkout.summary');
@@ -196,7 +200,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/all-charge', [ChargesController::class, 'index'])->name('all.charges');
         Route::delete('/admin/delete-charge/{id}', [ChargesController::class, 'destroy'])->name('charge.delete');
         Route::get('/charges/{charge}/edit', [ChargesController::class, 'edit'])->name('charges.edit');
-        Route::put('/charges/{charge}', [ChargesController::class, 'update'])->name('charges.update');   
+        Route::put('/charges/{charge}', [ChargesController::class, 'update'])->name('charges.update');
 
         Route::resource('slide', PartnerController::class);
     });

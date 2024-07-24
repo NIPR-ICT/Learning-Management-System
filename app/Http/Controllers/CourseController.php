@@ -149,6 +149,11 @@ public function coursebyParts($id){
     $part=$part = Part::findOrFail($id);
     return view('register-courses', compact('courses','part'));
 }
+public function coursebyPartsView($id){
+    $courses = Course::where('part_id', $id)->get();
+    $part=$part = Part::findOrFail($id);
+    return view('program-level-course', compact('courses','part'));
+}
 
 public function register(Request $request)
     {

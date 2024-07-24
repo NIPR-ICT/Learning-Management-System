@@ -33,7 +33,7 @@
                                     <input type="text" id="title" name="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" >
                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
-                                
+
                                 <div class="mb-4">
                                     <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                                     <textarea id="description" name="description" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" style="resize: none">{{ old('description', $program->description) }}</textarea>
@@ -45,7 +45,7 @@
                                     <input type="text" id="short_code" name="short_code" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('short_code', $program->short_code) }}">
                                     <x-input-error :messages="$errors->get('short_code')" class="mt-2" />
                                 </div>
-                                
+
                                 <div>
                                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Update
@@ -55,13 +55,13 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
 
     @include('includes.script')
-    
+
 </x-app-layout> --}}
 
 
@@ -114,9 +114,9 @@
                             <label for="short_code" class="form-label">Program Short Code</label>
                             <input class="form-control  w-100 form-control-lg mb-3" name="short_code" type="text" placeholder="" value="{{ old('short_code', $program->short_code) }}" aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('short_code')" class="mt-2" />
-                            
+
                                 <label for="formFile" class="form-label">Level Accessing Order</label>
-                                <input min="1" type="number" class="form-control  w-100 form-control-lg mb-3" name="accessing_order" value="{{ old('short_code', $program->short_code) }}"  placeholder="" aria-label=".form-control-lg example">
+                                <input min="1" type="number" class="form-control  w-100 form-control-lg mb-3" name="accessing_order" value="{{ old('accessing_order', $program->accessing_order) }}"  placeholder="" aria-label=".form-control-lg example">
                                 <x-input-error :messages="$errors->get('accessing_order')" class="mt-2" />
 
                         <button class="btn btn-primary px-4" >

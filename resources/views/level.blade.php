@@ -86,22 +86,22 @@
 								<div class="col-lg-5">
 									<div class="profile-box">
 										<div class="circle-bar circle-bar1 text-center">
-											<div class="circle-graph1" data-percent="25">
-												<p>25% <span>1 of 4</span></p>
+											<div class="circle-graph1" data-percent="50">
+												<p>50% <span>2 of 4</span></p>
 											</div>
 										</div>
 										<h3>Programme Enrollment</h3>
 										<div class="personal-detail d-flex align-items-center">
-											<span class="active-color active-bar">1</span>
+											<span class="active-color">1</span>
 											<div class="personal-text">
 												<h4>Programme Details</h4>
 												<p class="mb-0">Setup Your Programme details</p>
 											</div>
 										</div>
 										<div class="personal-detail d-flex align-items-center">
-											<span>2</span>
+											<span class="active-color active-bar">2</span>
 											<div class="personal-text">
-												<h4>Select Courses</h4>
+												<h4>Select Level</h4>
 												<p class="mb-0">Setup Your Courses</p>
 											</div>
 										</div>
@@ -124,36 +124,48 @@
 								<div class="col-lg-7">
 									<div class="personal-form">
 										<h4>Programme Details</h4>
-												<a href="{{ route('program.level', $program->id)}}" class="py-5  border-2 rounded border-success">
-                                                    <div class="feature-box text-center " >
-                                                        <div class="feature-bg" >
-                                                            <div class="feature-header">
-                                                                <div class="feature-icon">
-                                                                    <img src="{{ asset('assets/img/gratuate-icon.svg') }}" alt="Img">
-                                                                </div>
-                                                                <div class="feature-cont">
-                                                                    <div class="feature-text"> New Application</div>
-                                                                </div>
-                                                            </div>
-                                                            <p></p>
-                                                        </div>
+
+                                        @foreach ($parts as $part)
+                                        <div class="instructor-list flex-fill">
+                                            {{-- <div class="instructor-img">
+                                                <a href="instructor-profile.html">
+                                                    <img class="img-fluid" alt="Img" src="assets/img/user/user11.jpg">
+                                                </a>
+                                            </div> --}}
+                                            <div class="instructor-content">
+                                                <h5>{{ $part->name }} of {{ $part->program->title }}</h5>
+                                                <div class="d-flex gap-3 mb-4 text-xs">
+                                                    <p class="text-muted"><strong>Max Credit:</strong> {{ $part->max_credit }}</p>
+                                                    <p class="text-muted"><strong>Min Credit:</strong> {{ $part->min_credit }}</p>
+                                                    <p class="text-muted"><strong>Duration:</strong> {{ $part->program_duration }}</p>
+                                                </div>
+
+                                                <p>{{ Str::words($part->description, 25, '...') }}</p>
+                                                <div class="instructor-info">
+                                                    <div class="rating-img d-flex align-items-center">
+                                                        <p>12+ Lessons</p>
                                                     </div>
-                                                   </a>
-												<a href="{{ route('program.level', $program->id) }}" class="py-5">
-                                                    <div class="feature-box text-center " >
-                                                        <div class="feature-bg" >
-                                                            <div class="feature-header">
-                                                                <div class="feature-icon">
-                                                                    <img src="{{ asset('assets/img/gratuate-icon.svg') }}" alt="Img">
-                                                                </div>
-                                                                <div class="feature-cont">
-                                                                    <div class="feature-text">  Returning Student</div>
-                                                                </div>
-                                                            </div>
-                                                            <p></p>
-                                                        </div>
+                                                    <div class="course-view d-flex align-items-center ms-0">
+                                                        <p>9hr 30min</p>
                                                     </div>
-                                                     </a>
+                                                    <div class="rating-img d-flex align-items-center">
+                                                        <p>50 Students</p>
+                                                    </div>
+                                                    <div class="rating">
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
+                                                    </div>
+                                                    <a href="#rate" class="rating-count"><i class="fa-regular fa-heart"></i></a>
+                                                </div>
+                                                <a href="{{ route('course.register.student', $part->id) }}" class="btn btn-primary">Enroll</a>
+                                            </div>
+                                        </div>
+                                        @endforeach
+
 									</div>
 								</div>
 							</div>
@@ -185,3 +197,6 @@
 
 		<!-- Custom JS -->
 		<script src="{{ asset('assets/js/script.js')}}"></script>
+
+
+
