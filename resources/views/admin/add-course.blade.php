@@ -261,13 +261,25 @@
                                 placeholder="" aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('cover_image')" class="mt-2" />
 
-
-                            <label for="featured" class="form-label">Featured</label>
-                            <div class="form-check w-100 mb-3">
-                                <input class="form-check-input form-control-lg" type="checkbox" id="featured" name="featured"
-                                       aria-label=".form-control-lg example" value="1" {{ old('featured') ? 'checked' : '' }}>
-                            </div>
-                            <x-input-error :messages="$errors->get('featured')" class="mt-2" />
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label for="featured" class="form-label">Featured</label>
+                                        <div class="form-check w-100 mb-3">
+                                            <input class="form-check-input form-control-lg" type="checkbox" id="featured" name="featured"
+                                                   aria-label=".form-control-lg example" value="1" {{ old('featured') ? 'checked' : '' }}>
+                                        </div>
+                                        <x-input-error :messages="$errors->get('featured')" class="mt-2" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="standalone" class="form-label">Stand Alone</label>
+                                        <div class="form-check w-100 mb-3">
+                                            <input class="form-check-input form-control-lg" type="checkbox" id="standalone" name="standalone"
+                                                   aria-label=".form-control-lg example" value="1" {{ old('standalone') ? 'checked' : '' }}>
+                                        </div>
+                                        <x-input-error :messages="$errors->get('standalone')" class="mt-2" />
+                                    </div>
+                                </div>
+                                
 
 <br/>
 
