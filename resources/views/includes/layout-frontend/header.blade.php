@@ -188,7 +188,9 @@
                                     <p class="text-muted mb-0">Student</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="{{ route('biodata.update') }}"><i class="feather-user me-1"></i> Profile</a>
+                            
+                            <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="feather-user me-1"></i> Profile</a>
+                            {{-- <a class="dropdown-item" href="{{ route('biodata.update') }}"><i class="feather-user me-1"></i> Profile</a> --}}
                             <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-star me-1"></i> Subscription</a>
                             <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-settings me-1"></i> Settings</a>
                             <div class="dropdown-item night-mode">
