@@ -15,7 +15,9 @@
                             @php
                                 $about = \App\Models\PreliminaryPage::where('type', 'about')->first();
                             @endphp
+                            @if (!empty($about))
                             <p>{{ Str::words($about->content, 25, '...')  }}</p>
+                            @endif
                         </div>
                     </div>
                     <!-- /Footer Widget -->
