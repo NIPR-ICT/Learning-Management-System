@@ -16,7 +16,7 @@
 
             <!-- Student Dashboard -->
             <div class="col-xl-9 col-lg-9">
-                @if (count($programs) > 1)
+                @if (count($programs) > 0)
                     <div class="settings-widget card-details">
                         <div class="settings-menu p-0">
                             <div class="profile-heading">
@@ -27,11 +27,6 @@
 
                     @foreach ($programs as $program)
                         <div class="instructor-list flex-fill">
-                            {{-- <div class="instructor-img">
-                                <a href="instructor-profile.html">
-                                    <img class="img-fluid" alt="Img" src="assets/img/user/user11.jpg">
-                                </a>
-                            </div> --}}
                             <div class="instructor-content">
                                 <h5><a href="#">{{ $program->title }}</a></h5>
                                 <h6>{{ Str::words($program->description, 25, '...') }}</h6>
@@ -55,10 +50,23 @@
                                     </div>
                                     <a href="#rate" class="rating-count"><i class="fa-regular fa-heart"></i></a>
                                 </div>
-                                @if ($program->is_enrolled)
-                                    <a href="#" class="btn btn-primary">Start Program</a>
-                                @else
+                                @if ($program->disable)
+                                    <button class="btn btn-secondary" disabled>Unavailable</button>
+                                @elseif (!$program->is_enrolled)
                                     <a href="{{ route('program.part.student', $program->id) }}" class="btn btn-primary">Enroll</a>
+                                @elseif ($program->is_enrolled && !$program->all_parts_enrolled)
+                                    <a href="{{ route('program.part.student', $program->id) }}" class="btn btn-primary">Continue Enrollment</a>
+                                @elseif ($program->all_parts_enrolled)
+                                @php
+                                $started = \App\Models\Enrollment::where([['user_id', auth()->user()->id], ['program_id',  $program->id]])->first();
+                            @endphp
+                            @if (!empty($started))
+                                <form id="start-program-form-{{ $program->id }}" action="{{ route('program.start') }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    <input type="hidden" name="program_id" value="{{ $program->id }}">
+                                    <button type="submit" class="btn btn-primary">Start Program</button>
+                                </form>
+                            @endif
                                 @endif
                             </div>
                         </div>
@@ -75,7 +83,8 @@
                         </div>
                     </div>
                 @endif
-                {{ $programs->links() }}
+                <!-- Pagination links -->
+                {{-- {{ $programs->links() }} --}}
             </div>
             <!-- /Student Dashboard -->
 
