@@ -112,7 +112,7 @@
                         @endif
                             <label for="formFile" class="form-label">Title</label>
                             <input class="form-control w-100 form-control-lg mb-3"  name="title"  type="text" placeholder="" aria-label=".form-control-lg example">
-
+                            <x-input-error :messages="$errors->get('title')" class="mt-2" />
                             <label for="formFile" class="form-label">Description</label>
                             <input class="form-control  w-100 form-control-lg mb-3" name="description" type="text" placeholder="" aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />

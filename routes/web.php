@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CenterController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\PreliminaryPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\WishlistController;
+use App\Models\Blog;
 use App\Models\Lesson;
 use App\Models\PreliminaryPage;
 use Illuminate\Support\Facades\Route;
@@ -197,6 +199,19 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/delete-charge/{id}', [ChargesController::class, 'destroy'])->name('charge.delete');
         Route::get('/charges/{charge}/edit', [ChargesController::class, 'edit'])->name('charges.edit');
         Route::put('/charges/{charge}', [ChargesController::class, 'update'])->name('charges.update');   
+
+        Route::get('/admin/add-category', [BlogCategoryController::class, 'create'])->name('category.form');
+        Route::post('/admin/store-category',[BlogCategoryController::class,'store'])->name('category.store');
+        Route::get('/admin/all-category', [BlogCategoryController::class, 'index'])->name('all.category');
+        Route::get('/admin/edit-category/{id}', [BlogCategoryController::class, 'edit'])->name('edit.category.form');
+        Route::put('/admin/store-category/{id}', [BlogCategoryController::class, 'update'])->name('category.edit.store');
+        Route::delete('/admin/delete-category/{id}', [BlogCategoryController::class, 'destroy'])->name('category.delete');
+        Route::get('/admin/add-post', [BlogController::class, 'create'])->name('post.form');
+        Route::post('/admin/store-post',[BlogController::class,'store'])->name('post.store');
+        Route::get('/admin/all-posts', [BlogController::class, 'index'])->name('all.post');
+        Route::delete('/admin/delete-post/{id}', [BlogController::class, 'destroy'])->name('post.delete');
+        Route::get('/admin/edit-post/{id}', [BlogController::class, 'edit'])->name('edit.post.form');
+        Route::put('/admin/store-post/{id}', [BlogController::class, 'update'])->name('post.edit.store');
 
         Route::resource('slide', PartnerController::class);
     });
