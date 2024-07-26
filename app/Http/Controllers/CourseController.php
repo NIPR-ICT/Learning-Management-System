@@ -87,7 +87,12 @@ class CourseController extends Controller
 
     public function courseDetail($id){
         $course = Course::with('creator')->findOrFail($id);
-        return view('course-details', compact('course'));
+        return view('admin.course-detail', compact('course'));
+}
+
+public function courseDetails($id){
+    $course = Course::with('creator')->findOrFail($id);
+    return view('course-details', compact('course'));
 }
 
 public function editCourse($id){

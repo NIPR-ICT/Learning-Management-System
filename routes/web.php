@@ -62,7 +62,7 @@ Route::get('/minicart/course/remove/{rowId}', [CartController::class, 'RemoveMin
 Route::get('checkout', [CartController::class, 'checkout'])->name('checkout.view');
 
 // course
-Route::get('/course/{id}/{slug}', [CourseController::class, 'courseDetail'])->name('course.details.view');
+Route::get('/course/{id}/{slug}', [CourseController::class, 'courseDetails'])->name('course.details.view');
 
 // Cart All Route
 Route::controller(CartController::class)->group(function(){
