@@ -47,7 +47,7 @@
 										</ul>
 									</div>
 								</div>
-								<h3 class="blog-title"><a href="blog-details.html">{{ $item->title }}</a></h3>
+								<h3 class="blog-title"><a href="{{ route('blog-detail.view',$item->slug) }}">{{ $item->title }}</a></h3>
 								<div class="blog-content blog-read">
 									<p>{!! Str::words($item->body, 25, '...') !!}</p>
 									<a href="{{ route('blog-detail.view',$item->slug) }}" class="read-more btn btn-primary">Read More</a>
