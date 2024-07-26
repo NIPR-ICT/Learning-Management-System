@@ -91,6 +91,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/all-part/{id}', [PartController::class, 'studentFilterPart'])->name('program.part.student');
 
         Route::get('/onboard/program/{id}', [PartController::class, 'studentFilterPartView'])->name('program.level');
+        Route::get('/onboard/program/register-course/{id}', [CourseController::class, 'coursebyPartsView'])->name('program.level.register.student');
+        Route::get('/onboard/program/register-course/checkout-summary', [PaymentController::class, 'onboardCheckout'])->name('program.level.register.checkout.summary');
+        Route::post('/student/courses/register', [CourseController::class, 'register'])->name('courses.register');
 
 
         Route::get('/student/register-course/{id}', [CourseController::class, 'coursebyParts'])->name('course.register.student');

@@ -88,8 +88,8 @@
 								<div class="col-lg-5">
 									<div class="profile-box">
 										<div class="circle-bar circle-bar1 text-center">
-											<div class="circle-graph1" data-percent="50">
-												<p>50% <span>2 of 4</span></p>
+											<div class="circle-graph1" data-percent="75">
+												<p>75% <span>3 of 4</span></p>
 											</div>
 										</div>
 										<h3>Programme Enrollment</h3>
@@ -101,16 +101,16 @@
 											</div>
 										</div>
 										<div class="personal-detail d-flex align-items-center">
-											<span class="active-color active-bar">2</span>
+											<span class="active-color">2</span>
 											<div class="personal-text">
 												<h4>Select Level</h4>
 												<p class="mb-0">Setup Your Courses</p>
 											</div>
 										</div>
 										<div class="personal-detail d-flex align-items-center">
-											<span>3</span>
+											<span class="active-color active-bar">3</span>
 											<div class="personal-text">
-												<h4>Summary</h4>
+												<h4>Course</h4>
 												<p class="mb-0">Review Your Selections</p>
 											</div>
 										</div>
@@ -127,46 +127,63 @@
 									<div class="personal-form">
 										<h4>Programme Details</h4>
 
-                                        @foreach ($parts as $part)
-                                        <div class="instructor-list flex-fill">
-                                            {{-- <div class="instructor-img">
-                                                <a href="instructor-profile.html">
-                                                    <img class="img-fluid" alt="Img" src="assets/img/user/user11.jpg">
-                                                </a>
-                                            </div> --}}
-                                            <div class="instructor-content">
-                                                <h5>{{ $part->name }} of {{ $part->program->title }}</h5>
-                                                <div class="d-flex gap-3 mb-4 text-xs">
-                                                    <p class="text-muted"><strong>Max Credit:</strong> {{ $part->max_credit }}</p>
-                                                    <p class="text-muted"><strong>Min Credit:</strong> {{ $part->min_credit }}</p>
-                                                    <p class="text-muted"><strong>Duration:</strong> {{ $part->program_duration }}</p>
-                                                </div>
-
-                                                <p>{{ Str::words($part->description, 25, '...') }}</p>
-                                                <div class="instructor-info">
-                                                    <div class="rating-img d-flex align-items-center">
-                                                        <p>12+ Lessons</p>
-                                                    </div>
-                                                    <div class="course-view d-flex align-items-center ms-0">
-                                                        <p>9hr 30min</p>
-                                                    </div>
-                                                    <div class="rating-img d-flex align-items-center">
-                                                        <p>50 Students</p>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
-                                                    </div>
-                                                    <a href="#rate" class="rating-count"><i class="fa-regular fa-heart"></i></a>
-                                                </div>
-                                                <a href="{{ route('course.register.student', $part->id) }}" class="btn btn-primary">Enroll</a>
+                                         <!-- Student Dashboard -->
+                <div class="alert alert-warning">
+                    <p>The Maximum credit unit is <strong>{{$part->max_credit}}</strong> and the minimum is <strong>{{$part->min_credit}}</strong></p>
+                </div>
+                <div class="container mx-auto">
+                    <div class="bg-white p-3">
+                        @if ($courses->isEmpty())
+                            <p class="text-center text-muted">No courses available.</p>
+                        @else
+                            <form action="{{ route('courses.register') }}" method="POST" id="courseForm">
+                                @csrf
+                                <input type="hidden" name="part_id" value="{{ $part->id }}">
+                                <div id="courseList">
+                                    <!-- Automatically checked courses first -->
+                                    @foreach ($courses->filter(fn($course) => $course->course_category === 'Core' || $course->course_category === 'General') as $course)
+                                        <div class="d-flex align-items-center border-bottom py-3">
+                                            <input type="checkbox" name="courses[]" value="{{ $course->id }}" class="form-check-input me-2" checked disabled>
+                                            <input type="hidden" name="courses[]" value="{{ $course->id }}">
+                                            <div class="me-4">
+                                                <p class="text-dark fw-medium">{{ $course->title }} (₦{{ $course->course_amount }})</p>
+                                            </div>
+                                            <div class="ms-auto text-end">
+                                                <p class="text-muted credit-unit" data-credit="{{ $course->credit_unit }}">{{ $course->credit_unit }} Credits</p>
+                                                <p class="text-muted course-amount" data-amount="{{ $course->course_amount }}"></p>
+                                                <p class="text-muted">{{ $course->course_category }}</p>
                                             </div>
                                         </div>
-                                        @endforeach
+                                    @endforeach
+
+                                    <!-- Other courses -->
+                                    @foreach ($courses->filter(fn($course) => $course->course_category !== 'Core' && $course->course_category !== 'General') as $course)
+                                        <div class="d-flex align-items-center border-bottom py-3">
+                                            <input type="checkbox" name="courses[]" value="{{ $course->id }}" class="form-check-input me-2">
+                                            <div class="me-4">
+                                                <p class="text-dark fw-medium">{{ $course->title }} (₦{{ $course->course_amount }})</p>
+                                            </div>
+                                            <div class="ms-auto text-end">
+                                                <p class="text-muted credit-unit" data-credit="{{ $course->credit_unit }}">{{ $course->credit_unit }} Credits</p>
+                                                <p class="text-muted course-amount" data-amount="{{ $course->course_amount }}"></p>
+                                                <p class="text-muted">{{ $course->course_category }}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="d-flex justify-content-between mt-4">
+                                    <p class="text-dark fw-medium">Total Credits: <span id="totalCredits">0</span></p>
+                                    <p class="text-dark fw-medium">Total Amount: ₦<span id="totalAmount">0</span></p>
+                                    <button type="submit" class="btn btn-danger ">
+                                       Checkout
+                                    </button>
+                                </div>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+
+
 
 									</div>
 								</div>

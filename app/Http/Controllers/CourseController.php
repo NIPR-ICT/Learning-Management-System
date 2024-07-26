@@ -156,11 +156,57 @@ public function coursebyParts($id){
 }
 public function coursebyPartsView($id){
     $courses = Course::where('part_id', $id)->get();
-    $part=$part = Part::findOrFail($id);
-    return view('program-level-course', compact('courses','part'));
+    $part = Part::findOrFail($id);
+    $program = Program::findOrFail($part->program_id);
+    return view('program-level-course', compact('courses','part','program'));
 }
 
 public function register(Request $request)
+    {
+                $validated = $request->validate([
+                    'part_id' => 'required|exists:parts,id',
+                    'courses' => 'required|array',
+                    'courses.*' => 'exists:courses,id',
+                ]);
+
+                $user = auth()->user();
+
+                $part = Part::findOrFail($validated['part_id']);
+
+                $selectedCourses = Course::whereIn('id', $validated['courses'])->get(['id', 'title', 'credit_unit', 'course_amount']);
+                $totalAmount = $selectedCourses->sum('course_amount');
+                $totalCredits = $selectedCourses->sum('credit_unit');
+
+                if($totalCredits == $part->max_credit || ($totalCredits >= $part->min_credit && $totalCredits <= $part->max_credit)){
+                    session([
+                        'totalAmount' => $totalAmount,
+                        'part' => $part,
+                        'selectedCourses' => $selectedCourses
+                    ]);
+                    return redirect()->route('register.checkout.summary');
+                }else if ($totalCredits < $part->min_credit) {
+                    return redirect()->route('course.register.student', ['id' => $part->id])->with('alert', [
+                        'title' => 'Error!',
+                        'text' => 'Total credits are less than the minimum required credits.',
+                        'icon' => 'error'
+                    ]);
+                }else if($totalCredits > $part->max_credit){
+                    return redirect()->route('course.register.student', ['id' => $part->id])->with('alert', [
+                        'title' => 'Error!',
+                        'text' => 'Total credits are more than the maximum allowed credits.',
+                        'icon' => 'error'
+                    ]);
+                }else{
+                    return redirect()->route('course.register.student', ['id' => $part->id])->with('alert', [
+                        'title' => 'Error!',
+                        'text' => 'OOps! Course Registration Failed!',
+                        'icon' => 'error'
+                    ]);
+                }
+
+
+            }
+public function onboardRegister(Request $request)
     {
                 $validated = $request->validate([
                     'part_id' => 'required|exists:parts,id',

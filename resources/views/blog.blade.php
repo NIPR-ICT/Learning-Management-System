@@ -42,7 +42,7 @@
 													<a href="instructor-profile.html"><img src="assets/img/user/user.jpg" alt="Post Author"> <span>Ruby Perrin</span></a>
 												</div>
 											</li> --}}
-											<li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $item->published_at }}</li>
+											<li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ Carbon\Carbon::parse($item->published_at)->diffForHumans()  }}</li>
 											<li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="Img">{{ $item->category->title }}</li>
 										</ul>
 									</div>

@@ -17,6 +17,10 @@ class PaymentController extends Controller
     {
         return view('course-registration-checkout');
     }
+    public function onboardCheckout(Request $request)
+    {
+        return view('onboard-checkout');
+    }
 
     public function finalCheckout(){
         return view('final-checkout');
@@ -42,14 +46,14 @@ class PaymentController extends Controller
             ],
             'callback_url' => route('payment.callback')
         ];
-    
+
         try {
             return Paystack::getAuthorizationUrl($paymentDetails)->redirectNow();
         } catch (\Exception $e) {
             return back()->withError('Error: ' . $e->getMessage());
         }
     }
-    
+
     public function handleGatewayCallback()
     {
 $paymentDetails = Paystack::getPaymentData();
@@ -81,7 +85,7 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
         ]);
     }
 
-    
+
     foreach ($extra_services as $charge) {
         ChargesPayment::create([
             'charge_id' => $charge['id'],
@@ -100,7 +104,7 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
             'part_id' => $part_id,
             'program_id' => $program_id,
         ]);
-        
+
     return redirect()->route('dashboard')->with('alert', [
         'title' => 'Payment Successful!',
         'text' => 'Payment successfully!',
@@ -125,5 +129,5 @@ return redirect()->route('dashboard')->with('alert', [
         $allTransactions= Transaction::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.all-payment-history', compact('allTransactions'));
     }
-    
+
 }
