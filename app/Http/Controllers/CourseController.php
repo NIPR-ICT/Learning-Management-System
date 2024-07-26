@@ -228,7 +228,7 @@ public function onboardRegister(Request $request)
                         'part' => $part,
                         'selectedCourses' => $selectedCourses
                     ]);
-                    return redirect()->route('register.checkout.summary');
+                    return redirect()->route('program.level.register.checkout.summary');
                 }else if ($totalCredits < $part->min_credit) {
                     return redirect()->route('course.register.student', ['id' => $part->id])->with('alert', [
                         'title' => 'Error!',

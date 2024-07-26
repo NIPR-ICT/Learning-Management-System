@@ -136,7 +136,7 @@
                         @if ($courses->isEmpty())
                             <p class="text-center text-muted">No courses available.</p>
                         @else
-                            <form action="{{ route('courses.register') }}" method="POST" id="courseForm">
+                            <form action="{{ route('program.level.register.courses.register') }}" method="POST" id="courseForm">
                                 @csrf
                                 <input type="hidden" name="part_id" value="{{ $part->id }}">
                                 <div id="courseList">
