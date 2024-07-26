@@ -79,7 +79,7 @@
 							<div class="img-logo">
 								<img src="{{ asset('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
 								<div class="back-home">
-									<a href="login.html">Back to Home</a>
+									<a href="/">Back to Home</a>
 								</div>
 							</div>
 							<h1>{{ $program->title }}</h1>
@@ -121,6 +121,13 @@
 												<p class="mb-0">Complete Enrollments</p>
 											</div>
 										</div>
+                                        <div class="personal-detail d-flex align-items-center">
+                                            <span class="">5</span>
+                                            <div class="personal-text">
+                                                <h4>Checkout and Payments</h4>
+                                                <p class="mb-0">Complete Enrollments</p>
+                                            </div>
+                                        </div>
 									</div>
 								</div>
 								<div class="col-lg-7">
