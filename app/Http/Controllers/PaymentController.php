@@ -63,7 +63,6 @@ $paymentDetails = Paystack::getPaymentData();
 
 if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success') {
     $selectedCourses = $paymentDetails['data']['metadata']['selectedCourses'];
-    $extra_services = $paymentDetails['data']['metadata']['extra_services'];
     $user_id = $paymentDetails['data']['metadata']['user_id'];
     $partData = $paymentDetails['data']['metadata']['part'];
     $reference_id = $paymentDetails['data']['reference'];
@@ -88,18 +87,22 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
         ]);
     }
 
-
-    foreach ($extra_services as $charge) {
-        ChargesPayment::create([
-            'charge_id' => $charge['id'],
-            'amount' => $charge['amount'],
-            'program_id' => $charge['program_id'],
-            'part_id' => $charge['part_id'],
-            'user_id' => $user_id,
-            'transaction_id' => $transaction->id,
-        ]);
+    if (isset($paymentDetails['data']['metadata']['extra_services']) && 
+    is_array($paymentDetails['data']['metadata']['extra_services']) && 
+    count($paymentDetails['data']['metadata']['extra_services']) > 0) {
+        $extra_services = $paymentDetails['data']['metadata']['extra_services'];
+        foreach ($extra_services as $charge) {
+            ChargesPayment::create([
+                'charge_id' => $charge['id'],
+                'amount' => $charge['amount'],
+                'program_id' => $charge['program_id'],
+                'part_id' => $charge['part_id'],
+                'user_id' => $user_id,
+                'transaction_id' => $transaction->id,
+            ]);
+        }
     }
-
+    
 
         EnrollmentTrack::create([
             'user_id' => $user_id,
