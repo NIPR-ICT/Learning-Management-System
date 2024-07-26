@@ -86,8 +86,8 @@
 								<div class="col-lg-5">
 									<div class="profile-box">
 										<div class="circle-bar circle-bar1 text-center">
-											<div class="circle-graph1" data-percent="50">
-												<p>50% <span>2 of 4</span></p>
+											<div class="circle-graph1" data-percent="99">
+												<p>99% <span>4 of 4</span></p>
 											</div>
 										</div>
 										<h3>Programme Enrollment</h3>
@@ -99,21 +99,21 @@
 											</div>
 										</div>
 										<div class="personal-detail d-flex align-items-center">
-											<span class="active-color active-bar">2</span>
+											<span class="active-color ">2</span>
 											<div class="personal-text">
 												<h4>Select Level</h4>
 												<p class="mb-0">Setup Your Courses</p>
 											</div>
 										</div>
 										<div class="personal-detail d-flex align-items-center">
-											<span>3</span>
+											<span class="active-color">3</span>
 											<div class="personal-text">
 												<h4>Summary</h4>
 												<p class="mb-0">Review Your Selections</p>
 											</div>
 										</div>
 										<div class="personal-detail d-flex align-items-center">
-											<span>4</span>
+											<span class="active-color active-bar">4</span>
 											<div class="personal-text">
 												<h4>Checkout and Payments</h4>
 												<p class="mb-0">Complete Enrollments</p>
@@ -125,49 +125,38 @@
 									<div class="personal-form">
 										<h4>Programme Details</h4>
 
-                                        @foreach ($parts as $part)
-                                        <div class="instructor-list flex-fill">
-                                            {{-- <div class="instructor-img">
-                                                <a href="instructor-profile.html">
-                                                    <img class="img-fluid" alt="Img" src="assets/img/user/user11.jpg">
-                                                </a>
-                                            </div> --}}
-                                            <div class="instructor-content">
-                                                <h5>{{ $part->name }} of {{ $part->program->title }}</h5>
-                                                <div class="d-flex gap-3 mb-4 text-xs">
-                                                    <p class="text-muted"><strong>Max Credit:</strong> {{ $part->max_credit }}</p>
-                                                    <p class="text-muted"><strong>Min Credit:</strong> {{ $part->min_credit }}</p>
-                                                    <p class="text-muted"><strong>Duration:</strong> {{ $part->program_duration }}</p>
+                                            @if (session()->has('totalAmount') && session()->has('part'))
+                                            <div class="col-12 col-lg-8">
+                                                <div class="card shadow-sm">
+                                                    <div class="card-body">
+                                                        {{-- <h2 class="h5 mb-4">Checkout</h2> --}}
+                                                        <div class="mb-4">
+                                                            <label class="form-label">Course Title:</label>
+                                                            <?php $part = session('part'); ?>
+                                                            <p class="h6">{{ $part->name }} of {{ $part->program->title }}</p>
+                                                        </div>
+                                                        <div class="mb-4">
+                                                            <label class="form-label">Amount:</label>
+                                                            <p class="h6">₦{{session('totalAmount') }}</p>
+                                                        </div>
+                                                        <form action="{{ route('apply.coupon') }}" method="POST">
+                                                            @csrf
+                                                            <div class="mb-4">
+                                                                <label for="coupon" class="form-label">Apply Coupon Code:</label>
+                                                                <input type="text" name="coupon" id="coupon" class="form-control" placeholder="Enter coupon code">
+                                                            </div>
+                                                            <div class="mb-4">
+                                                                <button type="submit" class="btn btn-danger w-100 w-lg-auto">Complete Checkout</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
-
-                                                <p>{{ Str::words($part->description, 25, '...') }}</p>
-                                                <div class="instructor-info">
-                                                    <div class="rating-img d-flex align-items-center">
-                                                        <p>{{ count($part->courses) }}+ Lessons</p>
-                                                    </div>
-                                                    <div class="course-view d-flex align-items-center ms-0">
-                                                        <p>9hr 30min</p>
-                                                    </div>
-                                                    <div class="rating-img d-flex align-items-center">
-                                                        <p>{{ count($part->enrollments) }} Students</p>
-                                                    </div>
-                                                    <div class="rating">
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
-                                                    </div>
-                                                    <a href="#rate" class="rating-count"><i class="fa-regular fa-heart"></i></a>
-                                                </div>
-                                                @if(empty($renrolled))
-                                                <a href="{{ route('program.level.register.student', $part->id) }}" class="btn btn-primary">Enroll</a>
-                                                @else
-                                                <a href="{{ route('list.courses') }}" class="btn btn-primary">Go to Class</a>
-                                                @endif </div>
-                                        </div>
-                                        @endforeach
+                                            </div>
+                                            @else
+                                            <script type="text/javascript">
+                                                window.location = "{{ url()->previous() }}";
+                                            </script>
+                                            @endif
 
 									</div>
 								</div>

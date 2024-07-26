@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enrollment;
 use App\Models\EnrollmentTrack;
 use App\Models\Part;
-use Illuminate\Http\Request;
 use App\Models\Program;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -126,19 +127,19 @@ class PartController extends Controller
         $parts = Part::where('program_id', $programId)
                      ->orderBy('accessing_order', 'asc')
                      ->get();
-    
+
         // Initialize variable to track if the previous part is completed
         $previousPartCompleted = true;
-    
+
         foreach ($parts as $part) {
             // Check enrollment status for the part
             $enrollmentTrack = EnrollmentTrack::where('user_id', $user_id)
                                               ->where('program_id', $programId)
                                               ->where('part_id', $part->id)
                                               ->first();
-    
+
             $part->is_enrolled = $enrollmentTrack ? true : false;
-    
+
             // Determine if the part should be enabled or disabled
             if ($previousPartCompleted) {
                 if ($part->is_enrolled) {
@@ -151,14 +152,15 @@ class PartController extends Controller
                 $part->disable = true; // Disable parts after the first active part
             }
         }
-    
+
         return view('all-parts', compact('parts'));
     }
 
     public function studentFilterPartView($id){
         $parts = Part::where('program_id', $id)->paginate(10);
         $program = Program::where('id', $id)->first();
-        return view('level', compact('parts','program'));
+        $enrolled = Enrollment::where([['user_id', auth()->user()->id],['part_id',$id]])->first();
+        return view('level', compact('parts','program','enrolled'));
     }
 
     public function studentPaidFilterPart(Request $request){

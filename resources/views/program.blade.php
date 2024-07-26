@@ -101,7 +101,7 @@
 										<div class="personal-detail d-flex align-items-center">
 											<span>2</span>
 											<div class="personal-text">
-												<h4>Select Courses</h4>
+												<h4>Select Level</h4>
 												<p class="mb-0">Setup Your Courses</p>
 											</div>
 										</div>
