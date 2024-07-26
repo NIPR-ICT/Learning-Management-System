@@ -31,12 +31,16 @@ class Program extends Model
 {
     return $this->hasMany(Course::class);
 }
+    public function part()
+    {
+    return $this->hasMany(Part::class);
+    }
 
 public function enrollments()
     {
         return $this->hasMany(Enrollment::class);
     }
-    
+
 
     protected static function boot()
     {

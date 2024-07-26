@@ -43,6 +43,8 @@ Route::get('/contact-us', [ContactUsController::class, 'ContactHome'])->name('co
 Route::get('/course', [CourseController::class, 'CourseHome'])->name('course.view');
 Route::get('/blog', [BlogController::class, 'BlogHome'])->name('blog.view');
 Route::get('/blog/{id}', [BlogController::class, 'BlogDetail'])->name('blog-detail.view');
+Route::get('/blog/category/{id}', [BlogController::class, 'BlogCategory'])->name('blog-category.view');
+
 // wishlist
 Route::get('/wishlist', [WishlistController::class, 'getWishlist'])->name('wishlist');
 Route::post('/add-to-wishlist/{course_id}', [WishlistController::class, 'AddToWishList']);

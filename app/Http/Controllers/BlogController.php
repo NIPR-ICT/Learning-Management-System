@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -66,13 +67,17 @@ class BlogController extends Controller
     /////////////////////////////////////////// public view///////////////////////////////////////
 
     public function BlogHome(){
-        $blogs = Blog::with('blogCategory')->latest()->paginate(30);
-        return view('blog', compact('blogs'));
+        $blogs = Blog::with('blogCategory')->latest()->paginate(5);
+        $cats = BlogCategory::latest()->take(6)->get();
+        return view('blog', compact('blogs','cats'));
     }
 
     public function BlogDetail(string $id){
-        // $blogs = Blog::with('blogCategory')->latest()->paginate(30);
-        return view('blog-detail');
+        $blog = Blog::with('blogCategory')->where('slug',$id)->first();
+        return view('blog-detail', compact('blog'));
+    }
+    public function BlogCategory(string $id){
+        $blogs = Blog::with('blogCategory')->where()
     }
 
 }

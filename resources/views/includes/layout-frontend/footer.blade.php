@@ -71,11 +71,11 @@
                         <div class="footer-contact-info">
                             <div class="footer-address">
                                 <img src="{{asset('assets/img/icon/icon-20.svg')}}" alt="Img" class="img-fluid">
-                                <p> 3556  Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                <p> Suite 4, Block A, A R O Plaza, Plot 2105, Herbert Macaulay Way, Wuse, Zone 6, <br> Abuja</p>
                             </div>
                             <p>
                                 <img src="{{asset('assets/img/icon/icon-19.svg')}}" alt="Img" class="img-fluid">
-                                dreamslms@example.com
+                                lms@niprng.org.ng
                             </p>
                             <p class="mb-0">
                                 <img src="{{asset('assets/img/icon/icon-21.svg')}}" alt="Img" class="img-fluid">

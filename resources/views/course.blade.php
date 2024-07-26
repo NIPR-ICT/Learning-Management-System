@@ -72,8 +72,8 @@
                                 @php
                                     // dd($courses);
                                 @endphp
-                                @foreach ($courses as $item)                    
-                             
+                                @foreach ($courses as $item)
+
 								<div class="col-lg-4 col-md-6 d-flex">
 									<div class="course-box course-design d-flex " >
 										<div class="product">
@@ -98,7 +98,7 @@
 														<a href="#rate"  id="{{ $item->id }}" onclick="addToWishList(this.id)"  title="Add to wishlist"><i class="fa-regular fa-heart"></i></a>
 													</div>
 												</div>
-												<h3 class="title"><a href="course-details.html">{{ $item->title }}</a></h3>
+												<h3 class="title"><a href="{{ route('course.details.view',[$item->id,$item->slug]) }}">{{ $item->title }}</a></h3>
 												<div class="course-info d-flex align-items-center">
 													<div class="rating-img d-flex align-items-center">
 														<img src="assets/img/icon/icon-01.svg" alt="Img">
@@ -129,33 +129,7 @@
 							</div>
 
 							<!-- /pagination -->
-							<div class="row">
-								<div class="col-md-12">
-									<ul class="pagination lms-page">
-										<li class="page-item prev">
-											<a class="page-link" href="javascript:void(0)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
-										</li>
-										<li class="page-item first-page active">
-											<a class="page-link" href="javascript:void(0)">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">3</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">4</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">5</a>
-										</li>
-										<li class="page-item next">
-											<a class="page-link" href="javascript:void(0)"><i class="fas fa-angle-right"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
+							 {{ $courses->links() }}
 							<!-- /pagination -->
 
 						</div>
@@ -173,100 +147,23 @@
 									<div class="card-body">
 										<div class="filter-widget mb-0">
 											<div class="categories-head d-flex align-items-center">
-												<h4>Course categories</h4>
+												<h4>Program(Level)</h4>
 												<i class="fas fa-angle-down"></i>
 											</div>
+                                            @foreach ($courses as $item)
 											<div>
 												<label class="custom_check">
 													<input type="checkbox" name="select_specialist" >
-													<span class="checkmark"></span> Backend (3)
+													<span class="checkmark"></span> {{ $item->title.'('.$item->part->count().')' }}
+												</label>
+											</div>
+                                            @endforeach
 
-												</label>
-											</div>
-											<div>
-												<label class="custom_check">
-													<input type="checkbox" name="select_specialist" >
-													<span class="checkmark"></span>  CSS (2)
-												</label>
-											</div>
-											<div>
-												<label class="custom_check">
-													<input type="checkbox" name="select_specialist">
-													<span class="checkmark"></span>  Frontend (2)
-												</label>
-											</div>
-											<div>
-												<label class="custom_check">
-													<input type="checkbox" name="select_specialist" checked>
-													<span class="checkmark"></span> General (2)
-												</label>
-											</div>
-											<div>
-												<label class="custom_check">
-													<input type="checkbox" name="select_specialist" checked>
-													<span class="checkmark"></span> IT & Software (2)
-												</label>
-											</div>
-											<div>
-												<label class="custom_check">
-													<input type="checkbox" name="select_specialist">
-													<span class="checkmark"></span> Photography (2)
-												</label>
-											</div>
-											<div>
-												<label class="custom_check">
-													<input type="checkbox" name="select_specialist">
-													<span class="checkmark"></span>  Programming Language (3)
-												</label>
-											</div>
-											<div>
-												<label class="custom_check mb-0">
-													<input type="checkbox" name="select_specialist">
-													<span class="checkmark"></span>  Technology (2)
-												</label>
-											</div>
 										</div>
 									</div>
 								</div>
 								<!-- /Search Filter -->
 
-								<!-- Search Filter -->
-								<div class="card search-filter">
-									<div class="card-body">
-										<div class="filter-widget mb-0">
-											<div class="categories-head d-flex align-items-center">
-												<h4>Instructors</h4>
-												<i class="fas fa-angle-down"></i>
-											</div>
-											<div>
-												<label class="custom_check">
-													<input type="checkbox" name="select_specialist" >
-													<span class="checkmark"></span> Keny White (10)
-
-												</label>
-											</div>
-											<div>
-												<label class="custom_check">
-													<input type="checkbox" name="select_specialist" >
-													<span class="checkmark"></span>  Hinata Hyuga (5)
-												</label>
-											</div>
-											<div>
-												<label class="custom_check">
-													<input type="checkbox" name="select_specialist">
-													<span class="checkmark"></span>  John Doe (3)
-												</label>
-											</div>
-											<div>
-												<label class="custom_check mb-0">
-													<input type="checkbox" name="select_specialist" checked>
-													<span class="checkmark"></span> Nicole Brown
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /Search Filter -->
 
 								<!-- Search Filter -->
 								<div class="card search-filter ">
@@ -279,21 +176,21 @@
 											<div>
 												<label class="custom_check custom_one">
 													<input type="radio" name="select_specialist" >
-													<span class="checkmark"></span> All (18)
+													<span class="checkmark"></span> All
 
 												</label>
 											</div>
 											<div>
 												<label class="custom_check custom_one">
 													<input type="radio" name="select_specialist" >
-													<span class="checkmark"></span>  Free (3)
+													<span class="checkmark"></span>  Free
 
 												</label>
 											</div>
 											<div>
 												<label class="custom_check custom_one mb-0">
 													<input type="radio" name="select_specialist" checked>
-													<span class="checkmark"></span>  Paid (15)
+													<span class="checkmark"></span>  Paid
 												</label>
 											</div>
 										</div>
@@ -308,71 +205,25 @@
 											<h4 class="card-title">Latest Courses</h4>
 										</div>
 										<ul class="latest-posts">
+                                            @php
+                                                $recentCourse = \App\Models\Course::latest()->take(5)->get();
+                                            @endphp
+                                            @foreach ($recentCourse as $item)
 											<li>
 												<div class="post-thumb">
 													<a href="course-details.html">
-														<img class="img-fluid" src="assets/img/blog/blog-01.jpg" alt="Img">
+														<img class="img-fluid" src="{{ url('storage/'.$item->cover_image )}}" alt="Img">
 													</a>
 												</div>
 												<div class="post-info free-color">
 													<h4>
-														<a href="course-details.html">Introduction LearnPress – LMS plugin</a>
+														<a href="course-details.html">{{ $item->title }}</a>
 													</h4>
-													<p>FREE</p>
+													<p>{{ $item->course_amount }}</p>
 												</div>
 											</li>
-											<li>
-												<div class="post-thumb">
-													<a href="course-details.html">
-														<img class="img-fluid" src="assets/img/blog/blog-02.jpg" alt="Img">
-													</a>
-												</div>
-												<div class="post-info">
-													<h4>
-														<a href="course-details.html">Become a PHP Master and Make Money</a>
-													</h4>
-													<p>$200</p>
-												</div>
-											</li>
-											<li>
-												<div class="post-thumb">
-													<a href="course-details.html">
-														<img class="img-fluid" src="assets/img/blog/blog-03.jpg" alt="Img">
-													</a>
-												</div>
-												<div class="post-info free-color">
-													<h4>
-														<a href="course-details.html">Learning jQuery Mobile for Beginners</a>
-													</h4>
-													<p>FREE</p>
-												</div>
-											</li>
-											<li>
-												<div class="post-thumb">
-													<a href="course-details.html">
-														<img class="img-fluid" src="assets/img/blog/blog-01.jpg" alt="Img">
-													</a>
-												</div>
-												<div class="post-info">
-													<h4>
-														<a href="course-details.html">Improve Your CSS Workflow with SASS</a>
-													</h4>
-													<p>$200</p>
-												</div>
-											</li>
-											<li>
-												<div class="post-thumb ">
-													<a href="course-details.html">
-														<img class="img-fluid" src="assets/img/blog/blog-02.jpg" alt="Img">
-													</a>
-												</div>
-												<div class="post-info free-color">
-													<h4>
-														<a href="course-details.html">HTML5/CSS3 Essentials in 4-Hours</a>
-													</h4>
-													<p>FREE</p>
-												</div>
-											</li>
+                                            @endforeach
+
 										</ul>
 									</div>
 								</div>

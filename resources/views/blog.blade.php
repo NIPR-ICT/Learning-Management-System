@@ -10,7 +10,7 @@
                         <nav aria-label="breadcrumb" class="page-breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                                <li class="breadcrumb-item active" aria-current="page">Blog</li>
                             </ol>
                         </nav>
                     </div>
@@ -25,113 +25,40 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-9 col-md-12">
-
+                            @if ($blogs->isEmpty())
+                            <p>No Article added yet, Please Try again Later :(</p>
+                            @endif
+                            @foreach ($blogs as $item)
 							<!-- Blog Post -->
 							<div class="blog">
 								<div class="blog-image">
-									<a href="blog-details.html"><img class="img-fluid" src="assets/img/blog/blog-05.jpg" alt="Post Image"></a>
+									<a href="{{ route('blog-detail.view',$item->slug) }}"><img class="img-fluid" src="{{ url('storag/'.$item->image) }}" alt="Post Image"></a>
 								</div>
 								<div class="blog-info clearfix">
 									<div class="post-left">
 										<ul>
-											<li>
+											{{-- <li>
 												<div class="post-author">
 													<a href="instructor-profile.html"><img src="assets/img/user/user.jpg" alt="Post Author"> <span>Ruby Perrin</span></a>
 												</div>
-											</li>
-											<li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">April 20, 2022</li>
-											<li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="Img">Programming, Web Design</li>
+											</li> --}}
+											<li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $item->published_at->diffForHumans() }}</li>
+											<li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="Img">{{ $item->blogCategory->title }}</li>
 										</ul>
 									</div>
 								</div>
-								<h3 class="blog-title"><a href="blog-details.html">Learn Webs Applications Development from Experts</a></h3>
+								<h3 class="blog-title"><a href="blog-details.html">{{ $item->title }}</a></h3>
 								<div class="blog-content blog-read">
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede […]</p>
-									<a href="blog-details.html" class="read-more btn btn-primary">Read More</a>
+									<p>{{ Str::words($item->body, 25, '...') }}</p>
+									<a href="{{ route('blog-detail.view',$item->slug) }}" class="read-more btn btn-primary">Read More</a>
 								</div>
 							</div>
+                            @endforeach
 							<!-- /Blog Post -->
 
-							<!-- Blog Post -->
-							<div class="blog">
-								<div class="blog-image">
-									<a href="blog-details.html"><img class="img-fluid" src="assets/img/blog/blog-06.jpg" alt="Post Image"></a>
-								</div>
-								<div class="blog-info clearfix">
-									<div class="post-left">
-										<ul>
-											<li>
-												<div class="post-author">
-													<a href="instructor-profile.html"><img src="assets/img/user/user1.jpg" alt="Post Author"> <span>Jenis R.</span></a>
-												</div>
-											</li>
-											<li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">May 20, 2021</li>
-											<li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="Img">Programming, Courses</li>
-										</ul>
-									</div>
-								</div>
-								<h3 class="blog-title"><a href="blog-details.html">Expand Your Career Opportunities With Python</a></h3>
-								<div class="blog-content blog-read">
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede […]</p>
-									<a href="blog-details.html" class="read-more btn btn-primary">Read More</a>
-								</div>
-							</div>
-							<!-- /Blog Post -->
-
-							<!-- Blog Post -->
-							<div class="blog">
-								<div class="blog-image">
-									<a href="blog-details.html"><img class="img-fluid" src="assets/img/blog/blog-07.jpg" alt="Post Image"></a>
-								</div>
-								<div class="blog-info clearfix">
-									<div class="post-left">
-										<ul>
-											<li>
-												<div class="post-author">
-													<a href="instructor-profile.html"><img src="assets/img/user/user3.jpg" alt="Post Author"> <span>Rolands R</span></a>
-												</div>
-											</li>
-											<li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">Jun 14, 2022</li>
-											<li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="Img">Programming, Web Design</li>
-										</ul>
-									</div>
-								</div>
-								<h3 class="blog-title"><a href="blog-details.html">Complete PHP Programming Career Guideline</a></h3>
-								<div class="blog-content blog-read">
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede […]</p>
-									<a href="blog-details.html" class="read-more btn btn-primary">Read More</a>
-								</div>
-							</div>
-							<!-- /Blog Post -->
 
 							<!-- Blog pagination -->
-							<div class="row">
-								<div class="col-md-12">
-									<ul class="pagination lms-page">
-										<li class="page-item prev">
-											<a class="page-link" href="javascript:void(0);" tabindex="-1"><i class="fas fa-angle-left"></i></a>
-										</li>
-										<li class="page-item first-page active">
-											<a class="page-link" href="javascript:void(0);">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0);">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0);">3</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0);">4</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0);">5</a>
-										</li>
-										<li class="page-item next">
-											<a class="page-link" href="javascript:void(0);"><i class="fas fa-angle-right"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
+						{{ $blogs->links() }}
 							<!-- /Blog pagination -->
 
 						</div>
@@ -159,45 +86,25 @@
 								</div>
 								<div class="card-body">
 									<ul class="latest-posts">
+                                        @php
+                                            $recentBlog = App\Models\Blog::latest()->take(3)->get();
+                                        @endphp
+                                        @foreach ($recentBlog as $item)
 										<li>
 											<div class="post-thumb">
-												<a href="blog-details.html">
-													<img class="img-fluid" src="assets/img/blog/blog-01.jpg" alt="Img">
+												<a href="{{ route('blog-detail.view', $item->slug )}}">
+													<img class="img-fluid" src="{{ url('storage/'.$item->image) }}" alt="Img">
 												</a>
 											</div>
 											<div class="post-info">
 												<h4>
-													<a href="blog-details.html">Learn Webs Applications Development from Experts</a>
+													<a href="{{ route('blog-detail.view', $item->slug )}}">{{ $item->title }}</a>
 												</h4>
-												<p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">Jun 14, 2022</p>
+												<p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $item->published_at->diffForHumans() }}</p>
 											</div>
 										</li>
-										<li>
-											<div class="post-thumb">
-												<a href="blog-details.html">
-													<img class="img-fluid" src="assets/img/blog/blog-02.jpg" alt="Img">
-												</a>
-											</div>
-											<div class="post-info">
-												<h4>
-													<a href="blog-details.html">Expand Your Career Opportunities With Python</a>
-												</h4>
-												<p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img"> 3 Dec 2019</p>
-											</div>
-										</li>
-										<li>
-											<div class="post-thumb">
-												<a href="blog-details.html">
-													<img class="img-fluid" src="assets/img/blog/blog-03.jpg" alt="Img">
-												</a>
-											</div>
-											<div class="post-info">
-												<h4>
-													<a href="blog-details.html">Complete PHP Programming Career Guideline</a>
-												</h4>
-												<p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img"> 3 Dec 2019</p>
-											</div>
-										</li>
+                                        @endforeach
+
 									</ul>
 								</div>
 							</div>
@@ -210,19 +117,16 @@
 								</div>
 								<div class="card-body">
 									<ul class="categories">
-										<li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Business </a></li>
-										<li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Courses </a></li>
-										<li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Education </a></li>
-										<li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Graphics Design </a></li>
-										<li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Programming </a></li>
-										<li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Web Design </a></li>
+                                        @foreach ($cats as $item)
+										<li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> {{ $item->title }} </a></li>
+                                        @endforeach
 									</ul>
 								</div>
 							</div>
 							<!-- /Categories -->
 
 							<!-- Archives Categories -->
-							<div class="card category-widget blog-widget">
+							{{-- <div class="card category-widget blog-widget">
 								<div class="card-header">
 									<h4 class="card-title">Archives</h4>
 								</div>
@@ -233,11 +137,11 @@
 										<li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> April 2022 </a></li>
 									</ul>
 								</div>
-							</div>
+							</div> --}}
 							<!-- /Archives Categories -->
 
 							<!-- Tags -->
-							<div class="card tags-widget blog-widget tags-card">
+							{{-- <div class="card tags-widget blog-widget tags-card">
 								<div class="card-header">
 									<h4 class="card-title">Latest Tags</h4>
 								</div>
@@ -251,7 +155,7 @@
 										<li><a href="javascript:void(0);" class="tag">React</a></li>
 									</ul>
 								</div>
-							</div>
+							</div> --}}
 							<!-- /Tags -->
 
 						</div>

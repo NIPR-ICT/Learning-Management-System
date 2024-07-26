@@ -70,7 +70,8 @@
 												<img src="assets/img/pencil-icon.svg" alt="Img">
 											</div>
 											<div class="course-inner-content">
-												<h4><span>10</span>K</h4>
+
+												<h4><span>{{ $allCourse }}</span></h4>
 												<p>Online Courses</p>
 											</div>
 										</div>
@@ -85,7 +86,7 @@
 												<img src="assets/img/cources-icon.svg" alt="Img">
 											</div>
 											<div class="course-inner-content">
-												<h4><span>200</span>+</h4>
+												<h4><span> {{ count($trendingInstructor) }}</span>+</h4>
 												<p>Expert Tutors</p>
 											</div>
 										</div>
@@ -100,7 +101,7 @@
 												<img src="assets/img/certificate-icon.svg" alt="Img">
 											</div>
 											<div class="course-inner-content">
-												<h4><span>6</span>K+</h4>
+												<h4><span>{{ count($program) }}</span>+</h4>
 												<p>Ceritified Courses</p>
 											</div>
 										</div>
@@ -115,7 +116,7 @@
 												<img src="assets/img/gratuate-icon.svg" alt="Img">
 											</div>
 											<div class="course-inner-content">
-												<h4><span>60</span>K +</h4>
+												<h4><span>{{ $students }}</span>K +</h4>
 												<p>Online Students</p>
 											</div>
 										</div>
@@ -680,7 +681,7 @@
 										</div>
 									</div>
 									<div class="course-count">
-										<h3><span class="counterUp">253,085</span></h3>
+										<h3><span class="counterUp">{{ $enrolledStudent }}</span></h3>
 										<p>STUDENTS ENROLLED</p>
 									</div>
 								</div>
@@ -693,7 +694,7 @@
 										</div>
 									</div>
 									<div class="course-count">
-										<h3><span class="counterUp" >1,205</span></h3>
+										<h3><span class="counterUp" >{{ $allCourse }}</span></h3>
 										<p>TOTAL COURSES</p>
 									</div>
 								</div>
@@ -706,7 +707,7 @@
 										</div>
 									</div>
 									<div class="course-count">
-										<h3><span class="counterUp" >127</span></h3>
+										<h3><span class="counterUp" >1</span></h3>
 										<p>COUNTRIES</p>
 									</div>
 								</div>
@@ -716,7 +717,7 @@
 					<div class="lab-course">
 						<div class="section-header aos" data-aos="fade-up">
 							<div class="section-sub-head feature-head text-center">
-								<h2>Unlimited access to 360+ courses <br>and 1,600+ hands-on labs</h2>
+								<h2>Unlimited access to courses <br>and 1,600+ meterials</h2>
 							</div>
 						</div>
 						{{-- <div class="icon-group aos" data-aos="fade-up">

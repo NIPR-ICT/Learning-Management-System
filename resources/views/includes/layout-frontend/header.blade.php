@@ -24,22 +24,32 @@
                         </a>
                     </div>
                     <ul class="main-nav">
-                        <li class="has-submenu active">
+                        <li class=" has-submenu
+                        {{(Route::is('home'))?" active":''}}
+                        " >
                             <a class="" href="\">Home  </a>
                         </li>
-                        <li class="has-submenu ">
+                        <li class=" has-submenu
+                        {{(Route::is('about.view'))?" active":''}}
+                        " >
                             <a class="" href="{{route('about.view')}}">About </a>
                         </li>
 
-                        <li class="has-submenu">
+                        <li class=" has-submenu
+                        {{(Route::is('course.view','course.details.view'))?" active":''}}
+                        " >
                             <a href="{{route('course.view')}}">Course </a>
                         </li>
 
-                        <li class="has-submenu">
+                        <li class=" has-submenu
+                        {{(Route::is('blog.view','blog-detail.view'))?" active":''}}
+                        " >
                             <a href="{{route('blog.view')}}">Blog</a>
                         </li>
 
-                        <li class="has-submenu">
+                        <li class=" has-submenu
+                        {{(Route::is('contact.view'))?" active":''}}
+                        " >
                             <a href="{{route('contact.view')}}">Contact </i></a>
                         </li>
 
