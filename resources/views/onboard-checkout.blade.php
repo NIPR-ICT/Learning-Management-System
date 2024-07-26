@@ -108,12 +108,20 @@
 										<div class="personal-detail d-flex align-items-center">
 											<span class="active-color">3</span>
 											<div class="personal-text">
-												<h4>Summary</h4>
+												<h4>Select Courses</h4>
 												<p class="mb-0">Review Your Selections</p>
 											</div>
 										</div>
 										<div class="personal-detail d-flex align-items-center">
 											<span class="active-color active-bar">4</span>
+											<div class="personal-text">
+												<h4>Summary</h4>
+												<p class="mb-0">Complete Enrollments Apply Coupon</p>
+											</div>
+										</div>
+
+										<div class="personal-detail d-flex align-items-center">
+											<span class="">5</span>
 											<div class="personal-text">
 												<h4>Checkout and Payments</h4>
 												<p class="mb-0">Complete Enrollments</p>
@@ -126,7 +134,6 @@
 										<h4>Programme Details</h4>
 
                                             @if (session()->has('totalAmount') && session()->has('part'))
-                                            <div class="col-12 col-lg-8">
                                                 <div class="card shadow-sm">
                                                     <div class="card-body">
                                                         {{-- <h2 class="h5 mb-4">Checkout</h2> --}}
@@ -139,7 +146,7 @@
                                                             <label class="form-label">Amount:</label>
                                                             <p class="h6">₦{{session('totalAmount') }}</p>
                                                         </div>
-                                                        <form action="{{ route('apply.coupon') }}" method="POST">
+                                                        <form action="{{ route('onboard.apply.coupon') }}" method="POST">
                                                             @csrf
                                                             <div class="mb-4">
                                                                 <label for="coupon" class="form-label">Apply Coupon Code:</label>
@@ -151,7 +158,7 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                            </div>
+
                                             @else
                                             <script type="text/javascript">
                                                 window.location = "{{ url()->previous() }}";

@@ -25,6 +25,9 @@ class PaymentController extends Controller
     public function finalCheckout(){
         return view('final-checkout');
     }
+    public function onboardFinalCheckout(){
+        return view('onboard-payment');
+    }
 
     public function redirectToGateway(Request $request)
     {
