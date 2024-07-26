@@ -117,7 +117,7 @@
 								<div class="card-body">
 									<ul class="categories">
                                         @foreach ($cats as $item)
-										<li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> {{ $item->title }} </a></li>
+										<li><a href="{{ route('blog-category.view',$item->id) }}"><i class="fas fa-angle-right"></i> {{ $item->title }} </a></li>
                                         @endforeach
 									</ul>
 								</div>

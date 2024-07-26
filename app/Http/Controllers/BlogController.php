@@ -108,9 +108,9 @@ class BlogController extends Controller
                 $blog->body = $request->input('body');
                 $blog->published_at = $request->input('published_at');
                 $blog->featured = $request->boolean('featured', false);
-        
+
                 $blog->save();
-        
+
                 return redirect()->route('all.post')->with('alert', [
                     'title' => 'Success!',
                     'text' => 'Post updated successfully.',
@@ -152,7 +152,9 @@ class BlogController extends Controller
         return view('blog-detail', compact('blog'));
     }
     public function BlogCategory(string $id){
-        $blogs = Blog::with('blogCategory')->where()
+        $blogs = Blog::with('blogCategory')->where('BlogCategory',$id)->latest()->get();
+        $cats = BlogCategory::latest()->take(6)->get();
+        return view('blog', compact('blogs','cats'));
     }
 
 }
