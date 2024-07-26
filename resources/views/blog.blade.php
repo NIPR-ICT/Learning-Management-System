@@ -32,7 +32,7 @@
 							<!-- Blog Post -->
 							<div class="blog">
 								<div class="blog-image">
-									<a href="{{ route('blog-detail.view',$item->slug) }}"><img class="img-fluid" src="{{ url('storag/'.$item->image) }}" alt="Post Image"></a>
+									<a href="{{ route('blog-detail.view',$item->slug) }}"><img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="Post Image"></a>
 								</div>
 								<div class="blog-info clearfix">
 									<div class="post-left">
@@ -42,14 +42,14 @@
 													<a href="instructor-profile.html"><img src="assets/img/user/user.jpg" alt="Post Author"> <span>Ruby Perrin</span></a>
 												</div>
 											</li> --}}
-											<li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $item->published_at->diffForHumans() }}</li>
-											<li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="Img">{{ $item->blogCategory->title }}</li>
+											<li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $item->published_at }}</li>
+											<li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="Img">{{ $item->category->title }}</li>
 										</ul>
 									</div>
 								</div>
 								<h3 class="blog-title"><a href="blog-details.html">{{ $item->title }}</a></h3>
 								<div class="blog-content blog-read">
-									<p>{{ Str::words($item->body, 25, '...') }}</p>
+									<p>{!! Str::words($item->body, 25, '...') !!}</p>
 									<a href="{{ route('blog-detail.view',$item->slug) }}" class="read-more btn btn-primary">Read More</a>
 								</div>
 							</div>
@@ -100,7 +100,7 @@
 												<h4>
 													<a href="{{ route('blog-detail.view', $item->slug )}}">{{ $item->title }}</a>
 												</h4>
-												<p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $item->published_at->diffForHumans() }}</p>
+												<p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $item->published_at }}</p>
 											</div>
 										</li>
                                         @endforeach
