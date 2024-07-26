@@ -156,6 +156,26 @@
                 <div class="menu-title">All Payment History</div>
             </a>
         </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-news"></i>
+                </div>
+                <div class="menu-title">Blog</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('category.form') }}"><i class='bx bx-plus'></i>Add Category</a>
+                </li>
+                <li> <a href="{{ route('all.category') }}"><i class='bx bx-radio-circle'></i>Manage Category</a>
+                </li>
+
+                <li> <a href="{{ route('post.form') }}"><i class='bx bx-plus'></i>Add Post</a>
+                </li>
+                <li> <a href="{{ route('all.post') }}"><i class='bx bx-radio-circle'></i>Manage Posts</a>
+                </li>
+
+            </ul>
+        </li>
  
     </ul>
     <!--end navigation-->

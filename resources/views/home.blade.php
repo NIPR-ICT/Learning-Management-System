@@ -662,7 +662,7 @@
 								<p>{{ $item->category->title }}</p>
 								<div class="student-count d-flex justify-content-center">
 									<i class="fa-solid fa-calendar-days"></i>
-									<span>{{ $item->published_at->diffForHumans() }}</span>
+									<span>{{ $item->published_at }}</span>
 								</div>
 							</div>
 						</div>

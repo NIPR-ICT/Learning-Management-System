@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EnrollmentTrack;
 use App\Models\Part;
 use Illuminate\Http\Request;
 use App\Models\Program;
@@ -36,12 +37,7 @@ class PartController extends Controller
     }),
 ],
 
-'accessing_order' => [
-    'required',  
-    Rule::unique('parts')->where(function ($query) use ($request) {
-        return $query->where('program_id', $request->input('program_id'));
-    }),
-],
+            'accessing_order' => 'required||unique:parts,accessing_order',
             'description' => 'required|string',
             'max_credit' => 'required|integer',
             'min_credit' => 'required|integer',
@@ -123,8 +119,39 @@ class PartController extends Controller
     }
 
     // student functionalities
-    public function studentFilterPart($id){
-        $parts = Part::where('program_id', $id)->orderBy('accessing_order', 'asc')->paginate(10);
+    public function studentFilterPart($programId){
+        $user_id = Auth::user()->id;
+
+        // Fetch parts ordered by accessing_order for the specified program
+        $parts = Part::where('program_id', $programId)
+                     ->orderBy('accessing_order', 'asc')
+                     ->get();
+    
+        // Initialize variable to track if the previous part is completed
+        $previousPartCompleted = true;
+    
+        foreach ($parts as $part) {
+            // Check enrollment status for the part
+            $enrollmentTrack = EnrollmentTrack::where('user_id', $user_id)
+                                              ->where('program_id', $programId)
+                                              ->where('part_id', $part->id)
+                                              ->first();
+    
+            $part->is_enrolled = $enrollmentTrack ? true : false;
+    
+            // Determine if the part should be enabled or disabled
+            if ($previousPartCompleted) {
+                if ($part->is_enrolled) {
+                    $part->disable = false; // Enable if enrolled
+                } else {
+                    $part->disable = false; // Enable if at least one part is enrolled
+                    $previousPartCompleted = false;
+                }
+            } else {
+                $part->disable = true; // Disable parts after the first active part
+            }
+        }
+    
         return view('all-parts', compact('parts'));
     }
 

@@ -45,11 +45,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{route('student.course')}}" class="nav-link">
-                        <i class="bx bxs-book"></i>Enrolled Course
-                    </a>
-                </li>
+ 
                 <li class="nav-item">
                     <a href="{{route('user.wishlist')}}" class="nav-link">
                         <i class="bx bxs-heart"></i>Wishlist
@@ -66,11 +62,7 @@
                         <i class="bx bxs-shapes"></i>My Quiz Attempts
                     </a>
                 </li> --}}
-                <li class="nav-item">
-                    <a href="{{route('user.payment.history')}}" class="nav-link">
-                        <i class="bx bxs-cart"></i>Order History
-                    </a>
-                </li>
+          
                 {{-- <li class="nav-item">
                     <a href="student-qa.html" class="nav-link">
                         <i class="bx bxs-bookmark-alt"></i>Question & Answer

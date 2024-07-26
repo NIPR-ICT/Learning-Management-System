@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\Part;
 use App\Models\Program;
 use Illuminate\Contracts\Session\Session;
@@ -243,7 +244,7 @@ public function register(Request $request)
 
     public function enrollmentbyStudent()
     {
-        $enrollments = session()->get('enrollments');
+        $enrollments = Enrollment::paginate(5);
         return view('bought-course-by-student', compact('enrollments'));
     }
 

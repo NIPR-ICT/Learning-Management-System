@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChargesPayment;
 use App\Models\Enrollment;
+use App\Models\EnrollmentTrack;
 use App\Models\Part;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -92,6 +93,14 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
         ]);
     }
 
+
+        EnrollmentTrack::create([
+            'user_id' => $user_id,
+            'status' => 'paid',
+            'part_id' => $part_id,
+            'program_id' => $program_id,
+        ]);
+        
     return redirect()->route('dashboard')->with('alert', [
         'title' => 'Payment Successful!',
         'text' => 'Payment successfully!',
