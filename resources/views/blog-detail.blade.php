@@ -38,8 +38,8 @@
                             <div class="blog-info clearfix">
                                 <div class="post-left">
                                     <ul>
-                                        <li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $blog->published_at }}</li>
-                                        <li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="Img">{{ $blog->category->title }}</li>
+                                        <li><img class="img-fluid" src="{{ asset('assets/img/icon/icon-22.svg')}}" alt="Img">{{ Carbon\Carbon::parse($blog->published_at)->diffForHumans()  }}</li>
+                                        <li><img class="img-fluid" src="{{ asset('assets/img/icon/icon-23.svg')}}" alt="Img">{{ $blog->category->title }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                         </div>
                         <!-- /Blog Post -->
 
-       
+
                     @endif
                 </div>
 
@@ -91,7 +91,7 @@
                                             <h4>
                                                 <a href="{{ route('blog-detail.view', $item->slug) }}">{{ $item->title }}</a>
                                             </h4>
-                                            <p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $item->published_at }}</p>
+                                            <p><img class="img-fluid" src="{{ asset('assets/img/icon/icon-22.svg') }}" alt="Img">{{ $item->published_at }}</p>
                                         </div>
                                     </li>
                                 @endforeach

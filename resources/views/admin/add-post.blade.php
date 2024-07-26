@@ -66,7 +66,7 @@
                         <div class="card-body">
                             <label for="formFile" class="form-label">Publish Time </label>
                             <input value="{{ old('published_at') }}" class="form-control w-100 form-control-lg mb-3"
-                                id="published_at" name="published_at" type="datetime-local"
+                                id="published_at" name="published_at" type="date"
                                 aria-label=".form-control-lg example">
                             <x-input-error :messages="$errors->get('published_at')" class="mt-2" />
 
