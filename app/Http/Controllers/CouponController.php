@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Coupon;
 use App\Models\ExtraCharge;
 use App\Models\Part;
+use App\Models\Program;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class CouponController extends Controller
         ], [
             'end_date.after' => 'The end date must be after the start date.',
         ]);
-        
+
         $coupon = new Coupon([
             'part_id' => $request->get('part_id'),
             'percentage_discount' => $request->get('percentage_discount'),
@@ -112,7 +113,7 @@ class CouponController extends Controller
             'extra_services' => $extraServices,
             'extra_services_amount'=>$extra_services_amount,
             'totalPayableAmount'=>$final_amount+$extra_services_amount,
-            
+
         ]);
         return redirect()->route('checkout.preview.final');
         }
@@ -121,7 +122,7 @@ class CouponController extends Controller
             'text' => 'Coupon Not applicable for this part.',
             'icon' => 'error'
         ]);
-        
+
     } elseif ($checkCoupon && $checkCoupon->end_date && Carbon::now()->gt($checkCoupon->end_date)) {
         return redirect()->route('register.checkout.summary')->with('alert', [
             'title' => 'Error!',
@@ -137,5 +138,72 @@ class CouponController extends Controller
     }
 
 }
+
+    public function onboardCompleteCheckout(Request $request)
+    {
+        $coupon = $request->get('coupon');
+        $part = session('part');
+        $totalAmount = session('totalAmount');
+        $selectedCourses = session('selectedCourses');
+        $coupon = $request->input('coupon');
+
+        $extraServices = ExtraCharge::where('part_id', $part->id)
+        ->get(['id', 'amount', 'item', 'program_id', 'part_id']);
+
+        $extra_services_amount = $extraServices->sum('amount');
+        $program = Program::where('id',$part->program_id)->first();
+        if (empty($coupon)) {
+            session([
+                'totalAmount2' => $totalAmount,
+                'part' => $part,
+                'selectedCourses' => $selectedCourses,
+                'discounted'=>0.00,
+                'extra_services' => $extraServices,
+                'extra_services_amount'=>$extra_services_amount,
+                'totalPayableAmount'=>$totalAmount+$extra_services_amount,
+            ]);
+            return redirect()->route('onboard.checkout.preview.final', compact('program'));
+        }
+
+        $checkCoupon = Coupon::where('code', $coupon)->first();
+        if ($checkCoupon && $checkCoupon->end_date && Carbon::now()->lte($checkCoupon->end_date)) {
+            if($part->id == $checkCoupon->part_id){
+                $percent=$checkCoupon->percentage_discount;
+            $discount=$percent/100;
+            $new_amount= $discount*$totalAmount;
+            $final_amount=$totalAmount-$new_amount;
+            session([
+                'totalAmount2' => $final_amount,
+                'part' => $part,
+                'selectedCourses' => $selectedCourses,
+                'discounted'=>$new_amount,
+                'extra_services' => $extraServices,
+                'extra_services_amount'=>$extra_services_amount,
+                'totalPayableAmount'=>$final_amount+$extra_services_amount,
+
+            ]);
+            return redirect()->route('onboard.checkout.preview.final', compact('program'));
+            }
+            $notification = array(
+                'message' => 'Coupon Not applicable for this part.',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('program.level.register.summary')->with($notification);
+
+        } elseif ($checkCoupon && $checkCoupon->end_date && Carbon::now()->gt($checkCoupon->end_date)) {
+            $notification = array(
+                'message' => 'Coupon has Expired.',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('program.level.register.summary')->with($notification);
+        }else {
+            $notification = array(
+                'message' => 'Invalid Coupon',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('program.level.register.summary')->with($notification);
+        }
+
+    }
 
 }
