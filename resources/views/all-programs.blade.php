@@ -51,7 +51,7 @@
                                     <a href="#rate" class="rating-count"><i class="fa-regular fa-heart"></i></a>
                                 </div>
                                 @if ($program->disable)
-                                    <button class="btn btn-secondary" disabled>Unavailable</button>
+                                    <button class="btn btn-secondary" disabled title="You have to Enroll for the Top One">Enroll</button>
                                 @elseif (!$program->is_enrolled)
                                     <a href="{{ route('program.part.student', $program->id) }}" class="btn btn-primary">Enroll</a>
                                 @elseif ($program->is_enrolled && !$program->all_parts_enrolled)
