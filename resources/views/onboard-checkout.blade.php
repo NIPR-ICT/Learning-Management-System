@@ -86,8 +86,8 @@
 								<div class="col-lg-5">
 									<div class="profile-box">
 										<div class="circle-bar circle-bar1 text-center">
-											<div class="circle-graph1" data-percent="99">
-												<p>99% <span>4 of 4</span></p>
+											<div class="circle-graph1" data-percent="90">
+												<p>90% <span>4 of 5</span></p>
 											</div>
 										</div>
 										<h3>Programme Enrollment</h3>

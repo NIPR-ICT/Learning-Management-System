@@ -89,7 +89,7 @@
 									<div class="profile-box">
 										<div class="circle-bar circle-bar1 text-center">
 											<div class="circle-graph1" data-percent="75">
-												<p>75% <span>3 of 4</span></p>
+												<p>75% <span>3 of 5</span></p>
 											</div>
 										</div>
 										<h3>Programme Enrollment</h3>

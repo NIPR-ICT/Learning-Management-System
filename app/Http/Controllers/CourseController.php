@@ -284,7 +284,7 @@ public function coursebyPartsView($id){
     }
 ///////////////////////////////////////////public view///////////////////////////////////////////////
     public function CourseHome(){
-        $courses = Course::with('creator','modules')->latest()->paginate(20);
+        $courses = Course::with('creator','modules')->latest()->paginate(12);
         $programs = Program::with('part')->get();
         return view('course', compact('courses','programs'));
     }

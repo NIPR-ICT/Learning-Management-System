@@ -129,7 +129,7 @@
 							</div>
 
 							<!-- /pagination -->
-							 {{ $courses->links() }}
+							 {{ $courses->links('pagination::bootstrap-4') }}
 							<!-- /pagination -->
 
 						</div>
@@ -150,7 +150,7 @@
 												<h4>Program(Level)</h4>
 												<i class="fas fa-angle-down"></i>
 											</div>
-                                            @foreach ($courses as $item)
+                                            @foreach ($programs as $item)
 											<div>
 												<label class="custom_check">
 													<input type="checkbox" name="select_specialist" >

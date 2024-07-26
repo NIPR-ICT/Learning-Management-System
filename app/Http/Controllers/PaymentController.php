@@ -87,8 +87,8 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
         ]);
     }
 
-    if (isset($paymentDetails['data']['metadata']['extra_services']) && 
-    is_array($paymentDetails['data']['metadata']['extra_services']) && 
+    if (isset($paymentDetails['data']['metadata']['extra_services']) &&
+    is_array($paymentDetails['data']['metadata']['extra_services']) &&
     count($paymentDetails['data']['metadata']['extra_services']) > 0) {
         $extra_services = $paymentDetails['data']['metadata']['extra_services'];
         foreach ($extra_services as $charge) {
@@ -102,7 +102,7 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
             ]);
         }
     }
-    
+
 
         EnrollmentTrack::create([
             'user_id' => $user_id,
@@ -111,7 +111,7 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
             'program_id' => $program_id,
         ]);
 
-    return redirect()->route('dashboard')->with('alert', [
+    return redirect()->route('viewBy.bought.programme')->with('alert', [
         'title' => 'Payment Successful!',
         'text' => 'Payment successfully!',
         'icon' => 'success'
