@@ -36,7 +36,11 @@ class HomeController extends Controller
         $students = User::where('role','student')->count();
         $allCourse = Course::count();
         $trendingInstructor = User::with('course')->where('role', 'instructor')->get();
-        $courses = Course::with('modules','creator','lessons','program')->latest()->take(6)->get();
+        $courses = Course::with(['modules', 'creator', 'lessons', 'program'])
+    ->where('standalone', 1)
+    ->latest()
+    ->take(6)
+    ->get();
         $partners = Partner::latest()->take(12)->get();
         $blog = Blog::with('category')->latest()->take(12)->get();
         $enrolledStudent = Enrollment::distinct('user_id')->count('user_id');

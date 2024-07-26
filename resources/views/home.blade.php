@@ -12,7 +12,7 @@
 									<p>Own your future learning new skills online</p>
 								</div>
 								<div class="banner-content">
-									<form class="form"  action="course-list.html">
+									<form class="form"  action="{{route('course.view')}}">
 										<div class="form-inner">
 											<div class="input-group">
 												<i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -138,7 +138,7 @@
 							<h2>Our Programmes</h2>
 						</div>
 						<div class="all-btn all-category d-flex align-items-center">
-							<a href="job-category.html" class="btn btn-primary">All Programme</a>
+							<a href="#" class="btn btn-primary">All Programme</a>
 						</div>
 					</div>
 					<div class="section-text aos" data-aos="fade-up">
@@ -177,7 +177,7 @@
 							<h2>Our Courses</h2>
 						</div>
 						<div class="all-btn all-category d-flex align-items-center">
-							<a href="course-list.html" class="btn btn-primary">All Courses</a>
+							<a href="{{route('course.view')}}" class="btn btn-primary">All Courses</a>
 						</div>
 					</div>
 					<div class="section-text aos" data-aos="fade-up">
@@ -202,9 +202,9 @@
                                                 <div class="product-content">
                                                     <div class="course-group d-flex">
                                                         <div class="course-group-img d-flex">
-                                                            <a href="instructor-profile.html"><img src="assets/img/user/user1.jpg" alt="Img" class="img-fluid"></a>
+                                                            <a href="#"><img src="assets/img/user/user1.jpg" alt="Img" class="img-fluid"></a>
                                                             <div class="course-name">
-                                                                <h4><a href="instructor-profile.html">{{ $item->creator->name }}</a></h4>
+                                                                <h4><a href="#">{{ $item->creator->name }}</a></h4>
                                                                 <p>{{ $item->creator->role }}</p>
                                                             </div>
                                                         </div>
@@ -339,7 +339,7 @@
 							<h2>TRENDING COURSES</h2>
 						</div>
 						<div class="all-btn all-category d-flex align-items-center">
-							<a href="course-list.html" class="btn btn-primary">All Courses</a>
+							<a href="{{route('course.view')}}" class="btn btn-primary">All Courses</a>
 						</div>
 					</div>
 					<div class="section-text aos" data-aos="fade-up">
@@ -488,7 +488,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="knowledge-img aos" data-aos="fade-up">
-								<img src="assets/img/share.png" alt="Img" class="img-fluid">
+								<img src="{{asset('assets/img/share.png')}}" alt="Img" class="img-fluid">
 							</div>
 						</div>
 						<div class="col-md-6 d-flex align-items-center">
@@ -527,7 +527,7 @@
 				<div class="review">
 					<div class="container">
 						<div class="testi-quotes">
-							<img src="assets/img/qute.png" alt="Img" >
+							<img src="{{asset('assets/img/qute.png')}}" alt="Img" >
 						</div>
 						<div class="mentor-testimonial lazy slider aos" data-aos="fade-up" data-sizes="50vw ">
 							<div class="d-flex justify-content-center">
