@@ -162,7 +162,7 @@ class CouponController extends Controller
                 'extra_services_amount'=>$extra_services_amount,
                 'totalPayableAmount'=>$totalAmount+$extra_services_amount,
             ]);
-            return redirect()->route('onboard.checkout.preview.final', compact('program'));
+            return view('onboard-payment', compact('program'));
         }
 
         $checkCoupon = Coupon::where('code', $coupon)->first();
@@ -182,7 +182,7 @@ class CouponController extends Controller
                 'totalPayableAmount'=>$final_amount+$extra_services_amount,
 
             ]);
-            return redirect()->route('onboard.checkout.preview.final', compact('program'));
+            return view('onboard-payment', compact('program'));
             }
             $notification = array(
                 'message' => 'Coupon Not applicable for this part.',

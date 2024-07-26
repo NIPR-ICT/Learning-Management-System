@@ -76,7 +76,7 @@
         <div class="img-logo">
             <img src="{{ asset('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
             <div class="back-home">
-                <a href="login.html">Back to Home</a>
+                <a href="/">Back to Home</a>
             </div>
         </div>
         <h1>{{ $program->title }}</h1>
@@ -131,7 +131,7 @@
             <div class="col-lg-7">
                 <div class="personal-form">
                     <h4>Programme Details</h4>
-                    <!-- Student Dashboard --> 
+                    <!-- Student Dashboard -->
                         @if (session()->has('totalAmount2') && session()->has('part'))
                             <div class="col-md-12">
                                 <div class="card shadow-sm rounded-lg">

@@ -77,7 +77,7 @@
 							<div class="img-logo">
 								<img src="{{ asset('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
 								<div class="back-home">
-									<a href="login.html">Back to Home</a>
+									<a href="/">Back to Home</a>
 								</div>
 							</div>
 							<h1>{{ $program->title }}</h1>
