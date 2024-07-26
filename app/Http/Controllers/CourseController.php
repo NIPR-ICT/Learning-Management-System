@@ -87,7 +87,7 @@ class CourseController extends Controller
 
     public function courseDetail($id){
         $course = Course::with('creator')->findOrFail($id);
-        return view('admin.course-detail', compact('course'));
+        return view('course-details', compact('course'));
 }
 
 public function editCourse($id){
@@ -153,6 +153,11 @@ public function coursebyParts($id){
     $courses = Course::where('part_id', $id)->get();
     $part=$part = Part::findOrFail($id);
     return view('register-courses', compact('courses','part'));
+}
+public function coursebyPartsView($id){
+    $courses = Course::where('part_id', $id)->get();
+    $part=$part = Part::findOrFail($id);
+    return view('program-level-course', compact('courses','part'));
 }
 
 public function register(Request $request)
@@ -232,7 +237,8 @@ public function register(Request $request)
 ///////////////////////////////////////////public view///////////////////////////////////////////////
     public function CourseHome(){
         $courses = Course::with('creator','modules')->latest()->paginate(20);
-        return view('course', compact('courses'));
+        $programs = Program::with('part')->get();
+        return view('course', compact('courses','programs'));
     }
 
 

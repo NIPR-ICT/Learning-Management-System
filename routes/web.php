@@ -45,6 +45,8 @@ Route::get('/contact-us', [ContactUsController::class, 'ContactHome'])->name('co
 Route::get('/course', [CourseController::class, 'CourseHome'])->name('course.view');
 Route::get('/blog', [BlogController::class, 'BlogHome'])->name('blog.view');
 Route::get('/blog/{id}', [BlogController::class, 'BlogDetail'])->name('blog-detail.view');
+Route::get('/blog/category/{id}', [BlogController::class, 'BlogCategory'])->name('blog-category.view');
+
 // wishlist
 Route::get('/wishlist', [WishlistController::class, 'getWishlist'])->name('wishlist');
 Route::post('/add-to-wishlist/{course_id}', [WishlistController::class, 'AddToWishList']);
@@ -87,6 +89,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/update-biodata',[BiodataController::class,'create'])->name('biodata.update');
         Route::get('/student/student-programs', [ProgramController::class, 'studentGetProgram'])->name('student.all.program');
         Route::get('/student/all-part/{id}', [PartController::class, 'studentFilterPart'])->name('program.part.student');
+
+        Route::get('/onboard/program/{id}', [PartController::class, 'studentFilterPartView'])->name('program.level');
+
+
         Route::get('/student/register-course/{id}', [CourseController::class, 'coursebyParts'])->name('course.register.student');
         Route::post('/student/courses/register', [CourseController::class, 'register'])->name('courses.register');
         Route::get('/student/checkout-summary', [PaymentController::class, 'checkout'])->name('register.checkout.summary');
@@ -198,7 +204,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/all-charge', [ChargesController::class, 'index'])->name('all.charges');
         Route::delete('/admin/delete-charge/{id}', [ChargesController::class, 'destroy'])->name('charge.delete');
         Route::get('/charges/{charge}/edit', [ChargesController::class, 'edit'])->name('charges.edit');
-        Route::put('/charges/{charge}', [ChargesController::class, 'update'])->name('charges.update');   
+        Route::put('/charges/{charge}', [ChargesController::class, 'update'])->name('charges.update');
 
         Route::get('/admin/add-category', [BlogCategoryController::class, 'create'])->name('category.form');
         Route::post('/admin/store-category',[BlogCategoryController::class,'store'])->name('category.store');

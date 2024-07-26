@@ -30,8 +30,8 @@ class PartController extends Controller
         $request->validate([
             'program_id' => 'required',
             'name' => [
-    'required', 
-    'string', 
+    'required',
+    'string',
     Rule::unique('parts')->where(function ($query) use ($request) {
         return $query->where('program_id', $request->input('program_id'));
     }),
@@ -43,7 +43,7 @@ class PartController extends Controller
             'min_credit' => 'required|integer',
             'program_duration' => 'required|string',
         ]);
-        
+
 
         $part = new Part([
             'program_id' => $request->get('program_id'),
@@ -66,7 +66,7 @@ class PartController extends Controller
     public function edit(string $id)
     {
         $programs = Program::all();
-        $part = Part::findOrFail($id); 
+        $part = Part::findOrFail($id);
         return view('admin.update-part', compact('part','programs'));
     }
 
@@ -153,6 +153,12 @@ class PartController extends Controller
         }
     
         return view('all-parts', compact('parts'));
+    }
+
+    public function studentFilterPartView($id){
+        $parts = Part::where('program_id', $id)->paginate(10);
+        $program = Program::where('id', $id)->first();
+        return view('level', compact('parts','program'));
     }
 
     public function studentPaidFilterPart(Request $request){

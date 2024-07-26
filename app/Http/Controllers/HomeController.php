@@ -33,18 +33,21 @@ class HomeController extends Controller
 
     public function home(){
         $program = Program::latest()->get();
+        $students = User::where('role','student')->count();
+        $allCourse = Course::count();
         $trendingInstructor = User::with('course')->where('role', 'instructor')->get();
         $courses = Course::with('modules','creator','lessons','program')->latest()->take(6)->get();
         $partners = Partner::latest()->take(12)->get();
         $blog = Blog::with('category')->latest()->take(12)->get();
+        $enrolledStudent = Enrollment::count();
         $mostEnrolledCourses = DB::table('enrollments')
         ->select('course_id', DB::raw('COUNT(*) AS cnt'))
         ->groupBy('course_id')
         ->orderByRaw('COUNT(*) DESC')
         ->take(10)
         ->get();
-        return view('home', compact('program', 'courses','mostEnrolledCourses','trendingInstructor', 'partners', 'blog'));
+        return view('home', compact('program','enrolledStudent','allCourse','students', 'courses','mostEnrolledCourses','trendingInstructor', 'partners', 'blog'));
     }
 
-    
+
 }
