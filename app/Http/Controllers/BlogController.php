@@ -153,8 +153,8 @@ class BlogController extends Controller
         return view('blog-detail', compact('blog', 'cats'));
     }
     public function BlogCategory(string $id){
-        $blogs = Blog::with('blogCategory')->where('BlogCategory',$id)->latest()->get();
-        $cats = BlogCategory::latest()->take(6)->get();
+        $blogs = Blog::with('category')->where('category_id', $id)->latest()->paginate(10);
+        $cats = BlogCategory::latest()->take(6)->get();        
         return view('blog', compact('blogs','cats'));
     }
 

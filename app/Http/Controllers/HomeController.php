@@ -39,7 +39,7 @@ class HomeController extends Controller
         $courses = Course::with('modules','creator','lessons','program')->latest()->take(6)->get();
         $partners = Partner::latest()->take(12)->get();
         $blog = Blog::with('category')->latest()->take(12)->get();
-        $enrolledStudent = Enrollment::count();
+        $enrolledStudent = Enrollment::distinct('user_id')->count('user_id');
         $mostEnrolledCourses = DB::table('enrollments')
         ->select('course_id', DB::raw('COUNT(*) AS cnt'))
         ->groupBy('course_id')
