@@ -93,9 +93,10 @@
                                     <h5 class="subs-title">Course Content</h5>
                                 </div>
                                 <div class="col-sm-6 text-sm-end">
-                                    <h6>{{ count($course->lessons) }} Lectures 10:56:11</h6>
+                                    <h6>{{ count($course->lessons) }} Modules    </h6>
                                 </div>
                             </div>
+                            @foreach ($collection as $item) 
                             <div class="course-card">
                                 <h6 class="cou-title">
                                     <a class="collapsed" data-bs-toggle="collapse" href="#collapseOne"
@@ -146,158 +147,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="course-card">
-                                <h6 class="cou-title">
-                                    <a class="collapsed" data-bs-toggle="collapse" href="#course2" aria-expanded="false">The
-                                        Brief</a>
-                                </h6>
-                                <div id="course2" class="card-collapse collapse" style="">
-                                    <ul>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.1 Introduction to the User Experience Course</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.2 Exercise: Your first design challenge</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.5 How to use text layers effectively</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="course-card">
-                                <h6 class="cou-title">
-                                    <a class="collapsed" data-bs-toggle="collapse" href="#course3"
-                                        aria-expanded="false">Wireframing Low Fidelity</a>
-                                </h6>
-                                <div id="course3" class="card-collapse collapse" style="">
-                                    <ul>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.1 Introduction to the User Experience Course
-                                            </p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.2 Exercise: Your first design challenge</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.5 How to use text layers effectively</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="course-card">
-                                <h6 class="cou-title mb-0">
-                                    <a class="collapsed" data-bs-toggle="collapse" href="#coursefour"
-                                        aria-expanded="false">Type, Color & Icon Introduction</a>
-                                </h6>
-                                <div id="coursefour" class="card-collapse collapse" style="">
-                                    <ul>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture4.1 Introduction to the User Experience Course
-                                            </p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture4.2 Exercise: Your first design challenge</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture4.3 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture4.4 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture4.5 How to use text layers effectively</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <!-- /Course Content -->

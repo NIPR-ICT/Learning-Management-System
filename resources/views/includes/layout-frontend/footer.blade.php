@@ -24,7 +24,7 @@
 
                 </div>
 
-                <div class="col-lg-2 col-md-6">
+                <div class="   col-lg-2 col-md-6">
 
                     <!-- Footer Widget -->
                     <div class="footer-widget footer-menu">
@@ -41,7 +41,7 @@
 
                 </div>
 
-                <div class="col-lg-2 col-md-6">
+                <div class="   col-lg-2 col-md-6">
 
                     <!-- Footer Widget -->
                     <div class="footer-widget footer-menu">
