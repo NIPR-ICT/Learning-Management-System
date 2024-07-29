@@ -44,11 +44,12 @@
                                             @endphp
                                             {{ $shortened }}
                                         </p>
-                                        <form id="all-course-form-{{ $part->id }}" action="{{ route('list.courses') }}" method="POST" style="display: inline;">
+                                        <a href="{{ route('list.courses', $part->id) }}" class="btn btn-primary">View Enroll Courses</a>
+                                        {{-- <form id="all-course-form-{{ $part->id }}" action="{{ route('list.courses') }}" method="POST" style="display: inline;">
                                             @csrf
                                             <input type="hidden" name="part_id" value="{{ $part->id }}">
                                             <button type="submit" class="btn btn-danger">View Enroll Courses</button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </div>
                             </div>
