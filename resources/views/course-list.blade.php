@@ -28,7 +28,7 @@
                                 <!-- Lesson Title -->
                                 <p class="mb-0">{{ $lesson->title }} {{$lesson->order}}/10</p>
                             </div>
-                            <a href="{{}}" class="btn btn-primary">Start</a>
+                            <a href="{{route('bought.lesson.details', $lesson->id)}}" class="btn btn-primary">Start</a>
                         </div>
                         @endforeach
                         <!-- Add more courses as needed -->

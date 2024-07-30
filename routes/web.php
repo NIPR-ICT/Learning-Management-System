@@ -112,6 +112,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/courses', [CourseController::class, 'enrollmentbyStudent'])->name('enrollment.index');
         Route::get('/student/courses-modules/{id}', [CourseController::class, 'CourseModuleDetails'])->name('course.modules.enrollment');
         Route::get('/student/list-courses-paid/{id}',[CourseController::class, 'ShowBoughtCourses'])->name('bought.courses.list');
+        Route::get('/student/lessons-details/{id}',[LessonController::class, 'lessDetails'])->name('bought.lesson.details');
 
         // Route::get('/materials/{id}/download', [MaterialController::class, 'studentdownload'])->name('material.student.download');
 
