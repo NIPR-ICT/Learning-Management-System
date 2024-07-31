@@ -24,9 +24,13 @@
                         <div class="list-group-item d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
                                 <!-- FontAwesome Icon -->
+                                @if($existingProgress->contains('lesson_id', $lesson->id))
                                 <i class="fas fa-check-circle mr-2"></i>&nbsp;
+                                @else
+                                <i class="fas fa-circle-notch mr-2"></i>&nbsp;
+                                @endif
                                 <!-- Lesson Title -->
-                                <p class="mb-0">{{ $lesson->title }} {{$lesson->order}}/10</p>
+                                <p class="mb-0">{{ $lesson->title }} {{$lesson->order}}/{{$lessonCount}}</p>
                             </div>
                             <a href="{{route('bought.lesson.details', $lesson->id)}}" class="btn btn-primary">Start</a>
                         </div>
@@ -36,6 +40,7 @@
                 </div>
 
             </div>
+        </div>
     </div>
 </div>
 

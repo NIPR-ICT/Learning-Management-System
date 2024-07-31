@@ -7,7 +7,9 @@ use App\Models\Enrollment;
 use App\Models\Lesson;
 use App\Models\Material;
 use App\Models\Module;
+use App\Models\Progress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
@@ -128,6 +130,14 @@ public function edit($id)
         
         $part=Course::where('id', $courseID)->first();
         $partID=$part->part_id;
+        $programID=$part->program_id;
+
+        $existingProgress = Progress::where('program_id', $programID)
+                ->where('part_id', $partID)
+                ->where('course_id', $courseID)
+                ->where('module_id', $moduleID)
+                ->where('lesson_id', $lessonId)
+                ->first();
         // Check if the user is enrolled in the course
         $isEnrolled = Enrollment::where('user_id', $userId)
             ->where('course_id', $courseID)
@@ -156,7 +166,57 @@ public function edit($id)
         $previousLesson = $currentIndex > 0 ? $lessons[$currentIndex - 1] : null;
         $nextLesson = $currentIndex < $lessons->count() - 1 ? $lessons[$currentIndex + 1] : null;
         
-        return view('lesson-detail', compact('lessons', 'lesson', 'content', 'title', 'previousLesson', 'nextLesson','partID','materials'));        
+        return view('lesson-detail', compact('lessons', 'lesson', 'content', 'title', 'previousLesson', 'nextLesson','partID','materials', 'lessonId','existingProgress'));        
+    }
+
+    public function CompleteLesson($id){
+        $lesson = Lesson::findOrFail($id);
+
+        if ($lesson) {
+            $lesson_id = $lesson->id;
+            $module_id = $lesson->module_id;
+            $course_id = $lesson->course_id;
+            $course = Course::findOrFail($course_id);
+            $part_id = $course->part_id;
+            $program_id = $course->program_id;
+            $user_id = Auth::id();
+    
+            // Check if the same record already exists in the progress table
+            $existingProgress = Progress::where('program_id', $program_id)
+                ->where('part_id', $part_id)
+                ->where('course_id', $course_id)
+                ->where('module_id', $module_id)
+                ->where('lesson_id', $lesson_id)
+                ->where('user_id', $user_id)
+                ->first();
+    
+            if ($existingProgress) {
+                return redirect()->back()->with('alert', [
+                    'title' => 'Notice!',
+                    'text' => 'The progress record already exists.',
+                    'icon' => 'warning'
+                ]);
+            }
+    
+            // Create a new progress record if it does not exist
+            $progress = new Progress([
+                'program_id' => $program_id,
+                'part_id' => $part_id,
+                'course_id' => $course_id,
+                'module_id' => $module_id,
+                'lesson_id' => $lesson_id,
+                'user_id' => $user_id,
+            ]);
+    
+            if($progress->save()){
+                return redirect()->back()->with('alert', [
+                    'title' => 'Success!',
+                    'text' => 'Progress record added successfully.',
+                    'icon' => 'success'
+                ]);
+            }
+    
+        }
     }
 
 }

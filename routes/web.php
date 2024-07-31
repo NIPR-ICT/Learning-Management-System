@@ -113,7 +113,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/courses-modules/{id}', [CourseController::class, 'CourseModuleDetails'])->name('course.modules.enrollment');
         Route::get('/student/list-courses-paid/{id}',[CourseController::class, 'ShowBoughtCourses'])->name('bought.courses.list');
         Route::get('/student/lessons-details/{id}',[LessonController::class, 'lessDetails'])->name('bought.lesson.details');
-
+        Route::get('/student/complete-lesson/{id}',[LessonController::class, 'CompleteLesson'])->name('student.complete.lesson');
         // Route::get('/materials/{id}/download', [MaterialController::class, 'studentdownload'])->name('material.student.download');
 
         // program

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Public Relations and Leadership Academy</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         body {
             display: flex;
@@ -126,19 +129,24 @@
                 <a class="nav-link" href="{{ route('list.courses', $partID) }}">Go Back</a>
             </li>
             @foreach ($lessons as $lessonItem)
-                <li class="nav-item">
-                    <a class="nav-link {{ $lessonItem->id == $lesson->id ? 'active' : '' }}"
-                        href="{{ route('bought.lesson.details', $lessonItem->id) }}">
-                        {{ $lessonItem->title }}
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $lessonItem->id == $lesson->id ? 'active' : '' }}"
+                    href="{{ route('bought.lesson.details', $lessonItem->id) }}">
+                    {{ $lessonItem->title }}
+                </a>
+            </li>
             @endforeach
         </ul>
     </div>
 
     <div class="content">
         <div class="fixed-btn">
-            <a class="btn btn-danger mt-3" href="#">Complete</a>
+            @if (!$existingProgress)
+                <a class="btn btn-danger mt-3" href="{{ route('student.complete.lesson', $lessonId) }}">Complete</a>
+            @else
+                <a class="btn btn-danger mt-3" href="{{ route('student.complete.lesson', $lessonId) }}">Lesson
+                    Completed</a>
+            @endif
         </div>
         <h3>{{ $title }}</h3>
         <p>{!! $content !!}</p>
@@ -149,7 +157,8 @@
                 @foreach ($materials as $material)
                     <li class="lesson-material d-flex align-items-center mb-2">
                         @if ($material->file_path)
-                            <a href="{{ route('materials.download', $material->id) }}" class="btn btn-danger text-white font-weight-light py-1 px-3 rounded-md text-sm mr-2">Download</a>
+                            <a href="{{ route('materials.download', $material->id) }}"
+                                class="btn btn-danger text-white font-weight-light py-1 px-3 rounded-md text-sm mr-2">Download</a>
                         @endif
                         &nbsp;<span class="material-title">{{ $material->title }}</span>
                         [<span class="material-type text-muted">{{ $material->type }}</span>]
@@ -171,8 +180,9 @@
                 </li>
             </ul>
         </nav>
+        @include('components.sweetalert')
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
