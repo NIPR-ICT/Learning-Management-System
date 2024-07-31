@@ -59,11 +59,12 @@
                                     $started = \App\Models\Enrollment::where([['user_id', auth()->user()->id], ['program_id',  $program->id]])->first();
                                 @endphp
                                 @if (!empty($started))
-                                    <form id="start-program-form-{{ $program->id }}" action="{{ route('program.start') }}" method="POST" style="display: inline;">
+                                <a href="{{ route('program.start', $program->id) }}" class="btn btn-primary">Start Program</a>
+                                    {{-- <form id="start-program-form-{{ $program->id }}" action="{{ route('program.start') }}" method="POST" style="display: inline;">
                                         @csrf
                                         <input type="hidden" name="program_id" value="{{ $program->id }}">
-                                        <button type="submit" class="btn btn-primary">Start Program</button>
-                                    </form>
+                                        <button type="submit" class="btn btn-primary"></button>
+                                    </form> --}}
                                 @endif
                                 <a href="#" class="btn btn-primary">Continue</a>
                             </div>

@@ -31,4 +31,9 @@ class Lesson extends Model
     {
         return $this->hasMany(Material::class);
     }
+
+    public function progresses()
+{
+    return $this->hasMany(Progress::class);
+}
 }

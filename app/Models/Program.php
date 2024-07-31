@@ -41,6 +41,10 @@ public function enrollments()
         return $this->hasMany(Enrollment::class);
     }
 
+    public function progresses()
+{
+    return $this->hasMany(Progress::class);
+}
 
     protected static function boot()
     {

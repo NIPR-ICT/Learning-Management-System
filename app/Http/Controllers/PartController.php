@@ -163,26 +163,24 @@ class PartController extends Controller
         return view('level', compact('parts','program','enrolled'));
     }
 
-    public function studentPaidFilterPart(Request $request){
+    public function studentPaidFilterPart($id){
         $userId = Auth::id();
-        $programId = $request->input('program_id');
 
         // Fetch parts related to the logged-in user and specified program_id
-        $parts = Part::whereHas('enrollments', function ($query) use ($userId, $programId) {
+        $parts = Part::whereHas('enrollments', function ($query) use ($userId, $id) {
             $query->where('user_id', $userId)
-                  ->where('program_id', $programId);
+                  ->where('program_id', $id);
         })->paginate(10);
 
-        session()->put('parts', $parts);
-        return redirect()->route('parts.index');
-    }
-
-    public function showParts()
-    {
-        // Get the parts from the session
-        $parts = session()->get('parts');
         return view('student-enroll-part', compact('parts'));
     }
+
+    // public function showParts()
+    // {
+    //     // Get the parts from the session
+    //     $parts = session()->get('parts');
+    //     return view('student-enroll-part', compact('parts'));
+    // }
 
 
 }

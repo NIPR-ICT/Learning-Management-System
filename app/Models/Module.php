@@ -25,4 +25,9 @@ class Module extends Model
     {
         return $this->belongsTo(Course::class, 'course_id', 'id');
     }
+
+    public function progresses()
+{
+    return $this->hasMany(Progress::class);
+}
 }

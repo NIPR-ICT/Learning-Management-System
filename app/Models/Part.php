@@ -36,6 +36,11 @@ class Part extends Model
         return $this->hasMany(Enrollment::class, 'part_id');
     }
 
+    public function progresses()
+{
+    return $this->hasMany(Progress::class);
+}
+
     protected static function boot()
     {
         parent::boot();

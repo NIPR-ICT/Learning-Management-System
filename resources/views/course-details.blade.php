@@ -96,7 +96,6 @@
                                     <h6>{{ count($course->lessons) }} Modules    </h6>
                                 </div>
                             </div>
-                            @foreach ($collection as $item) 
                             <div class="course-card">
                                 <h6 class="cou-title">
                                     <a class="collapsed" data-bs-toggle="collapse" href="#collapseOne"
@@ -147,7 +146,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            @endforeach
                         </div>
                     </div>
                     <!-- /Course Content -->

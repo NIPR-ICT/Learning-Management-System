@@ -7,8 +7,10 @@ use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\Partner;
 use App\Models\Program;
+use App\Models\Progress;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -26,7 +28,11 @@ class HomeController extends Controller
     }
 
     public function student(){
-        return view('dashboard');
+        $user=Auth::id();
+        $totalEnrolledCourses=Enrollment::where('user_id',$user)->count();
+        $totalCompletedCourses=Progress::where('user_id', $user)->count();
+        $totalIncompleteCourses = $totalEnrolledCourses - $totalCompletedCourses;
+        return view('dashboard', compact('totalEnrolledCourses', 'totalCompletedCourses', 'totalIncompleteCourses'));
     }
 
     ///////////////////////////////////public /////////////////////////////////////////////////

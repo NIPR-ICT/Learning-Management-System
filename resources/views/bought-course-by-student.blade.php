@@ -1,5 +1,40 @@
 @extends('welcome')
+
 @section('content')
+@include('components.sweetalert')
+<style>
+.card-custom {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 220px;
+}
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+.progress {
+    height: 5px;
+    border-radius: 2.5px;
+}
+.progress-bar {
+    background-color: #dc3545;
+}
+.author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.author {
+    display: flex;
+    align-items: center;
+}
+.author img {
+    margin-right: 10px;
+}
+</style>
 <div class="breadcrumb-bar py-5"></div>
 
 <!-- Page Content -->
@@ -15,86 +50,46 @@
 
             <!-- Student Dashboard -->
             <div class="col-xl-9 col-lg-9">
-                <div class="col-12">
+                <div class="col-12 p-0">
                     <div class="container mx-auto">
-                        
-                        <p>Below are the programs for which you have enrolled in courses:</p>
-                        
+                        <!-- Note -->
+                        <p>The lists of Courses for Levels you are enrolled in.</p>
+
                         <div class="row">
-                            @foreach ($enrollments as $enrollment)
-                            <div class="col-12 mb-4">
-                                <div class="card shadow-sm mb-4">
+                            @foreach ($enrollments as $part)
+                            <div class="col-12 col-md-6 col-lg-6 mb-4">
+                                <div class="card card-custom shadow-sm">
+                                    @if ($part->cover_image)
+                                    <div class="card-image" style="background-image: url('{{ asset('storage/post_images/' . $part->cover_image) }}');"></div>
+                                    @endif
                                     <div class="card-body">
-                                        <h2 class="h5 font-weight-bold mb-2">Course: {{ $enrollment->course->title }}</h2>
-                                        @foreach ($enrollment->course->modules as $module)
-                                        <div class="mb-4">
-                                            <div class="bg-light rounded shadow-sm p-4">
-                                                <h3 class="h6 font-weight-bold mb-2">Module: {{ $module->title }}</h3>
-                                                @foreach ($module->lessons as $lesson)
-                                                <div class="mb-4">
-                                                    <h4 class="h6 font-weight-bold mb-2">Lesson: {{ $lesson->title }}</h4>
-                                                    <button class="btn btn-danger text-white px-4 py-2 rounded-md" onclick="toggleLesson(this)">Open Lesson</button>
-                                                    <div class="lesson-content mt-2 d-none">
-                                                        <div class="lesson-description mb-4">
-                                                            <p>{!! $lesson->content !!}</p>
-                                                        </div>
-                                                        <div class="lesson-materials">
-                                                            <h5 class="h6 font-weight-bold mb-2">Materials:</h5>
-                                                            <ul class="list-unstyled">
-                                                                @foreach ($lesson->materials as $material)
-                                                                <li class="lesson-material d-flex align-items-center mb-2">
-                                                                    @if ($material->file_path)
-                                                                    <a href="{{ route('materials.download', $material->id) }}" class="btn btn-primary text-white font-weight-light py-1 px-3 rounded-md text-sm mr-2">Download</a>
-                                                                    @endif
-                                                                    &nbsp;<span class="material-title">{{ $material->title }}</span>
-                                                                    [<span class="material-type text-muted">{{ $material->type }}</span>]
-                                                                </li>
-                                                                @endforeach
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @endforeach
+                                        <h5 class="card-title">{{ $part->course->title }}</h5>
+                                        <p>{{ Str::words($part->course->description, 4, '...') }}</p>
+                                        <div class="author">
+                                            {{-- <img src="path_to_author_image" alt="Author" class="author-avatar"> --}}
+                                            <div class="ml-auto">
+                                                <p class="mb-0 text-danger">{{ number_format($part->completion_percentage) }}% COMPLETE</p>
                                             </div>
                                         </div>
-                                        @endforeach
+                                        <div class="mt-3">
+                                            <a href="{{ route('course.modules.enrollment', $part->course->id) }}" class="btn btn-primary">Start Course</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
                         </div>
+                        
+                        <!-- Pagination Links -->
                         <div class="mt-4">
                             {{ $enrollments->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>
             </div>
-            
             <!-- /Student Dashboard -->
 
         </div>
     </div>
 </div>
-
-<script>
-    function toggleLesson(button) {
-        const lessonContent = button.nextElementSibling;
-        const allLessonContents = document.querySelectorAll('.lesson-content');
-
-        // Close all other lesson contents
-        allLessonContents.forEach(content => {
-            if (content !== lessonContent && !content.classList.contains('d-none')) {
-                content.classList.add('d-none');
-                const toggleButton = content.previousElementSibling.querySelector('button');
-                if (toggleButton) {
-                    toggleButton.textContent = 'Open Lesson';
-                }
-            }
-        });
-
-        // Toggle the clicked lesson content
-        lessonContent.classList.toggle('d-none');
-        button.textContent = lessonContent.classList.contains('d-none') ? 'Open Lesson' : 'Close Lesson';
-    }
-</script>
 @endsection
