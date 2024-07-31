@@ -121,7 +121,7 @@
                         <div class="card dash-info flex-fill">
                             <div class="card-body">
                                 <h5>Enrolled Courses</h5>
-                                <h2>12</h2>
+                                <h2>{{$totalEnrolledCourses}}</h2>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                         <div class="card dash-info flex-fill">
                             <div class="card-body">
                                 <h5>Active Courses</h5>
-                                <h2>03</h2>
+                                <h2>{{$totalIncompleteCourses}}</h2>
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                         <div class="card dash-info flex-fill">
                             <div class="card-body">
                                 <h5>Completed Courses</h5>
-                                <h2>6</h2>
+                                <h2>{{$totalCompletedCourses}}</h2>
                             </div>
                         </div>
                     </div>
