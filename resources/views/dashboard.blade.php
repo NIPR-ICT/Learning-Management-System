@@ -116,7 +116,23 @@
             <div class="col-xl-9 col-lg-9">
 
                 <!-- Dashboard Grid -->
-                <div class="row justify-content-center">
+                <div class="row justify-content-start">
+                    <div class="col-lg-4 col-md-6 d-flex">
+                        <div class="card dash-info flex-fill">
+                            <div class="card-body">
+                                <h5>Enrolled Programmes</h5>
+                                <h2>{{$totalEnrolledPrograms}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 d-flex">
+                        <div class="card dash-info flex-fill">
+                            <div class="card-body">
+                                <h5>Total Enrolled Levels</h5>
+                                <h2>{{$totalparts}}</h2>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-4 col-md-6 d-flex">
                         <div class="card dash-info flex-fill">
                             <div class="card-body">
@@ -128,7 +144,7 @@
                     <div class="col-lg-4 col-md-6 d-flex">
                         <div class="card dash-info flex-fill">
                             <div class="card-body">
-                                <h5>Active Courses</h5>
+                                <h5>Active Enrolled Courses</h5>
                                 <h2>{{$totalIncompleteCourses}}</h2>
                             </div>
                         </div>

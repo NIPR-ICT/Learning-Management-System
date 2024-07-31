@@ -32,7 +32,13 @@ class HomeController extends Controller
         $totalEnrolledCourses=Enrollment::where('user_id',$user)->count();
         $totalCompletedCourses=Progress::where('user_id', $user)->count();
         $totalIncompleteCourses = $totalEnrolledCourses - $totalCompletedCourses;
-        return view('dashboard', compact('totalEnrolledCourses', 'totalCompletedCourses', 'totalIncompleteCourses'));
+        $totalEnrolledPrograms = Enrollment::where('user_id', $user)
+        ->distinct('program_id')
+        ->count('program_id');
+        $totalparts = Enrollment::where('user_id', $user)
+        ->distinct('part_id')
+        ->count('part_id');
+        return view('dashboard', compact('totalEnrolledCourses', 'totalCompletedCourses', 'totalIncompleteCourses', 'totalEnrolledPrograms', 'totalparts'));
     }
 
     ///////////////////////////////////public /////////////////////////////////////////////////
