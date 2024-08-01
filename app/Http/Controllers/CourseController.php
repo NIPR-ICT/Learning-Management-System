@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\Lesson;
+use App\Models\Module;
 use App\Models\Part;
 use App\Models\Program;
+use App\Models\Progress;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,7 +90,7 @@ class CourseController extends Controller
 
     public function courseDetail($id){
         $course = Course::with('creator')->findOrFail($id);
-        return view('course-details', compact('course'));
+        return view('admin.course-detail', compact('course'));
 }
 
 public function editCourse($id){
@@ -254,33 +257,111 @@ public function coursebyPartsView($id){
 
             }
 
-    public function listBoughtCoursesbyUser(Request $request){
-        $user = auth()->user();
-        $partId = $request->input('part_id');
+    public function listBoughtCoursesbyUser($id){
+        $userId = auth()->id();
+$enrollments = Enrollment::where('user_id', $userId)
+    ->where('part_id', $id)
+    ->paginate(10);
 
-        if ($user && $partId) {
-            // Fetch enrollments with nested relationships
-            $enrollments = $user->enrollments()->where('part_id', $partId)
-                ->with(['course' => function ($query) {
-                    $query->orderBy('order', 'asc');
-                }])
-                ->with(['course.modules' => function ($query) {
-                    $query->orderBy('order', 'asc');
-                }])
-                ->with(['course.modules.lessons' => function ($query) {
-                    $query->orderBy('order', 'asc');
-                }])
-                ->with('course.modules.lessons.materials')
-                ->paginate(5);
-                session()->put('enrollments', $enrollments);
-                return redirect()->route('enrollment.index');
+foreach ($enrollments as $enrollment) {
+    $courseId = $enrollment->course_id;
+    $countProgress = Progress::where('course_id', $courseId)
+        ->where('user_id', $userId)
+        ->count();
+    
+    $totalLessons = Lesson::where('course_id', $courseId)->count();
+    
+    $completionPercentage = 0;
+    if ($totalLessons > 0) {
+        $completionPercentage = ($countProgress / $totalLessons) * 100;
+    }
+    
+    // Add completion percentage to each enrollment
+    $enrollment->completion_percentage = $completionPercentage;
+}
+
+if ($enrollments->count() > 0) {
+    return view('bought-course-by-student', compact('enrollments'));
+}
+return redirect()->route('program.start')->with('alert', [
+    'title' => 'Error!',
+    'text' => 'Oops! Not Enrolled Yet',
+    'icon' => 'error'
+]);
+    }
+
+    public function CourseModuleDetails($id){
+        $userId = auth()->id();
+        $enrollCourses = Enrollment::where('user_id', $userId)
+        ->where('course_id', $id)
+        ->get();
+
+    // Get the course IDs from the enrollments
+    $courseIds = $enrollCourses->pluck('course_id');
+   
+
+    // Fetch the modules for these courses
+    $modules = Module::whereIn('course_id', $courseIds)->orderBy('order', 'asc')->get();
+
+        if($modules->count() > 0){       
+            $courses = Course::whereIn('id', $courseIds)->get();
+           
+            return view('bougt-course-modules', compact('modules', 'courses'));
+        }else{
+            return redirect()->back()->with('alert', [
+                'title' => 'Error!',
+                'text' => 'No Module Added yet',
+                'icon' => 'error'
+            ]);
+        }
+    }
+
+
+    public function ShowBoughtCourses($id)
+    {
+        $userId = auth()->id();
+        
+        $module = Module::find($id);
+        if (!$module) {
+            return redirect()->back()->with('alert', [
+                'title' => 'Error!',
+                'text' => 'Ojoro will be Banned',
+                'icon' => 'error'
+            ]);
         }
 
-        return redirect()->route('program.start')->with('alert', [
-            'title' => 'Error!',
-            'text' => 'Opps! Not Enrolled Yet',
-            'icon' => 'error'
-        ]);
+        $courseId = $module->course_id; // Get the course_id from the module
+
+        // Check if the user is enrolled in the course
+        $isEnrolled = Enrollment::where('user_id', $userId)
+            ->where('course_id', $courseId)
+            ->exists(); 
+            // Check if there's at least one record
+            
+
+        if (!$isEnrolled) {
+            return redirect()->back()->with('alert', [
+                'title' => 'Error!',
+                'text' => 'Please that is Illegal Activity',
+                'icon' => 'error'
+            ]);
+        }
+        
+        // Fetch lessons for the specified module and course
+        $lessons = Lesson::where('module_id', $id)
+            ->where('course_id', $courseId)
+            ->orderBy('order', 'asc')
+            ->get();
+
+            $existingProgress = Progress::where('course_id', $courseId)
+            ->where('module_id', $id)
+            ->where('user_id', $userId)
+            ->get();
+
+            $lessonCount = Lesson::where('module_id', $id)->count();
+
+        return view('course-list', compact('lessons','existingProgress','lessonCount'));
+        
     }
 ///////////////////////////////////////////public view///////////////////////////////////////////////
     public function CourseHome(){
@@ -290,11 +371,12 @@ public function coursebyPartsView($id){
     }
 
 
-    public function enrollmentbyStudent()
-    {
-        $enrollments = Enrollment::paginate(5);
-        return view('bought-course-by-student', compact('enrollments'));
-    }
+    public function courseDetails($id){
+    $course = Course::with('creator')->findOrFail($id);
+    return view('course-details', compact('course'));
+}
 
 }
+
+
 

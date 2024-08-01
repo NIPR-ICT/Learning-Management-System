@@ -62,8 +62,7 @@ Route::get('/minicart/course/remove/{rowId}', [CartController::class, 'RemoveMin
 Route::get('checkout', [CartController::class, 'checkout'])->name('checkout.view');
 
 // course
-Route::get('/course/{id}/{slug}', [CourseController::class, 'courseDetail'])->name('course.details.view');
-
+Route::get('/courses/{id}/{slug}', [CourseController::class, 'courseDetails'])->name('course.details.view');
 // Cart All Route
 Route::controller(CartController::class)->group(function(){
     Route::get('/mycart','MyCart')->name('mycart');
@@ -107,11 +106,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment.callback');
         Route::get('/student/payment-history',[PaymentController::class,'getUserPaymentHistory'])->name('user.payment.history');
         Route::get('/student/programmes', [ProgramController::class,'studentBoughtCourses'])->name('viewBy.bought.programme');
-        Route::post('/student/all-parts',[PartController::class,'studentPaidFilterPart'])->name('program.start');
-        Route::post('/student/courses',[CourseController::class,'listBoughtCoursesbyUser'])->name('list.courses');
-        Route::get('/student/parts', [PartController::class, 'showParts'])->name('parts.index');
-        Route::get('student/courses', [CourseController::class, 'enrollmentbyStudent'])->name('enrollment.index');
-
+        // Route::get('/student/all-parts/{id}',[PartController::class,'studentPaidFilterPart'])->name('program.start');
+        Route::get('/student/list-courses/{id}',[CourseController::class,'listBoughtCoursesbyUser'])->name('list.courses');
+        Route::get('/student/parts/{id}', [PartController::class, 'studentPaidFilterPart'])->name('program.start');
+        Route::get('/student/courses', [CourseController::class, 'enrollmentbyStudent'])->name('enrollment.index');
+        Route::get('/student/courses-modules/{id}', [CourseController::class, 'CourseModuleDetails'])->name('course.modules.enrollment');
+        Route::get('/student/list-courses-paid/{id}',[CourseController::class, 'ShowBoughtCourses'])->name('bought.courses.list');
+        Route::get('/student/lessons-details/{id}',[LessonController::class, 'lessDetails'])->name('bought.lesson.details');
+        Route::get('/student/complete-lesson/{id}',[LessonController::class, 'CompleteLesson'])->name('student.complete.lesson');
         // Route::get('/materials/{id}/download', [MaterialController::class, 'studentdownload'])->name('material.student.download');
 
         // program

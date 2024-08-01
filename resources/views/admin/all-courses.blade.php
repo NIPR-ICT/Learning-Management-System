@@ -131,6 +131,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
+                                <th >Code</th>
                                 <th >Title</th>
                                 <th >Level</th>
                                 <th >Program</th>
@@ -140,8 +141,10 @@
                         <tbody>
                          @foreach ($courses as $course)
                             <tr class="hover:bg-gray-200">
+                                <td>{{ $course->course_code }}</td>
                                 <td>{{ $course->title }}</td>
                                 <td>{{ $course->part->name }}</td>
+
                                 <td >
                                     {{Str::words($course->program->title, 15, '...') }}
                                 </td>
