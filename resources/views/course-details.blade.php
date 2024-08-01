@@ -96,54 +96,23 @@
                                     <h6>{{ count($course->lessons) }} Modules    </h6>
                                 </div>
                             </div>
-                            @foreach ($collection as $item) 
+                            @foreach ($course->modules as $item)
                             <div class="course-card">
                                 <h6 class="cou-title">
                                     <a class="collapsed" data-bs-toggle="collapse" href="#collapseOne"
-                                        aria-expanded="false">In which areas do you operate?</a>
+                                        aria-expanded="false">{{ $item->title }}</a>
                                 </h6>
                                 <div id="collapseOne" class="card-collapse collapse" style="">
                                     <ul>
                                         <li>
                                             <p><img src="{{ asset('assets/img/icon/play.svg') }}" alt="Img"
-                                                    class="me-2">Lecture1.1 Introduction to the User Experience Course</p>
+                                                    class="me-2">Lecture1.1 </p>
                                             <div>
                                                 <a href="javascript:void(0);">Preview</a>
                                                 <span>02:53</span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.2 Exercise: Your first design challenge</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.5 How to use text layers effectively</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -153,7 +122,7 @@
                     <!-- /Course Content -->
 
                     <!-- Instructor -->
-                    <div class="card instructor-sec">
+                    {{-- <div class="card instructor-sec">
                         <div class="card-body">
                             <h5 class="subs-title">About the instructor</h5>
                             <div class="instructor-wrap">
@@ -217,7 +186,7 @@
                                 <li>5. Worldwide</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- /Instructor -->
 
                     <!-- Reviews -->
@@ -305,16 +274,16 @@
                                     <div class="video-details">
                                         <div class="course-fee">
                                             <h2>FREE</h2>
-                                            <p><span>$99.00</span> 50% off</p>
+                                            <p><span>99.00</span> 50% off</p>
                                         </div>
                                         <div class="row gx-2">
                                             <div class="col-md-6">
                                                 <a href="course-wishlist.html" class="btn btn-wish w-100"><i
-                                                        class="feather-heart"></i> Add to Wishlist</a>
+                                                        class="feather-"></i> Add to Cart</a>
                                             </div>
                                             <div class="col-md-6">
                                                 <a href="javascript:void(0);" class="btn btn-wish w-100"><i
-                                                        class="feather-share-2"></i> Share</a>
+                                                        class="feather-heart-2"></i> Add to Wishlist</a>
                                             </div>
                                         </div>
                                         <a href="checkout.html" class="btn btn-enroll w-100">Enroll Now</a>

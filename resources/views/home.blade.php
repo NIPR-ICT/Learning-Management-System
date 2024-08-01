@@ -51,7 +51,7 @@
 						</div>
 						<div class="col-md-5 d-flex align-items-center">
 							<div class="girl-slide-img aos" data-aos="fade-up">
-								<img src="assets/img/object.png" alt="Img">
+								<img style="width: 646px; height: 768px" src="assets/img/object.png" alt="Img">
 							</div>
 						</div>
 					</div>
