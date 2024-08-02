@@ -72,6 +72,16 @@ Route::controller(CartController::class)->group(function(){
     Route::get('/get-cart-course','GetCartCourse');
 });
 
+// frontend coupon Apply
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
+
+
+
+
+///////////////////////////////end of public routes/////////////////////////////////////////////
+
 Route::middleware(['auth'])->group(function () {
     // Route::middleware(['role:user'])->group(function () {
     //     Route::get('/dashboard', [HomeController::class, 'student'])->name('dashboard');

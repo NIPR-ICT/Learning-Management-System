@@ -39,26 +39,134 @@
             }
         })
 
-        function uploadProfilePicture(val){
-            // e.preventDefault();
-            var formData = new FormData();
-
-        // let _token = $('meta[name="csrf-token"]').attr('content');
-            var photo = $('#file').prop('files')[0];
-            formData.append('photo', photo);
-            $.ajax({
+        function applyCoupon(){
+        var coupon_name = $('#coupon_name').val();
+        $.ajax({
             type: "POST",
             dataType: 'json',
-            data: formData,
-            url: "/user-profile-picture/",
+            data: {coupon_name:coupon_name},
+            url: "/coupon-apply",
             success:function(data){
+                couponCalculation();
+                if (data.validity == true) {
+                    $('#couponField').hide();
+                }
+                // Start Message
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000
+            })
+            if ($.isEmptyObject(data.error)) {
+
+                    Toast.fire({
+                    type: 'success',
+                    icon: 'success',
+                    title: data.success,
+                    })
+            }else{
+
+           Toast.fire({
+                    type: 'error',
+                    icon: 'error',
+                    title: data.error,
+                    })
+                }
+              // End Message
+            }
+        })
+    }
+
+        /// Start Coupon Calculation Method
+        function couponCalculation(){
+        $.ajax({
+            type: 'GET',
+            url: "/coupon-calculation",
+            dataType: 'json',
+            success:function(data){
+                if (data.total) {
+                    $('#couponCalField').html(
+                        `<h3 class="fs-18 font-weight-bold pb-3">Cart Totals</h3>
+                <div class="divider"><span></span></div>
+                <ul class="generic-list-item pb-4">
+                    <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                        <span class="text-black">Subtotal:$</span>
+                        <span>$${data.total} </span>
+                    </li>
+                    <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                        <span class="text-black">Total:$</span>
+                        <span> $${data.total}</span>
+                    </li>
+                </ul>`
+                    )
+
+                }else {
+                    $('#couponCalField').html(
+                        `<h3 class="fs-18 font-weight-bold pb-3">Cart Totals</h3>
+                <div class="divider"><span></span></div>
+                <ul class="generic-list-item pb-4">
+                    <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                        <span class="text-black">Subtotal: </span>
+                        <span>$${data.subtotal} </span>
+                    </li>
+                    <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                        <span class="text-black">Coupon Name : </span>
+                        <span>${data.coupon_name} <button type="button" class="icon-element icon-element-xs shadow-sm border-0" data-toggle="tooltip" data-placement="top" onclick="couponRemove()" >
+                            <i class="la la-times"></i>
+                        </button></span>
+                    </li>
+                    <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                        <span class="text-black">Coupon Discount:</span>
+                        <span> $${data.discount_amount}</span>
+                    </li>
+                    <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
+                        <span class="text-black">Grand Total:</span>
+                        <span> $${data.total_amount}</span>
+                    </li>
+                </ul>`
+                    )
+                }
 
             }
         })
+    }
+    couponCalculation();
 
+    function couponRemove(){
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: '/coupon-remove',
+            success:function(data){
+                couponCalculation();
+                $('#couponField').show();
+                // Start Message
+const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000
+            })
+            if ($.isEmptyObject(data.error)) {
 
-        }
+                    Toast.fire({
+                    type: 'success',
+                    icon: 'success',
+                    title: data.success,
+                    })
+            }else{
 
+           Toast.fire({
+                    type: 'error',
+                    icon: 'error',
+                    title: data.error,
+                    })
+                }
+              // End Message
+            }
+        })
+    }
         function postCourseComment(course_id){
 
             var fullname = $('#fullname').val();
@@ -328,6 +436,7 @@
             success:function(data){
             miniCart();
             cart()
+            couponCalculation();
             // Start Message
             const Toast = Swal.mixin({
                   toast: true,
