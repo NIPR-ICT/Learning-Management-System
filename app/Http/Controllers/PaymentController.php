@@ -6,6 +6,10 @@ use App\Models\ChargesPayment;
 use App\Models\Enrollment;
 use App\Models\EnrollmentTrack;
 use App\Models\Part;
+use App\Models\User;
+use App\Mail\CoursePaid;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Program;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,6 +72,7 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
     $reference_id = $paymentDetails['data']['reference'];
     $program_id = $partData['program_id'];
     $part_id = $partData['id'];
+    $part_name = $partData['name'];
     $amount = $paymentDetails['data']['amount'] / 100;
     $discountedAmount=$paymentDetails['data']['metadata']['discountedAmount'];
     $transaction = Transaction::create([
@@ -86,7 +91,7 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
             'transaction_id' => $transaction->id,
         ]);
     }
-
+    $charges = [];
     if (isset($paymentDetails['data']['metadata']['extra_services']) &&
     is_array($paymentDetails['data']['metadata']['extra_services']) &&
     count($paymentDetails['data']['metadata']['extra_services']) > 0) {
@@ -100,6 +105,10 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
                 'user_id' => $user_id,
                 'transaction_id' => $transaction->id,
             ]);
+            $charges[] = [
+                'item' => $charge['item'],
+                'amount' => $charge['amount'],
+            ];
         }
     }
 
@@ -110,6 +119,11 @@ if ($paymentDetails['status'] && $paymentDetails['data']['status'] == 'success')
             'part_id' => $part_id,
             'program_id' => $program_id,
         ]);
+
+        $user = User::find($user_id);
+    $program = Program::find($program_id);
+
+    Mail::to($user->email)->send(new CoursePaid($user, $selectedCourses, $part_name, $reference_id, $amount, $program, $charges, $discountedAmount));
 
     return redirect()->route('viewBy.bought.programme')->with('alert', [
         'title' => 'Payment Successful!',
