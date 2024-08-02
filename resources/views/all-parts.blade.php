@@ -72,7 +72,7 @@
                                 @elseif (!$part->is_enrolled)
                                     <a href="{{ route('course.register.student', $part->id) }}" class="btn btn-primary">Enroll</a>
                                 @else
-                                <form id="all-course-form-{{ $part->id }}" action="{{ route('list.courses') }}" method="POST" style="display: inline;">
+                                <form id="all-course-form-{{ $part->id }}" action="{{ route('course.register.student', $part->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     <input type="hidden" name="part_id" value="{{ $part->id }}">
                                     <button type="submit" class="btn btn-danger">Start Lesson</button>
