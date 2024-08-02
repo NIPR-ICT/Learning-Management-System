@@ -57,7 +57,7 @@
                         </div>
                         <div class="cou-info">
                             <img src="{{ asset('assets/img/icon/timer-icon.svg') }}" alt="Img">
-                            <p>9hr 30min</p>
+                            <p>{{ $course->part->program_duration }} week(s)</p>
                         </div>
                         <div class="cou-info">
                             <img src="{{ asset('assets/img/icon/people.svg') }}" alt="Img">
@@ -201,10 +201,14 @@
                                 <div class="about-instructor">
                                     <div class="abt-instructor-img">
                                         @php
-                                            $user = \App\Models\User::find($item->id);
+                                            $user = \App\Models\User::find($item->user_id);
                                         @endphp
                                         <a href="instructor-profile.html"><img
-                                                src="{{ asset('assets/img/user/user1.jpg') }}" alt="img"
+                                                src="@if(!Str::length($user->image)>0)
+                                    {{asset('assets/img/user/user1.jpg')}}
+                                    @else
+                                    {{ url('storage/'.$user->image) }}
+                                    @endif" alt="img"
                                                 class="img-fluid"></a>
                                     </div>
                                     <div class="instructor-detail">

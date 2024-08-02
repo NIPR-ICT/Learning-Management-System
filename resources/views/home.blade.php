@@ -7,9 +7,9 @@
 						<div class="col-md-7">
 							<div class="home-slide-face aos" data-aos="fade-up">
 								<div class="home-slide-text ">
-									<h5>The Leader in Online Learning</h5>
-									<h1>Engaging &  Accessible Online Courses For All</h1>
-									<p>Own your future learning new skills online</p>
+									<h5>The Leader in you </h5>
+									<h1>Empower Your Potential with PRLA</h1>
+									<p>Unleash the power of strategic communication and leadership</p>
 								</div>
 								<div class="banner-content">
 									<form class="form"  action="{{route('course.view')}}">
@@ -142,7 +142,8 @@
 						</div>
 					</div>
 					<div class="section-text aos" data-aos="fade-up">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget aenean accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse imperdiet.</p>
+						<p>PRLA offers a range of programs designed to elevate your public relations career.
+                            From foundational knowledge to advanced leadership skills, our curriculum caters to professionals at every stage.</p>
 					</div>
 					<div class="owl-carousel mentoring-course owl-theme aos" data-aos="fade-up">
 						@foreach ($program as $item)
@@ -181,7 +182,8 @@
 						</div>
 					</div>
 					<div class="section-text aos" data-aos="fade-up">
-						<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget aenean accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse imperdiet.</p>
+						<p class="mb-0">Explore our diverse course offerings that cover the core principles of public relations and leadership.
+                            Gain practical insights, industry best practices, and the tools you need to excel in your career.</p>
 					</div>
 					<div class="course-feature">
 						<div class="row">
@@ -260,11 +262,12 @@
 							<div class="section-header aos" data-aos="fade-up">
 								<div class="section-sub-head">
 									<span>What’s New</span>
-									<h2>Master the skills to drive your career</h2>
+									<h2>Stay Ahead of the Curve</h2>
 								</div>
 							</div>
 							<div class="section-text aos" data-aos="fade-up">
-								<p>Get certified, master modern tech skills, and level up your career — whether you’re starting out or a seasoned pro. 95% of eLearning learners report our hands-on content directly helped their careers.</p>
+								<p>Discover the latest trends, innovations, and developments in the dynamic world of public relations.
+                                    Stay informed about industry updates, new courses, and upcoming events</p>
 							</div>
 							<div class="career-group aos" data-aos="fade-up">
 								<div class="row">
@@ -300,7 +303,7 @@
 														<img src="assets/img/icon/icon-3.svg" alt="Img" class="img-fluid">
 													</div>
 												</div>
-												<p>Get certified with 100+ certification courses</p>
+												<p>Get certified with 50+ certification courses</p>
 											</div>
 										</div>
 									</div>
@@ -344,7 +347,7 @@
 						</div>
 					</div>
 					<div class="section-text aos" data-aos="fade-up">
-						<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget aenean accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse imperdiet.</p>
+						<p class="mb-0">Explore our most popular courses that address the current needs of public relations professionals. Gain insights into the hottest topics and skills in demand.</p>
 					</div>
 					<div class="owl-carousel trending-course owl-theme aos" data-aos="fade-up">
 
@@ -419,7 +422,9 @@
 							<div class="section-sub-head feature-head text-center">
 								<h2>Featured Instructor</h2>
 								<div class="section-text aos" data-aos="fade-up">
-									<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget aenean accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse imperdiet.</p>
+									<p class="mb-0">
+                                        Connect with experienced public relations professionals who can provide guidance, mentorship, and career advice.
+                                        Benefit from their expertise and build valuable industry connections.</p>
 								</div>
 							</div>
 						</div>
@@ -494,7 +499,7 @@
 						</div>
 						<div class="col-md-6 d-flex align-items-center">
 							<div class="join-mentor aos" data-aos="fade-up">
-								<h2>Want to share your knowledge? Join us a Mentor</h2>
+								<h2>Want to share your knowledge? Join as a Mentor</h2>
 								<p>High-definition video is video of higher resolution and quality than standard-definition. While there is no standardized meaning for high-definition, generally any video.</p>
 								<ul class="course-list">
 									<li><i class="fa-solid fa-circle-check"></i>Best Courses</li>
