@@ -234,7 +234,8 @@
                                                             <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
                                                         </div>
                                                         <div class="all-btn all-category d-flex align-items-center">
-                                                            <button title="Add to cart"   onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}' )"  class="btn btn-primary"> <img width="30px" src="{{asset('assets/img/icon/cart.svg')}}" alt="img"></button>
+                                                            <button title="Add to cart"   onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}' )"  class="btn btn-primary">
+                                                                <img width="30px" src="{{asset('assets/img/icon/cart.svg')}}" alt="img"/></button>
                                                             {{-- <a href="checkout.html" class="btn btn-primary">BUY NOW</a> --}}
                                                         </div>
                                                     </div>

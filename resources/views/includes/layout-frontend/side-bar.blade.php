@@ -3,7 +3,11 @@
         <div class="settings-menu">
             <div class="profile-bg">
                 <div class="profile-img">
-                    <a href="student-profile.html"><img src="{{asset('assets/img/user/user16.jpg')}}" alt="Img"></a>
+                    <a href="student-profile.html"><img src="@if(empty(auth()->user()->image))
+                                    {{asset('assets/img/user/user16.jpg')}}
+                                    @else
+                                    {{ url('storage/'.auth()->user()->image) }}
+                                    @endif" alt="Img"></a>
                 </div>
             </div>
             <div class="profile-group">
@@ -45,7 +49,7 @@
                     </a>
                 </li>
 
- 
+
                 <li class="nav-item">
                     <a href="{{route('user.wishlist')}}" class="nav-link">
                         <i class="bx bxs-heart"></i>Wishlist
@@ -62,7 +66,7 @@
                         <i class="bx bxs-shapes"></i>My Quiz Attempts
                     </a>
                 </li> --}}
-          
+
                 {{-- <li class="nav-item">
                     <a href="student-qa.html" class="nav-link">
                         <i class="bx bxs-bookmark-alt"></i>Question & Answer

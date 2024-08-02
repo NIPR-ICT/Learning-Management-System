@@ -28,24 +28,33 @@
                                 <li><a href="{{route('student.notification')}}"><i class="bx bx-bell"></i>Notifications</a></li>
                             </ul>
                         </div>
-                        <form action="student-settings.html">
+                        {{-- <form action="student-settings.html"> --}}
                             <div class="course-group profile-upload-group mb-0 d-flex">
                                 <div class="course-group-img profile-edit-field d-flex align-items-center">
-                                    <a href="student-profile.html" class="profile-pic"><img src="{{asset('assets/img/user/user16.jpg')}}" alt="Img" class="img-fluid"></a>
+                                    <a href="#" class="profile-pic"><img src="@if(empty(auth()->user()->image))
+                                    {{asset('assets/img/user/user16.jpg')}}
+                                    @else
+                                    {{ url('storage/'.auth()->user()->image) }}
+                                    @endif" alt="Img" class="img-fluid"></a>
                                     <div class="profile-upload-head">
-                                        <h4><a href="student-profile.html">Your avatar</a></h4>
+                                        <h4><a href="#">Your avatar</a></h4>
                                         <p>PNG or JPG no bigger than 800px width and height</p>
                                         <div class="new-employee-field">
                                             <div class="d-flex align-items-center mt-2">
-                                                <div class="image-upload mb-0">
-                                                    <input type="file">
-                                                    <div class="image-uploads">
+                                                <div class=" mb-0">
+                                                    <form method="POST" action="{{ route('student.profile.picture') }}" enctype="multipart/form-data">
+                                                        @csrf
+                                                    <input class="form-control" type="file" id="file" name="picture" required
+                                                    {{-- onchange="uploadProfilePicture(this.value)" --}}
+                                                    >
+                                                    {{-- <div class="image-uploads">
                                                         <i class="bx bx-cloud-upload"></i>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
-                                                <div class="img-delete">
-                                                    <a href="#" class="delete-icon"><i class="bx bx-trash"></i></a>
-                                                </div>
+                                                {{-- <div class="img-delete"> --}}
+                                                    <button type="submit" class="btn btn-primary"><i class="bx bx-save"></i> Submit</button>
+                                                {{-- </div> --}}
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
@@ -98,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        {{-- </form> --}}
                     </div>
                 </div>
             </div>

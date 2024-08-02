@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Biodata;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -26,7 +27,7 @@ class BiodataController extends Controller
             'highest_qualification' => 'required|string',
             'major_field_of_study' => 'required|string',
             'practice_no' => [
-                Rule::unique('biodata', 'practice_no') 
+                Rule::unique('biodata', 'practice_no')
             ],
         ]);
         $biodata = new Biodata([
@@ -34,7 +35,7 @@ class BiodataController extends Controller
             'gender' => $request->get('gender'),
             'nationality' => $request->get('nationality'),
             'marital_status' => $request->get('marital_status'),
-            'user_id' => auth()->id(), 
+            'user_id' => auth()->id(),
             'phone_number' => $request->get('phone_number'),
             'state' => $request->get('state'),
             'address' => $request->get('address'),
@@ -50,5 +51,23 @@ class BiodataController extends Controller
             'icon' => 'success'
         ]);
     }
+    ////////////////////////////////// student dash////////////////////////////////
 
+    public function profilePicture(Request $request){
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $timestamp = now()->timestamp;
+            $fileName = $timestamp . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('profile', $fileName, 'public');
+            $user = auth()->user()->id;  
+            $userImage = User::find($user);
+            $userImage->image = $filePath;
+            $userImage->save();
+            return redirect()->back();
+        }else {
+        //  return response()->json(['error' => 'an error occured, Please try again later ):'.$request->all()]);
+         return response()->json(['error' => $request->profillePicture]);
+        }
+
+    }
 }

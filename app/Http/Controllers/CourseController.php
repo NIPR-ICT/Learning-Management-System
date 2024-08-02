@@ -268,14 +268,14 @@ foreach ($enrollments as $enrollment) {
     $countProgress = Progress::where('course_id', $courseId)
         ->where('user_id', $userId)
         ->count();
-    
+
     $totalLessons = Lesson::where('course_id', $courseId)->count();
-    
+
     $completionPercentage = 0;
     if ($totalLessons > 0) {
         $completionPercentage = ($countProgress / $totalLessons) * 100;
     }
-    
+
     // Add completion percentage to each enrollment
     $enrollment->completion_percentage = $completionPercentage;
 }
@@ -298,14 +298,14 @@ return redirect()->route('program.start')->with('alert', [
 
     // Get the course IDs from the enrollments
     $courseIds = $enrollCourses->pluck('course_id');
-   
+
 
     // Fetch the modules for these courses
     $modules = Module::whereIn('course_id', $courseIds)->orderBy('order', 'asc')->get();
 
-        if($modules->count() > 0){       
+        if($modules->count() > 0){
             $courses = Course::whereIn('id', $courseIds)->get();
-           
+
             return view('bougt-course-modules', compact('modules', 'courses'));
         }else{
             return redirect()->back()->with('alert', [
@@ -320,7 +320,7 @@ return redirect()->route('program.start')->with('alert', [
     public function ShowBoughtCourses($id)
     {
         $userId = auth()->id();
-        
+
         $module = Module::find($id);
         if (!$module) {
             return redirect()->back()->with('alert', [
@@ -335,9 +335,9 @@ return redirect()->route('program.start')->with('alert', [
         // Check if the user is enrolled in the course
         $isEnrolled = Enrollment::where('user_id', $userId)
             ->where('course_id', $courseId)
-            ->exists(); 
+            ->exists();
             // Check if there's at least one record
-            
+
 
         if (!$isEnrolled) {
             return redirect()->back()->with('alert', [
@@ -346,7 +346,7 @@ return redirect()->route('program.start')->with('alert', [
                 'icon' => 'error'
             ]);
         }
-        
+
         // Fetch lessons for the specified module and course
         $lessons = Lesson::where('module_id', $id)
             ->where('course_id', $courseId)
@@ -361,7 +361,7 @@ return redirect()->route('program.start')->with('alert', [
             $lessonCount = Lesson::where('module_id', $id)->count();
 
         return view('course-list', compact('lessons','existingProgress','lessonCount'));
-        
+
     }
 ///////////////////////////////////////////public view///////////////////////////////////////////////
     public function CourseHome(){
@@ -371,8 +371,8 @@ return redirect()->route('program.start')->with('alert', [
     }
 
 
-    public function courseDetails($id){
-    $course = Course::with('creator')->findOrFail($id);
+    public function courseDetails($id,$slug){
+    $course = Course::with('creator','review')->findOrFail($id);
     return view('course-details', compact('course'));
 }
 
