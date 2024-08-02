@@ -113,12 +113,20 @@
 											</div>
 										</div>
 										<div class="personal-detail d-flex align-items-center">
-											<span>4</span>
-											<div class="personal-text">
-												<h4>Checkout and Payments</h4>
-												<p class="mb-0">Complete Enrollments</p>
-											</div>
-										</div>
+                                            <span class="">4</span>
+                                            <div class="personal-text">
+                                                <h4>Summary</h4>
+                                                <p class="mb-0">Complete Enrollments Apply Coupon</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="personal-detail d-flex align-items-center">
+                                            <span class="">5</span>
+                                            <div class="personal-text">
+                                                <h4>Checkout and Payments</h4>
+                                                <p class="mb-0">Complete Enrollments</p>
+                                            </div>
+                                        </div>
 									</div>
 								</div>
 								<div class="col-lg-7">

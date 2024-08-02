@@ -8,6 +8,7 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ChargesController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\CourseCommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Blog;
+use App\Models\CourseComment;
 use App\Models\Lesson;
 use App\Models\PreliminaryPage;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +65,7 @@ Route::get('checkout', [CartController::class, 'checkout'])->name('checkout.view
 
 // course
 Route::get('/courses/{id}/{slug}', [CourseController::class, 'courseDetails'])->name('course.details.view');
+Route::post('/course-comment/{id}', [CourseCommentController::class, 'courseComment'])->name('course.comment');
 // Cart All Route
 Route::controller(CartController::class)->group(function(){
     Route::get('/mycart','MyCart')->name('mycart');
@@ -137,9 +140,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/support', function () {
             return view('student.support');
         })->name('student.support');
+
+        //student settings
         Route::get('/student/setting', function () {
             return view('student.setting');
         })->name('student.setting');
+        Route::post('/student/profile-picture', [BiodataController::class, 'profilePicture'])->name('student.profile.picture');
+
 
         Route::get('/student/change-password', function () {
             return view('student.change-password');

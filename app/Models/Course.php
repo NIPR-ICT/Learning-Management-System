@@ -66,6 +66,10 @@ class Course extends Model
     {
         return $this->hasMany(Material::class);
     }
+    public function review()
+    {
+        return $this->hasMany(CourseComment::class, 'course_id')->where('status', true);
+    }
 
     public function progresses()
 {

@@ -60,7 +60,8 @@
 
                     <li class="nav-item cart-nav" >
                         <a href="#" class="dropdown-toggle" title="Cart" data-bs-toggle="dropdown">
-                            <img src="{{asset('assets/img/icon/cart.svg')}}" alt="img">
+                            {{-- <img src="{{asset('assets/img/icon/cart.svg')}}" alt="img"> --}}
+                            <i class="fa fa-shopping-cart"></i>
                         </a>
                         <div class="wishes-list dropdown-menu dropdown-menu-right">
                             <div class="wish-header">
@@ -80,7 +81,8 @@
                     </li>
                     <li class="nav-item wish-nav">
                         <a href="#" title="Wishlist" class="dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="{{asset('assets/img/icon/wish.svg')}}" alt="img">
+                            {{-- <img src="{{asset('assets/img/icon/wish.svg')}}" alt="img"> --}}
+                            <i class="fa fa-heart"></i>
                         </a>
                         <div class="wishes-list dropdown-menu dropdown-menu-right">
                             <div class="wish-header">
@@ -101,13 +103,17 @@
                     @auth
                     {{-- message --}}
                     <li class="nav-item">
-                        <a href="{{route('student.message')}}"  title="Message"><img src="{{asset('assets/img/icon/messages.svg')}}" alt="img"></a>
+                        <a href="{{route('student.message')}}"  title="Message">
+                            <i class="fa fa-comments"></i>
+                            {{-- <img src="{{asset('assets/img/icon/messages.svg')}}" alt="img"> --}}
+                        </a>
 
                     </li>
                     {{-- notification --}}
                     <li class="nav-item noti-nav">
                         <a href="#" title="Notification" class="dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="{{asset('assets/img/icon/notification.svg')}}" alt="img">
+                            {{-- <img src="{{asset('assets/img/icon/notification.svg')}}" alt="img"> --}}
+                            <i class="fa fa-bell"></i>
                         </a>
                         <div class="notifications dropdown-menu dropdown-menu-right">
                             <div class="topnav-dropdown-header">
@@ -184,21 +190,32 @@
                     <li class="nav-item user-nav">
                         <a href="{{ url('/dashboard') }}" title="Profile" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <span class="user-img">
-                                <img src="{{asset('assets/img/user/user11.jpg')}}" alt="Img">
+                                <img src="@if(empty(auth()->user()->image))
+                                    {{asset('assets/img/user/user11.jpg')}}
+                                    @else
+                                    {{ url('storage/'.auth()->user()->image) }}
+                                    @endif" alt="Img">
                                 <span class="status online"></span>
                             </span>
                         </a>
                         <div class="users dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end" >
                             <div class="user-header">
                                 <div class="avatar avatar-sm">
-                                    <img src="{{asset('assets/img/user/user11.jpg')}}" alt="User Image" class="avatar-img rounded-circle">
+                                    <img src="
+                                    @if(empty(auth()->user()->image))
+                                    {{asset('assets/img/user/user11.jpg')}}
+                                    @else
+                                    {{ url('storage/'.auth()->user()->image) }}
+                                    @endif"
+                                    alt="User Image" class="avatar-img rounded-circle">
+
                                 </div>
                                 <div class="user-text">
                                     <h6>{{auth()->user()->name}}</h6>
                                     <p class="text-muted mb-0">Student</p>
                                 </div>
                             </div>
-                            
+
                             <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="feather-user me-1"></i> Profile</a>
                             {{-- <a class="dropdown-item" href="{{ route('biodata.update') }}"><i class="feather-user me-1"></i> Profile</a> --}}
                             <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-star me-1"></i> Subscription</a>

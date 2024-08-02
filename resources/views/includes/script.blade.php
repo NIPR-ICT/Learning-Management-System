@@ -38,6 +38,94 @@
             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
             }
         })
+
+        function uploadProfilePicture(val){
+            // e.preventDefault();
+            var formData = new FormData();
+
+        // let _token = $('meta[name="csrf-token"]').attr('content');
+            var photo = $('#file').prop('files')[0];
+            formData.append('photo', photo);
+            $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: formData,
+            url: "/user-profile-picture/",
+            success:function(data){
+
+            }
+        })
+
+
+        }
+
+        function postCourseComment(course_id){
+
+            var fullname = $('#fullname').val();
+            var email = $('#email').val();
+            var subject = $('#subject').val();
+            var message = $('#message').val();
+
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 6000
+            })
+
+            if( $('#fullname').val().length === 0 ||
+            $('#email').val().length === 0 ||
+            $('#subject').val().length === 0  ||
+            $('#message').val().length === 0
+        ){
+
+                Toast.fire({
+                    type: 'error',
+                    icon: 'error',
+                    title: 'Please fill out all the fields to submit comment',
+                    })
+            }else{
+
+            $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {
+                _token: '{{ csrf_token() }}',
+                user_name: fullname,
+                user_email: email,
+                user_subject: subject,
+                user_message: message
+            },
+            url: "/course-comment/"+course_id,
+            success:function(data){
+
+
+            if ($.isEmptyObject(data.error)) {
+
+                    Toast.fire({
+                    type: 'success',
+                    icon: 'success',
+                    title: data.success,
+                    })
+             fullname = $('#fullname').val('');
+             email = $('#email').val('');
+             subject = $('#subject').val('');
+             message = $('#message').val('');
+
+            }else{
+
+           Toast.fire({
+                    type: 'error',
+                    icon: 'error',
+                    title: data.error,
+                    })
+                }
+              // End Message
+            }
+        })
+        }
+        }
+
         function addToWishList(course_id){
             $.ajax({
             type: "POST",
@@ -279,7 +367,7 @@
                 // alert(response.cartTotal)
                 var rows = ""
                 $.each(response.carts, function(key,value){
-                    rows += ` 
+                    rows += `
                                 <div class="col-lg-12 col-md-12 d-flex">
                                     <div class="course-box course-design list-course d-flex">
                                         <div class="product">
@@ -305,7 +393,7 @@
                                                         <p>9hr 30min</p>
                                                     </div>
                                                 </div>
-                                                <div class="rating">							
+                                                <div class="rating">
                                                     <i class="fas fa-star filled"></i>
                                                     <i class="fas fa-star filled"></i>
                                                     <i class="fas fa-star filled"></i>
@@ -320,7 +408,7 @@
                                         </div>
                                     </div>
                                 </div>
-                              
+
 
                 `
                 });

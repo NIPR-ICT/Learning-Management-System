@@ -96,62 +96,33 @@
                                     <h6>{{ count($course->lessons) }} Modules    </h6>
                                 </div>
                             </div>
+                            @foreach ($course->modules as $key => $item)
                             <div class="course-card">
                                 <h6 class="cou-title">
-                                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseOne"
-                                        aria-expanded="false">In which areas do you operate?</a>
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#collapse{{ $key }}"
+                                        aria-expanded="false">{{ $item->title }}</a>
                                 </h6>
-                                <div id="collapseOne" class="card-collapse collapse" style="">
+                                <div id="collapse{{ $key }}" class="card-collapse collapse" style="">
                                     <ul>
                                         <li>
                                             <p><img src="{{ asset('assets/img/icon/play.svg') }}" alt="Img"
-                                                    class="me-2">Lecture1.1 Introduction to the User Experience Course</p>
+                                                    class="me-2">Lecture1.1 </p>
                                             <div>
                                                 <a href="javascript:void(0);">Preview</a>
                                                 <span>02:53</span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.2 Exercise: Your first design challenge</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><img src="assets/img/icon/play.svg')}}" alt="Img"
-                                                    class="me-2">Lecture1.5 How to use text layers effectively</p>
-                                            <div>
-                                                <a href="javascript:void(0);">Preview</a>
-                                                <span>02:53</span>
-                                            </div>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     <!-- /Course Content -->
 
                     <!-- Instructor -->
-                    <div class="card instructor-sec">
+                    {{-- <div class="card instructor-sec">
                         <div class="card-body">
                             <h5 class="subs-title">About the instructor</h5>
                             <div class="instructor-wrap">
@@ -215,23 +186,30 @@
                                 <li>5. Worldwide</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- /Instructor -->
 
                     <!-- Reviews -->
                     <div class="card review-sec">
+                        {{-- <h5 class="subs-title">Reviews</h5> --}}
+                        <h5 class="card-header">Reviews</h5>
+                        @foreach ($course->review as $item)
+
                         <div class="card-body">
-                            <h5 class="subs-title">Reviews</h5>
+
                             <div class="instructor-wrap">
                                 <div class="about-instructor">
                                     <div class="abt-instructor-img">
+                                        @php
+                                            $user = \App\Models\User::find($item->id);
+                                        @endphp
                                         <a href="instructor-profile.html"><img
                                                 src="{{ asset('assets/img/user/user1.jpg') }}" alt="img"
                                                 class="img-fluid"></a>
                                     </div>
                                     <div class="instructor-detail">
-                                        <h5><a href="instructor-profile.html">Nicole Brown</a></h5>
-                                        <p>UX/UI Designer</p>
+                                        <h5><a href="instructor-profile.html">{{ $user->name }}</a></h5>
+                                        <p>{{ $user->role }}</p>
                                     </div>
                                 </div>
                                 <div class="rating">
@@ -243,13 +221,11 @@
                                     <span class="d-inline-block average-rating">4.5 Instructor Rating</span>
                                 </div>
                             </div>
-                            <p class="rev-info">“ This is the second Photoshop course I have completed with Cristian. Worth
-                                every penny and recommend it highly. To get the most out of this course, its best to to take
-                                the Beginner to Advanced course first. The sound and video quality is of a good standard.
-                                Thank you Cristian. “</p>
-                            <a href="javascript:void(0);" class="btn btn-reply"><i class="feather-corner-up-left"></i>
-                                Reply</a>
+                            <p class="rev-info">“ {{ $item->message }} “</p>
+                            {{-- <a href="javascript:void(0);" class="btn btn-reply"><i class="feather-corner-up-left"></i>
+                                Reply</a> --}}
                         </div>
+                        @endforeach
                     </div>
                     <!-- /Reviews -->
 
@@ -257,29 +233,28 @@
                     <div class="card comment-sec">
                         <div class="card-body">
                             <h5 class="subs-title">Post A comment</h5>
-                            <form>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input-block">
-                                            <input type="text" class="form-control" placeholder="Full Name">
+                                            <input type="text" id="fullname" class="form-control" placeholder="Full Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-block">
-                                            <input type="email" class="form-control" placeholder="Email">
+                                            <input type="email" id="email" class="form-control" placeholder="Email">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="input-block">
-                                    <input type="email" class="form-control" placeholder="Subject">
+                                    <input type="text" id="subject" class="form-control" placeholder="Subject">
                                 </div>
                                 <div class="input-block">
-                                    <textarea rows="4" class="form-control" placeholder="Your Comments"></textarea>
+                                    <textarea rows="4" id="message" class="form-control" placeholder="Your Comments"></textarea>
                                 </div>
                                 <div class="submit-section">
-                                    <button class="btn submit-btn" type="submit">Submit</button>
+                                    <button class="btn submit-btn" onclick="postCourseComment({{ $course->id }})" >Submit</button>
                                 </div>
-                            </form>
                         </div>
                     </div>
                     <!-- /Comment -->
@@ -302,17 +277,17 @@
                                     </a>
                                     <div class="video-details">
                                         <div class="course-fee">
-                                            <h2>FREE</h2>
-                                            <p><span>$99.00</span> 50% off</p>
+                                            <h2>&#8358;{{ $course->course_amount }}</h2>
+                                            {{-- <p><span>99.00</span> 50% off</p> --}}
                                         </div>
                                         <div class="row gx-2">
                                             <div class="col-md-6">
-                                                <a href="course-wishlist.html" class="btn btn-wish w-100"><i
-                                                        class="feather-heart"></i> Add to Wishlist</a>
+                                                <a href="javascript:void(0);"  onclick="addToCart({{ $course->id }},'{{ $course->creator->name }}','{{ $course->slug }}','{{ $course->title }}' )" class="btn btn-wish w-100">
+                                                    <i class="fa fa-shopping-cart"></i> Add to Cart</a>
                                             </div>
                                             <div class="col-md-6">
-                                                <a href="javascript:void(0);" class="btn btn-wish w-100"><i
-                                                        class="feather-share-2"></i> Share</a>
+                                                <a id="{{ $course->id }}" onclick="addToWishList(this.id)" href="javascript:void(0);" class="btn btn-wish w-100"><i
+                                                        class="fa fa-heart"></i> Add to Wishlist</a>
                                             </div>
                                         </div>
                                         <a href="checkout.html" class="btn btn-enroll w-100">Enroll Now</a>
@@ -330,13 +305,13 @@
                                 </div>
                                 <ul>
                                     <li><img src="{{ asset('assets/img/icon/import.svg') }}" class="me-2"
-                                            alt="Img"> 11 hours on-demand video</li>
+                                            alt="Img"> {{ count($course->lessons) }} accoumulated lesson</li>
                                     <li><img src="{{ asset('assets/img/icon/play.svg') }}" class="me-2"
-                                            alt="Img"> 69 downloadable resources</li>
+                                            alt="Img"> {{ count($course->materials) }} downloadable resources</li>
                                     <li><img src="{{ asset('assets/img/icon/key.svg') }}" class="me-2" alt="Img">
                                         Full lifetime access</li>
-                                    <li><img src="{{ asset('assets/img/icon/mobile.svg') }}" class="me-2"
-                                            alt="Img"> Access on mobile and TV</li>
+                                    {{-- <li><img src="{{ asset('assets/img/icon/mobile.svg') }}" class="me-2"
+                                            alt="Img"> Access on mobile and TV</li> --}}
                                     <li><img src="{{ asset('assets/img/icon/cloud.svg') }}" class="me-2"
                                             alt="Img"> Assignments</li>
                                     <li><img src="{{ asset('assets/img/icon/teacher.svg') }}" class="me-2"
@@ -347,25 +322,25 @@
                         <!-- /Include -->
 
                         <!-- Features -->
-                        <div class="card feature-sec">
+                        {{-- <div class="card feature-sec">
                             <div class="card-body">
                                 <div class="cat-title">
                                     <h4>Includes</h4>
                                 </div>
                                 <ul>
-                                    <li><img src="{{ asset('assets/img/icon/users') }}'" class="me-2" alt="Img">
+                                    <li><img src="{{ asset('assets/img/icon/users') }}" class="me-2" alt="Img">
                                         Enrolled: <span>32 students</span></li>
-                                    <li><img src="{{ asset('assets/img/icon/timer') }}'" class="me-2" alt="Img">
+                                    <li><img src="{{ asset('assets/img/icon/timer') }}" class="me-2" alt="Img">
                                         Duration: <span>20 hours</span></li>
-                                    <li><img src="{{ asset('assets/img/icon/chapter') }}'" class="me-2"
+                                    <li><img src="{{ asset('assets/img/icon/chapter') }}" class="me-2"
                                             alt="Img"> Chapters: <span>15</span></li>
-                                    <li><img src="{{ asset('assets/img/icon/video') }}'" class="me-2" alt="Img">
+                                    <li><img src="{{ asset('assets/img/icon/video') }}" class="me-2" alt="Img">
                                         Video:<span> 12 hours</span></li>
-                                    <li><img src="{{ asset('assets/img/icon/chart') }}'" class="me-2" alt="Img">
+                                    <li><img src="{{ asset('assets/img/icon/chart') }}" class="me-2" alt="Img">
                                         Level: <span>Beginner</span></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- /Features -->
 
                     </div>
