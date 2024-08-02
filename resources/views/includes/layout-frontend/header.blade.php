@@ -130,7 +130,7 @@
                                     <li class="notification-message">
                                         <div class="media d-flex">
                                             <div>
-                                                <a href="notifications.html" class="avatar">
+                                                <a href="{{route('student.setting')}}" class="avatar">
                                                     <img class="avatar-img" alt="Img" src="{{asset('assets/img/user/user1.jpg')}}">
                                                 </a>
                                             </div>
@@ -218,14 +218,9 @@
 
                             <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="feather-user me-1"></i> Profile</a>
                             {{-- <a class="dropdown-item" href="{{ route('biodata.update') }}"><i class="feather-user me-1"></i> Profile</a> --}}
-                            <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-star me-1"></i> Subscription</a>
-                            <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-settings me-1"></i> Settings</a>
-                            <div class="dropdown-item night-mode">
-                                <span><i class="feather-moon me-1"></i> Night Mode </span>
-                                <div class="form-check form-switch check-on m-0">
-                                    <input class="form-check-input" type="checkbox" id="night-mode">
-                                </div>
-                            </div>
+                            {{-- <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-star me-1"></i> Subscription</a>
+                            <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-settings me-1"></i> Settings</a> --}}
+                            
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

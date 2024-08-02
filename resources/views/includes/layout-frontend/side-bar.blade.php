@@ -3,7 +3,7 @@
         <div class="settings-menu">
             <div class="profile-bg">
                 <div class="profile-img">
-                    <a href="student-profile.html"><img src="@if(empty(auth()->user()->image))
+                    <a href="{{route('student.setting')}}"><img src="@if(empty(auth()->user()->image))
                                     {{asset('assets/img/user/user16.jpg')}}
                                     @else
                                     {{ url('storage/'.auth()->user()->image) }}
