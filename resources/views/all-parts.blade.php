@@ -49,7 +49,7 @@
                                 <p>{{ Str::words($part->description, 25, '...') }}</p>
                                 <div class="instructor-info">
                                     <div class="rating-img d-flex align-items-center">
-                                        <p>12+ Lessons</p>
+                                        <p>8+ Lessons</p>
                                     </div>
                                     <div class="course-view d-flex align-items-center ms-0">
                                         <p>9hr 30min</p>
