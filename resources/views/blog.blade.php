@@ -42,8 +42,8 @@
 													<a href="instructor-profile.html"><img src="assets/img/user/user.jpg" alt="Post Author"> <span>Ruby Perrin</span></a>
 												</div>
 											</li> --}}
-											<li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ Carbon\Carbon::parse($item->published_at)->diffForHumans()  }}</li>
-											<li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt="Img">{{ $item->category->title }}</li>
+											<li><img class="img-fluid" src="{{ asset('assets/img/icon/icon-22.svg') }}" alt="Img">{{ Carbon\Carbon::parse($item->published_at)->diffForHumans()  }}</li>
+											<li><img class="img-fluid" src="{{ asset('assets/img/icon/icon-23.svg') }}" alt="Img">{{ $item->category->title }}</li>
 										</ul>
 									</div>
 								</div>
@@ -100,7 +100,7 @@
 												<h4>
 													<a href="{{ route('blog-detail.view', $item->slug )}}">{{ $item->title }}</a>
 												</h4>
-												<p><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt="Img">{{ $item->published_at }}</p>
+												<p><img class="img-fluid" src="{{ asset('assets/img/icon/icon-22.svg') }}" alt="Img">{{ Carbon\Carbon::parse($item->published_at)->diffForHumans()  }}</p>
 											</div>
 										</li>
                                         @endforeach
