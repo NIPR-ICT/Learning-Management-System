@@ -204,9 +204,13 @@
                                                 <div class="product-content">
                                                     <div class="course-group d-flex">
                                                         <div class="course-group-img d-flex">
-                                                            <a href="#"><img src="assets/img/user/user1.jpg" alt="Img" class="img-fluid"></a>
+                                                            <a href="#"><img src="@if(Str::length($item->creator->image)<1)
+                                                            {{asset('assets/img/user/user11.jpg')}}
+                                                            @else
+                                                            {{ url('storage/'.$item->creator->image) }}
+                                                            @endif" alt="Img" class="img-fluid"></a>
                                                             <div class="course-name">
-                                                                <h4><a href="#">{{ $item->creator->name }}</a></h4>
+                                                                <h4><a href="#">{{ $item->creator->name}} </a></h4>
                                                                 <p>{{ $item->creator->role }}</p>
                                                             </div>
                                                         </div>
@@ -236,8 +240,10 @@
                                                             <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
                                                         </div>
                                                         <div class="all-btn all-category d-flex align-items-center">
-                                                            <button title="Add to cart"   onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}' )"  class="btn btn-primary">
-                                                                <img width="30px" src="{{asset('assets/img/icon/cart.svg')}}" alt="img"/></button>
+                                                            <button title="Add to cart"   onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}' )"  class="btn btn-primary-presh">
+                                                                {{-- <img width="30px" src="{{asset('assets/img/icon/cart.svg')}}" alt="img"/> --}}
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </button>
                                                             {{-- <a href="checkout.html" class="btn btn-primary">BUY NOW</a> --}}
                                                         </div>
                                                     </div>
@@ -369,7 +375,11 @@
 								<div class="product-content">
 									<div class="course-group d-flex">
 										<div class="course-group-img d-flex">
-											<a href="instructor-profile.html"><img src="assets/img/user/user.jpg" alt="Img" class="img-fluid"></a>
+											<a href="instructor-profile.html"><img src="@if(Str::length($courses->creator->image)<1)
+                                                            {{asset('assets/img/user/user11.jpg')}}
+                                                            @else
+                                                            {{ url('storage/'.$courses->creator->image) }}
+                                                            @endif" alt="Img" class="img-fluid"></a>
 											<div class="course-name">
 												<h4><a href="instructor-profile.html">{{ $courses->creator->name }} </a></h4>
 												<p>{{ $courses->creator->role }}</p>
@@ -401,8 +411,10 @@
 										</div>
 										<div class="all-btn all-category d-flex align-items-center">
 											{{-- <a href="checkout.html" class="btn btn-primary">BUY NOW</a> --}}
-                                            <button title="Add to cart"  onclick="addToCart({{ $courses->id }},'{{ $courses->creator->name }}','{{ $courses->slug }}','{{ $courses->title }}' )"  class="btn btn-primary">
-                                                 <img style="width: 30px" src="{{asset('assets/img/icon/cart.svg')}}" alt="img"/></button>
+                                            <button title="Add to cart"  onclick="addToCart({{ $courses->id }},'{{ $courses->creator->name }}','{{ $courses->slug }}','{{ $courses->title }}' )"  class="btn btn-primary-presh">
+                                                <i class="fa fa-shopping-cart" style="color: #ef3333"></i>
+                                                {{-- <img style="width: 30px" src="{{asset('assets/img/icon/cart.svg')}}" alt="img"/> --}}
+                                                </button>
 
 										</div>
 									</div>
@@ -543,7 +555,7 @@
 											<div class="testi-right">
 												<img src="assets/img/qute-01.png" alt="Img">
 											</div>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+											<p>I have honestly been very satisfied with the results of my courses</p>
 											<div class="four-testimonial-founder">
 												<div class="fount-about-img">
 													<a href="instructor-profile.html"><img src="assets/img/user/user1.jpg" alt="Img" class="img-fluid"></a>

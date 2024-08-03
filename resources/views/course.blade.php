@@ -88,7 +88,12 @@
 											<div class="product-content">
 												<div class="course-group d-flex">
 													<div class="course-group-img d-flex">
-														<a href="instructor-profile.html"><img src="assets/img/user/user1.jpg" alt="Img" class="img-fluid"></a>
+														<a href="instructor-profile.html">
+                                                            <img src="@if(Str::length($item->creator->image)<1)
+                                                            {{asset('assets/img/user/user11.jpg')}}
+                                                            @else
+                                                            {{ url('storage/'.$item->creator->image) }}
+                                                            @endif" alt="Img" class="img-fluid"></a>
 														<div class="course-name">
 															<h4><a href="instructor-profile.html">{{ $item->creator->name }}</a></h4>
 															<p>{{ $item->creator->role }}</p>
@@ -118,7 +123,10 @@
 													<span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
 												</div>
 												<div class="all-btn all-category d-flex align-items-center">
-                                                    <button title="Add to cart"   onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}' )"  class="btn btn-primary"> <img width="30px" src="{{asset('assets/img/icon/cart.svg')}}" alt="img"></button>
+                                                    <button title="Add to cart"   onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}' )"  class="btn btn-primary">
+                                                        {{-- <img width="30px" src="{{asset('assets/img/icon/cart.svg')}}" alt="img"> --}}
+                                                        <i class="fa fa-shopping-cart" ></i>
+                                                    </button>
 													{{-- <a href="checkout.html" class="btn btn-primary">BUY NOW</a> --}}
 												</div>
 											</div>

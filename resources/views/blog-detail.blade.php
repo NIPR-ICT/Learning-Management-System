@@ -91,7 +91,7 @@
                                             <h4>
                                                 <a href="{{ route('blog-detail.view', $item->slug) }}">{{ $item->title }}</a>
                                             </h4>
-                                            <p><img class="img-fluid" src="{{ asset('assets/img/icon/icon-22.svg') }}" alt="Img">{{ $item->published_at }}</p>
+                                            <p><img class="img-fluid" src="{{ asset('assets/img/icon/icon-22.svg') }}" alt="Img">{{ Carbon\Carbon::parse($item->published_at)->diffForHumans()  }}</p>
                                         </div>
                                     </li>
                                 @endforeach
