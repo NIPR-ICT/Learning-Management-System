@@ -518,7 +518,7 @@
 									<li><i class="fa-solid fa-circle-check"></i>Top rated Instructors</li>
 								</ul>
 								<div class="all-btn all-category d-flex align-items-center">
-									<a href="instructor-list.html" class="btn btn-primary">Read More</a>
+									<a href="#" class="btn btn-primary">Read More</a>
 								</div>
 							</div>
 						</div>
