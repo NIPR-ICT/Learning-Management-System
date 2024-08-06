@@ -94,11 +94,11 @@
         <div class="owl-carousel login-slide owl-theme">
             <div class="welcome-login">
                 <div class="login-banner">
-                    <img src="{{asset('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
+                    <img src="{{asset('assets/img/sigin1.png')}}" class="img-fluid" alt="Logo">
                 </div>
                 <div class="mentor-course text-center">
                     <h2>Welcome to <br>Public Relations and Leadership Academy Courses.</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p>awaiting write up</p>
                 </div>
             </div>
             <div class="welcome-login">
@@ -107,7 +107,7 @@
                 </div>
                 <div class="mentor-course text-center">
                     <h2>Welcome to <br>Public Relation and Leadership Academy Courses.</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p>awaiting write up</p>
                 </div>
             </div>
             <div class="welcome-login">
@@ -116,7 +116,7 @@
                 </div>
                 <div class="mentor-course text-center">
                     <h2>Welcome to <br>Public Relation and Leadership Academy Courses.</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p>awaiting write up</p>
                 </div>
             </div>
         </div>
@@ -173,13 +173,13 @@
                 </div>
             </div>
             <div class="google-bg text-center">
-                <span><a href="#">Or sign in with</a></span>
+                {{-- <span><a href="#">Or sign in with</a></span>
                 <div class="sign-google">
                     <ul>
                         <li><a href="#"><img src="{{asset('assets/img/net-icon-01.png')}}" class="img-fluid" alt="Logo"> Sign In using Google</a></li>
                         <li><a href="#"><img src="{{asset('assets/img/net-icon-02.png')}}" class="img-fluid" alt="Logo">Sign In using Facebook</a></li>
                     </ul>
-                </div>
+                </div> --}}
                 <p class="mb-0">New User ? <a href="{{ route('register') }}">Create an Account</a></p>
             </div>
         </div>
