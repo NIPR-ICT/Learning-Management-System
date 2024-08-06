@@ -94,7 +94,7 @@
         <div class="owl-carousel login-slide owl-theme">
             <div class="welcome-login">
                 <div class="login-banner">
-                    <img src="{{asset('assets/img/sigin1.png')}}" class="img-fluid" alt="Logo">
+                    <img src="{{asset('assets/img/sigin3.png')}}" class="img-fluid" alt="Logo">
                 </div>
                 <div class="mentor-course text-center">
                     <h2>Welcome to <br>Public Relations and Leadership Academy Courses.</h2>
@@ -103,7 +103,7 @@
             </div>
             <div class="welcome-login">
                 <div class="login-banner">
-                    <img src="{{asset('assets/img/login-img.png')}}" class="img-fluid" alt="Logo">
+                    <img src="{{asset('assets/img/sigin1.png')}}" class="img-fluid" alt="Logo">
                 </div>
                 <div class="mentor-course text-center">
                     <h2>Welcome to <br>Public Relation and Leadership Academy Courses.</h2>
@@ -112,7 +112,7 @@
             </div>
             <div class="welcome-login">
                 <div class="login-banner">
-                    <img src="{{asset('assets/img/login-img.png')}}" class="img-fluid" alt="Logo">
+                    <img src="{{asset('assets/img/sigin2.png')}}" class="img-fluid" alt="Logo">
                 </div>
                 <div class="mentor-course text-center">
                     <h2>Welcome to <br>Public Relation and Leadership Academy Courses.</h2>

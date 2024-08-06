@@ -98,29 +98,29 @@
 					<div class="owl-carousel login-slide owl-theme">
 						<div class="welcome-login">
 							<div class="login-banner">
-								<img src="{{asset('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
+                                <img src="{{asset('assets/img/sigin1.png')}}" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>Public Relations and Leadership Academy Courses.</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+								<p>awaiting write up.</p>
 							</div>
 						</div>
 						<div class="welcome-login">
 							<div class="login-banner">
-								<img src="assets/img/login-img.png" class="img-fluid" alt="Logo">
+                                <img src="{{asset('assets/img/sigin3.png')}}" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>Public Relations and Leadership Academy Courses.</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+								<p>awaiting write up.</p>
 							</div>
 						</div>
 						<div class="welcome-login">
 							<div class="login-banner">
-								<img src="assets/img/login-img.png" class="img-fluid" alt="Logo">
+                                <img src="{{asset('assets/img/sigin1.png')}}" class="img-fluid" alt="Logo">
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>Public Relations and Leadership Academy Courses.</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+								<p>awaiting writeup</p>
 							</div>
 						</div>
 					</div>
