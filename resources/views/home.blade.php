@@ -20,7 +20,7 @@
 												<span class="drop-detail">
 
 													<select class="form-select select">
-                                                        <option value="">programme</option>
+                                                        <option value="" disabled>programme</option>
                                                         @foreach ($program as $item)
 														<option>{{ $item->title }}</option>
                                                         @endforeach
@@ -663,7 +663,7 @@
 						<div class="section-sub-head feature-head text-center mb-0">
 							<h2>Latest Blogs</h2>
 							<div class="section-text aos" data-aos="fade-up">
-								<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget aenean accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse imperdiet.</p>
+								<p class="mb-0">Our nonestop eyeopening and amazing happenings on recent news and trends</p>
 							</div>
 						</div>
 					</div>

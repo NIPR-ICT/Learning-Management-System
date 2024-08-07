@@ -20,126 +20,129 @@
                             <h3>Reviews</h3>
                         </div>
                         <div class="checkout-form">
+                            <div class="review-wrap">
+                                <div class="review-rating">
+                                     <i>Submit a New Review</i>
+                                     <button class="btn btn-primary float-right"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Add Review</button>
+                                </div>
+                            </div>
 
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Review</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('review.store') }}" method="POST" >
+                                            @csrf
+
+
+                                    <div class="form-group">
+                                        <label for="name">Course</label>
+                                        <select name="course_id" required id="" class="form-select select">
+                                            <option  value="">Select One</option>
+                                            @foreach ($courses as $item )
+                                            <option  value="{{ $item->course->id }}">{{ $item->course->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name">Rating</label>
+                                        <input type="range" name="rating" min="1" max="5" step="1" value="4" required class="form-range range"onchange="updateTextInput(this.value);">
+                                        <input type="text" id="textInput" style="border: 0ch" value="4">
+                                        <div class="reviewer-rating">
+                                            <i class="fa-solid fa-star filled"></i>
+                                            <i class="fa-solid fa-star filled"></i>
+                                            <i class="fa-solid fa-star filled"></i>
+                                            <i class="fa-solid fa-star filled"></i>
+                                            <i class="fa-solid fa-star "></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="comment">Comment</label>
+                                        <textarea name="comment" class="form-control" id="" cols="30" rows="5"></textarea>
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                                </div>
+                                </div>
+                            </div>
+                            @php
+                                // dd($courses);
+                            @endphp
+                            @foreach ($reviews as $item)
                             <!-- Review -->
                             <div class="review-wrap">
                                 <div class="review-user-info">
                                     <div class="reviewer">
-                                        <div class="review-img">
+                                        {{-- <div class="review-img">
                                             <a href="javascript:void(0);"><img src="assets/img/user/user16.jpg" alt="img"></a>
-                                        </div>
+                                        </div> --}}
                                         <div class="reviewer-info">
-                                            <h6><a href="javascript:void(0);">Ronald Richard</a></h6>
-                                            <p>6 months ago</p>
+                                            <h6><a href="javascript:void(0);">{{ $item->course->title}}</a></h6>
+                                            <p>{{ Carbon\Carbon::parse($item->created_at)->diffForHumans()  }}</p>
                                         </div>
                                     </div>
                                     <div class="reviewer-rating">
+                                        @if ($item->rating == 5)
                                         <i class="fa-solid fa-star filled"></i>
                                         <i class="fa-solid fa-star filled"></i>
                                         <i class="fa-solid fa-star filled"></i>
                                         <i class="fa-solid fa-star filled"></i>
                                         <i class="fa-solid fa-star filled"></i>
+                                        @endif
+                                        @if ($item->rating == 4)
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        @endif
+                                        @if ($item->rating == 3)
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        @endif
+                                        @if ($item->rating == 2)
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        @endif
+                                        @if ($item->rating == 1)
+                                        <i class="fa-solid fa-star filled"></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        <i class="fa-solid fa-star "></i>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="review-content">
-                                    <p>This is the second Photoshop course I have completed with Cristian. Worth every penny and recommend it highly. To get the most out of this course, its best to to take the Beginner to Advanced course first. The sound and video quality is of a good standard. Thank you Cristian.</p>
+                                    <p>{{ $item->comment }}</p>
                                     <div class="review-action">
-                                        <a href="javascript:void(0);">Edit</a>
-                                        <a href="javascript:void(0);">Delete</a>
+                                        {{-- <a href="javascript:void(0);">Edit</a>
+                                        <a href="javascript:void(0);">Delete</a> --}}
                                     </div>
                                 </div>
                             </div>
+
+                            @endforeach
                             <!-- /Review -->
 
-                            <!-- Review -->
-                            <div class="review-wrap">
-                                <div class="review-user-info">
-                                    <div class="reviewer">
-                                        <div class="review-img">
-                                            <a href="javascript:void(0);"><img src="assets/img/user/user16.jpg" alt="img"></a>
-                                        </div>
-                                        <div class="reviewer-info">
-                                            <h6><a href="javascript:void(0);">Ronald Richard</a></h6>
-                                            <p>8 months ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="reviewer-rating">
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="review-content">
-                                    <p>I've been using this LMS for several months for my online courses, and it's been a game-changer. The interface is incredibly user-friendly, making it easy for both instructors and students to navigate through the courses. The variety of tools available for creating interactive and engaging content has significantly enhanced the learning experience.</p>
-                                    <div class="review-action">
-                                        <a href="javascript:void(0);">Edit</a>
-                                        <a href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Review -->
 
-                            <!-- Review -->
-                            <div class="review-wrap">
-                                <div class="review-user-info">
-                                    <div class="reviewer">
-                                        <div class="review-img">
-                                            <a href="javascript:void(0);"><img src="assets/img/user/user16.jpg" alt="img"></a>
-                                        </div>
-                                        <div class="reviewer-info">
-                                            <h6><a href="javascript:void(0);">Ronald Richard</a></h6>
-                                            <p>9 months ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="reviewer-rating">
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="review-content">
-                                    <p>Any time I've had a question or encountered a minor issue, the customer support team has been quick to respond and incredibly helpful. Moreover, the reliability of this LMS has impressed me—downtime is nearly non-existent, ensuring that  students have access to their courses 24/7.</p>
-                                    <div class="review-action">
-                                        <a href="javascript:void(0);">Edit</a>
-                                        <a href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Review -->
-
-                            <!-- Review -->
-                            <div class="review-wrap">
-                                <div class="review-user-info">
-                                    <div class="reviewer">
-                                        <div class="review-img">
-                                            <a href="javascript:void(0);"><img src="assets/img/user/user16.jpg" alt="img"></a>
-                                        </div>
-                                        <div class="reviewer-info">
-                                            <h6><a href="javascript:void(0);">Ronald Richard</a></h6>
-                                            <p>1 year ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="reviewer-rating">
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star filled"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="review-content">
-                                    <p>From the onset, my experience with this LMS Website has been nothing short of extraordinary. As a learner who has navigated through various online platforms, the sophistication and user-centric design of this website set a new benchmark for what digital education should look like.</p>
-                                    <div class="review-action">
-                                        <a href="javascript:void(0);">Edit</a>
-                                        <a href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Review -->
 
                         </div>
                     </div>
@@ -147,28 +150,18 @@
 
                 <div class="dash-pagination">
                     <div class="row align-items-center">
-                        <div class="col-6">
-                            <p>Page 1 of 2</p>
-                        </div>
-                        <div class="col-6">
-                            <ul class="pagination">
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="bx bx-chevron-right"></i></a>
-                                </li>
-                            </ul>
-                        </div>
+                        {{ $reviews->links() }}
                     </div>
                 </div>
-            </div>	
+            </div>
             <!-- Student Dashboard -->
         </div>
     </div>
 </div>
+<script>
+    function updateTextInput(val) {
+          document.getElementById('textInput').value=val;
+        }
+</script>
 @endsection
 <!-- /Page Content -->
