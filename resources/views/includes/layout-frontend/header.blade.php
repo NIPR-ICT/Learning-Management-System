@@ -130,7 +130,7 @@
                                     <li class="notification-message">
                                         <div class="media d-flex">
                                             <div>
-                                                <a href="notifications.html" class="avatar">
+                                                <a href="{{route('student.setting')}}" class="avatar">
                                                     <img class="avatar-img" alt="Img" src="{{asset('assets/img/user/user1.jpg')}}">
                                                 </a>
                                             </div>

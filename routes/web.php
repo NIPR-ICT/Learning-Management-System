@@ -98,7 +98,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/update-biodata',[BiodataController::class,'store'])->name('store.biodata');
     Route::post('/update-biodata-password',[BiodataController::class,'passwordReset'])->name('store.biodata.password');
 
-    Route::middleware(['role:user'])->group(function () {
+    Route::middleware(['role:user','verified'])->group(function () {
     // Route::middleware(['role:user', 'biodata.updated'])->group(function () {
         Route::get('/student/dashboard', [HomeController::class, 'student'])->name('dashboard');
         Route::get('/student/update-biodata',[BiodataController::class,'create'])->name('biodata.update');

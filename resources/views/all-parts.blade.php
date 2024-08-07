@@ -49,7 +49,7 @@
                                 <p>{{ Str::words($part->description, 25, '...') }}</p>
                                 <div class="instructor-info">
                                     <div class="rating-img d-flex align-items-center">
-                                        <p>12+ Lessons</p>
+                                        <p>8+ Lessons</p>
                                     </div>
                                     <div class="course-view d-flex align-items-center ms-0">
                                         <p>9hr 30min</p>
@@ -72,11 +72,7 @@
                                 @elseif (!$part->is_enrolled)
                                     <a href="{{ route('course.register.student', $part->id) }}" class="btn btn-primary">Enroll</a>
                                 @else
-                                <form id="all-course-form-{{ $part->id }}" action="{{ route('list.courses') }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    <input type="hidden" name="part_id" value="{{ $part->id }}">
-                                    <button type="submit" class="btn btn-danger">Start Lesson</button>
-                                </form>
+                                <a href="{{ route('list.courses', $part->id) }}" class="btn btn-primary">Start Lesson</a>
                                 @endif
                             </div>
                         </div>
