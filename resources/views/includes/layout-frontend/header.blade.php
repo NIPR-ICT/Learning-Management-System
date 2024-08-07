@@ -212,15 +212,20 @@
                                 </div>
                                 <div class="user-text">
                                     <h6>{{auth()->user()->name}}</h6>
-                                    <p class="text-muted mb-0">Student</p>
+                                    <p class="text-muted mb-0">{{ auth()->user()->role }}</p>
                                 </div>
                             </div>
 
                             <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="feather-user me-1"></i> Profile</a>
                             {{-- <a class="dropdown-item" href="{{ route('biodata.update') }}"><i class="feather-user me-1"></i> Profile</a> --}}
-                            {{-- <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-star me-1"></i> Subscription</a>
-                            <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-settings me-1"></i> Settings</a> --}}
-                            
+                            {{-- <a class="dropdown-item" href="setting-student-subscription.html"><i class="feather-star me-1"></i> Subscription</a> --}}
+                            <a class="dropdown-item" href="{{ route('student.setting') }}"><i class="feather-settings me-1"></i> Settings</a>
+                            {{-- <div class="dropdown-item night-mode">
+                                <span><i class="feather-moon me-1"></i> Night Mode </span>
+                                <div class="form-check form-switch check-on m-0">
+                                    <input class="form-check-input" type="checkbox" id="night-mode">
+                                </div>
+                            </div> --}}
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

@@ -13,14 +13,15 @@ class Biodata extends Model
         'user_id',
         'date_of_birth',
         'gender',
-        'nationality', 
+        'nationality',
         'marital_status',
-        'phone_number', 
-        'state', 
-        'address',  
-        'highest_qualification', 
+        'phone_number',
+        'state',
+        'address',
+        'highest_qualification',
         'major_field_of_study',
         'practice_no',
+        'bio'
     ];
 
     public function user()

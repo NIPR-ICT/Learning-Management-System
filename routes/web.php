@@ -20,12 +20,14 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PreliminaryPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WishlistController;
-use App\Models\Blog;
-use App\Models\CourseComment;
-use App\Models\Lesson;
-use App\Models\PreliminaryPage;
+use App\Models\Biodata;
+use App\Models\Enrollment;
+use App\Models\Review;
 use Illuminate\Support\Facades\Route;
+
+
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -94,6 +96,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
 
     Route::post('/update-biodata',[BiodataController::class,'store'])->name('store.biodata');
+    Route::post('/update-biodata-password',[BiodataController::class,'passwordReset'])->name('store.biodata.password');
 
     Route::middleware(['role:user','verified'])->group(function () {
     // Route::middleware(['role:user', 'biodata.updated'])->group(function () {
@@ -139,7 +142,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/wishlist', [WishlistController::class, 'studentWishList'])->name('user.wishlist');
 
         Route::get('/student/review', function () {
-            return view('student.review');
+            $reviews = Review::with('course')->where('user_id', auth()->user()->id)->latest()->paginate(5);
+            $courses = Enrollment::with('course')->where('user_id', auth()->user()->id)->latest()->get();
+            return view('student.review', compact('reviews','courses'));
         })->name('student.review');
         Route::get('/student/referral', function () {
             return view('student.referral');
@@ -153,7 +158,8 @@ Route::middleware(['auth'])->group(function () {
 
         //student settings
         Route::get('/student/setting', function () {
-            return view('student.setting');
+            $setting = Biodata::where('user_id', auth()->user()->id)->first();
+            return view('student.setting', compact('setting'));
         })->name('student.setting');
         Route::post('/student/profile-picture', [BiodataController::class, 'profilePicture'])->name('student.profile.picture');
 
@@ -245,6 +251,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('slide', PartnerController::class);
     });
+    Route::resource('review', ReviewController::class);
 
     Route::middleware(['role:instructor'])->group(function () {
         Route::get('/instructor/dashboard', [HomeController::class, 'instructor'])->name('instructor.dashboard');

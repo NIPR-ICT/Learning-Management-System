@@ -60,6 +60,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <form
+                                action="{{ route('store.biodata') }}"
+
+                            method="POST">
+                                @csrf
+                                @if (session('errors'))
+                                <div class="mb-4 text-sm text-red-600">
+                                    {{ session('errors') }}
+                                </div>
+                                @endif
                             <div class="checkout-form settings-wrap">
                                 <div class="edit-profile-info">
                                     <h5>Personal Details</h5>
@@ -68,38 +78,83 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input-block">
-                                            <label class="form-label">First Name</label>
-                                            <input type="text" class="form-control" value="Ronald">
+                                            <label class="form-label">Full Name</label>
+                                            <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-block">
-                                            <label class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" value="Richard">
+                                            <label class="form-label">Practice ID</label>
+                                            <input type="text" name="practice_no" class="form-control" value="{{( $setting && $setting->practice_no)? $setting->practice_no : '' }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-block">
-                                            <label class="form-label">User Name</label>
-                                            <input type="text" class="form-control" value="studentdemo">
+                                            <label class="form-label">Date of Birth</label>
+                                            <input type="date" name="date_of_birth" class="form-control" value="{{( $setting && $setting->date_of_birth)? $setting->date_of_birth : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-block">
+                                            <label class="form-label">Gender</label>
+                                            <select name="gender"class="form-control" id="">
+                                                <option value="" disabled>Select One</option>
+                                                <option value="male" {{( $setting && $setting->gender)? 'selected' : '' }} >Male</option>
+                                                <option value="female" {{( $setting  && $setting->gender)? 'selected' : '' }} >Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-block">
+                                            <label class="form-label">Marital Status</label>
+                                            <select name="marital_status"class="form-control" id="">
+                                                <option value="" disabled>Select One</option>
+                                                <option value="single"  {{( $setting  && $setting->marital_status)? 'selected' : '' }}  >Single</option>
+                                                <option value="married"   {{( $setting  && $setting->marital_status)? 'selected' : '' }} >Married</option>
+                                                <option value="widowed"  {{( $setting  && $setting->marital_status)? 'selected' : '' }} >Widowed</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-block">
                                             <label class="form-label">Phone Number</label>
-                                            <input type="text" class="form-control" value="90154-91036">
+                                            <input type="text" name="phone_number" class="form-control" value="{{( $setting && $setting->phone_number)? $setting->phone_number : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-block">
+                                            <label class="form-label">Nationality</label>
+                                            <input type="text" class="form-control" name="nationality" value="{{( $setting && $setting->nationality)? $setting->nationality : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-block">
+                                            <label class="form-label">State</label>
+                                            <input type="text" name="state" class="form-control"  value="{{( $setting && $setting->state)? $setting->state : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-block">
+                                            <label class="form-label">Highest Qualification</label>
+                                            <input type="text" name="highest_qualification" class="form-control"   value="{{( $setting && $setting->highest_qualification)? $setting->highest_qualification : '' }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-block">
+                                            <label class="form-label">Designation</label>
+                                            <input type="text" name="major_field_of_study" class="form-control" value="{{( $setting && $setting->major_field_of_study)? $setting->major_field_of_study : '' }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="input-block">
-                                            <label class="form-label">Designation</label>
-                                            <input type="text" class="form-control" value="User Interface Design">
+                                            <label class="form-label">Address</label>
+                                            <input type="text" name="address" class="form-control" value="{{( $setting && $setting->address)? $setting->address : '' }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="input-block">
                                             <label class="form-label">Bio</label>
-                                            <textarea rows="4" class="form-control">Hello! I'm Ronald Richard. I'm passionate about developing innovative software solutions, analyzing classic literature. I aspire to become a software developer, work as an editor. In my free time, I enjoy coding, reading, hiking etc.</textarea>
+                                            <textarea rows="4" name="bio" class="form-control">{{( $setting && $setting->bio)? $setting->bio : '' }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -107,7 +162,7 @@
                                     </div>
                                 </div>
                             </div>
-                        {{-- </form> --}}
+                        </form>
                     </div>
                 </div>
             </div>

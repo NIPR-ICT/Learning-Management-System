@@ -22,7 +22,7 @@
         <div class="settings-menu">
             <h3>Dashboard</h3>
             <ul>
-                <li class="nav-item active">
+                <li class="nav-item {{ (Route::is('dashboard'))? 'active':'' }}">
                     <a href="{{route('dashboard')}}" class="nav-link">
                         <i class="bx bxs-tachometer"></i>Dashboard
                     </a>
@@ -32,18 +32,18 @@
                         <i class="bx bxs-user"></i>My Profile
                     </a>
                 </li> --}}
-                <li class="nav-item">
+                <li class="nav-item {{ (Route::is('student.all.program'))? 'active':'' }}">
                     <a href="{{route('student.all.program')}}" class="nav-link">
                         <i class="bx bxs-graduation"></i>Programmes
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ (Route::is('viewBy.bought.programme'))? 'active':'' }}">
                     <a href="{{route('viewBy.bought.programme')}}" class="nav-link">
                         <i class="bx bxs-graduation"></i>Enrolled Programme
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item {{ (Route::is('user.payment.history'))? 'active':'' }}">
                     <a href="{{route('user.payment.history')}}" class="nav-link">
                         <i class="bx bxs-graduation"></i>View Payment History
                     </a>
@@ -51,12 +51,12 @@
 
 
                 <li class="nav-item">
-                    <a href="{{route('user.wishlist')}}" class="nav-link">
+                    <a href="{{route('wishlist')}}" class="nav-link">
                         <i class="bx bxs-heart"></i>Wishlist
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item {{ (Route::is('student.review'))? 'active':'' }}">
                     <a href="{{route('student.review')}}" class="nav-link">
                         <i class="bx bxs-star"></i>Reviews
                     </a>
@@ -72,25 +72,27 @@
                         <i class="bx bxs-bookmark-alt"></i>Question & Answer
                     </a>
                 </li> --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{route('student.referral')}}" class="nav-link">
                         <i class="bx bxs-user-plus"></i>Referrals
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                <li class="nav-item 
+                {{-- {{ (Route::is('student.review'))? 'active':'' }} --}}
+                ">
                     <a href="{{route('student.message')}}" class="nav-link">
                         <i class="bx bxs-chat"></i>Messages
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ (Route::is('student.support'))? 'active':'' }}">
                     <a href="{{route('student.support')}}" class="nav-link">
                         <i class="bx bxs-coupon"></i>Support Tickets
                     </a>
                 </li>
             </ul>
             <h3>Account Settings</h3>
-            <ul>
-                <li class="nav-item">
+            <ul> 
+                <li class="nav-item {{ (Route::is('student.setting','student.change-password','student.social-profile','student.notification'))? 'active':'' }} ">
                     <a href="{{route('student.setting')}}" class="nav-link ">
                         <i class="bx bxs-cog"></i>Settings
                     </a>

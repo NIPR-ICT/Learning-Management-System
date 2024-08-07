@@ -28,21 +28,27 @@
                     <li><a href="{{route('student.notification')}}"><i class="bx bx-bell"></i>Notifications</a></li>
                 </ul>
             </div>
-            <form action="student-change-password.html">
+            <form action="{{ route('store.biodata.password') }}" method="POST">
+                @if (session('errors'))
+                <div class="mb-4 text-sm text-red-600">
+                    {{ session('errors') }}
+                </div>
+                @endif
+                @csrf
                 <div class="checkout-form settings-wrap">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="input-block">
                                 <label class="form-label">Current Password</label>
-                                <input type="password" class="form-control">
+                                <input type="password" name="current_password" class="form-control">
                             </div>
                             <div class="input-block">
                                 <label class="form-label">New Password</label>
-                                <input type="password" class="form-control">
+                                <input type="password" name="password" class="form-control">
                             </div>
                             <div class="input-block">
                                 <label class="form-label">Re-type New Password</label>
-                                <input type="password" class="form-control">
+                                <input type="password" name="password_confirm" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12">
