@@ -20,6 +20,19 @@
                 <div class="container mt-5">
                     <h4 class="mb-4">Lesson</h4>
                     <div class="list-group">
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <!-- FontAwesome Icon -->
+                                @if($preAssessmentCompleted)
+                                <i class="fas fa-check-circle mr-2"></i>&nbsp;
+                                @else
+                                <i class="fas fa-circle-notch mr-2"></i>&nbsp;
+                                @endif
+                                <!-- Lesson Title -->
+                                <p class="mb-0">Pre Assessment Exercise</p>
+                            </div>
+                            <a href="{{route('take.assessment', ['id' => $module_id, 'stage'=>'pre-assessment'])}}" class="btn btn-primary">Start</a>
+                        </div>
                         @foreach ($lessons as $lesson)
                         <div class="list-group-item d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
@@ -30,12 +43,23 @@
                                 <i class="fas fa-circle-notch mr-2"></i>&nbsp;
                                 @endif
                                 <!-- Lesson Title -->
-                                <p class="mb-0">{{ $lesson->title }} {{$lesson->order}}/{{$lessonCount}}</p>
+                                <p class="mb-0">{{ $lesson->title }} {{$lesson->order++}}/{{$lessonCount++}}</p>
                             </div>
                             <a href="{{route('bought.lesson.details', $lesson->id)}}" class="btn btn-primary">Start</a>
                         </div>
                         @endforeach
-                        <!-- Add more courses as needed -->
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                 @if($postAssessmentCompleted)
+                                <i class="fas fa-check-circle mr-2"></i>&nbsp;
+                                @else
+                                <i class="fas fa-circle-notch mr-2"></i>&nbsp;
+                                @endif
+                                <!-- Lesson Title -->
+                                <p class="mb-0">Post Assessment Exercise</p>
+                            </div>
+                            <a href="{{route('take.assessment', ['id' => $module_id, 'stage'=>'post-assessment'])}}" class="btn btn-primary">Start</a>
+                        </div>
                     </div>
                 </div>
 

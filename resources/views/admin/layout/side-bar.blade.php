@@ -176,6 +176,20 @@
 
             </ul>
         </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-news"></i>
+                </div>
+                <div class="menu-title">Assessment</div>
+            </a>
+            <ul>
+                </li>
+                <li> <a href="{{ route('all.assessement') }}"><i class='bx bx-radio-circle'></i>Manage Assessment</a>
+                </li>
+
+            </ul>
+        </li>
  
     </ul>
     <!--end navigation-->

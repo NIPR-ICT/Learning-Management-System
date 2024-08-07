@@ -151,6 +151,8 @@
                                             <td >{{ $module->order}}</td>
                                             <td >
                                                 <a href="{{ route('module.edit', $module->id) }}" class="btn btn-info">Edit</a>
+                                                <a href="{{ route('quiz.add', $module->id) }}" class="btn btn-warning">Add Assessment</a>
+
                                                 <form action="{{ route('module.delete', $module->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this Module?');" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
