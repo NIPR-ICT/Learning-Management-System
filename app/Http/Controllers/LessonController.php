@@ -7,6 +7,8 @@ use App\Models\Enrollment;
 use App\Models\Lesson;
 use App\Models\Material;
 use App\Models\Module;
+use App\Models\Quiz;
+use App\Models\UserQuizScore;
 use App\Models\Progress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -165,8 +167,30 @@ public function edit($id)
         // Determine the previous and next lessons
         $previousLesson = $currentIndex > 0 ? $lessons[$currentIndex - 1] : null;
         $nextLesson = $currentIndex < $lessons->count() - 1 ? $lessons[$currentIndex + 1] : null;
-        
-        return view('lesson-detail', compact('lessons', 'lesson', 'content', 'title', 'previousLesson', 'nextLesson','partID','materials', 'lessonId','existingProgress'));        
+
+        $quizz = Quiz::where('module_id', $moduleID)->first();
+        if($quizz){
+            $quizID=$quizz->id;
+            $quizScoreExists = UserQuizScore::where('user_id', $userId)
+            ->where('quiz_id', $quizID)
+            ->exists();
+            if($quizScoreExists){
+                return view('lesson-detail', compact('lessons', 'lesson', 'content', 'title', 'previousLesson', 'nextLesson','partID','materials', 'lessonId','existingProgress'));        
+            }else{
+                $stage='pre-assessment';
+                return redirect()->route('take.assessment', ['id' => $moduleID, 'stage'=>$stage]);
+            }
+        }else{
+            return redirect()->back()->with('alert', [
+                'title' => 'Notice!',
+                'text' => 'No Assessment Added Yet',
+                'icon' => 'warning'
+            ]);
+
+        }
+
+        // Debugging: Display the quizzes
+       
     }
 
     public function CompleteLesson($id){

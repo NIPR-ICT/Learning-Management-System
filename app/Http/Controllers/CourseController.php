@@ -9,6 +9,8 @@ use App\Models\Module;
 use App\Models\Part;
 use App\Models\Program;
 use App\Models\Progress;
+use App\Models\UserQuizScore;
+use App\Models\Quiz;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -359,8 +361,26 @@ return redirect()->route('program.start')->with('alert', [
             ->get();
 
             $lessonCount = Lesson::where('module_id', $id)->count();
+            $module_id=$id;
+            $quizData = Quiz::where('module_id', $module_id)->first();
+            $preAssessmentCompleted = false;
+            $postAssessmentCompleted = false;
+            
+            // Check if quizData exists
+            if ($quizData) {
+                // Fetch user progress for the quiz
+                $existingProgress = UserQuizScore::where('user_id', Auth::id())
+                    ->where('quiz_id', $quizData->id)
+                    ->whereIn('stage', ['pre-assessment', 'post-assessment'])
+                    ->get();
+            
+                // Check if pre-assessment and post-assessment are completed
+                $preAssessmentCompleted = $existingProgress->where('stage', 'pre-assessment')->isNotEmpty();
+                $postAssessmentCompleted = $existingProgress->where('stage', 'post-assessment')->isNotEmpty();
+            }
+            
 
-        return view('course-list', compact('lessons','existingProgress','lessonCount'));
+        return view('course-list', compact('lessons','existingProgress','lessonCount','module_id','preAssessmentCompleted', 'postAssessmentCompleted'));
 
     }
 ///////////////////////////////////////////public view///////////////////////////////////////////////

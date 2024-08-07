@@ -26,6 +26,7 @@ use App\Models\Biodata;
 use App\Models\Enrollment;
 use App\Models\Review;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
 
 
 
@@ -130,8 +131,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/list-courses-paid/{id}',[CourseController::class, 'ShowBoughtCourses'])->name('bought.courses.list');
         Route::get('/student/lessons-details/{id}',[LessonController::class, 'lessDetails'])->name('bought.lesson.details');
         Route::get('/student/complete-lesson/{id}',[LessonController::class, 'CompleteLesson'])->name('student.complete.lesson');
+        Route::get('/student/take-assessment/{stage}/{id}',[QuizController::class, 'showQuiz'])->name('take.assessment');
         // Route::get('/materials/{id}/download', [MaterialController::class, 'studentdownload'])->name('material.student.download');
-
+        Route::post('/student/{quizId}/submit-assement',[QuizController::class, 'submitQuiz'])->name('submit.assessment');
         // program
         Route::get('/program/{id}', [ProgramController::class, 'programReg'])->name('program');
 
@@ -248,7 +250,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/delete-post/{id}', [BlogController::class, 'destroy'])->name('post.delete');
         Route::get('/admin/edit-post/{id}', [BlogController::class, 'edit'])->name('edit.post.form');
         Route::put('/admin/store-post/{id}', [BlogController::class, 'update'])->name('post.edit.store');
-
+        Route::get('/admin/import-questions/{id}', [QuizController::class, 'showImportForm'])->name('quiz.add');
+        Route::post('/admin/import-questions', [QuizController::class, 'import'])->name('quiz.store');
+        Route::get('/admin/all-assessments', [QuizController::class, 'allAssessments'])->name('all.assessement');
+        Route::delete('/admin/delete-assessment/{id}', [QuizController::class, 'destroy'])->name('assessment.delete');
         Route::resource('slide', PartnerController::class);
     });
     Route::resource('review', ReviewController::class);
