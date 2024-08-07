@@ -219,13 +219,13 @@
                                             @foreach ($recentCourse as $item)
 											<li>
 												<div class="post-thumb">
-													<a href="course-details.html">
+													<a href="{{ route('course.details.view',[$item->id,$item->slug]) }}">
 														<img class="img-fluid" src="{{ url('storage/'.$item->cover_image )}}" alt="Img">
 													</a>
 												</div>
 												<div class="post-info free-color">
 													<h4>
-														<a href="course-details.html">{{ $item->title }}</a>
+														<a href="{{ route('course.details.view',[$item->id,$item->slug]) }}">{{ $item->title }}</a>
 													</h4>
 													<p>{{ $item->course_amount }}</p>
 												</div>
