@@ -68,7 +68,6 @@ if ($exists) {
                                         return [$item->question_id => $item->selected_answer];
                                     });
 
-            // Retrieve the user's score for the quiz
             $score = UserQuizScore::where('user_id', $user->id)
                                   ->where('quiz_id', $quizID)
                                   ->where('stage', $stage)
