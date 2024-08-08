@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('ticket_replies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ticket_id')->nullable()->after('id');
+            $table->unsignedBigInteger('ticket_id')->unsigned();
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
-            $table->unsignedBigInteger('replied_by')->nullable()->after('id');
+            $table->unsignedBigInteger('replied_by')->unsigned();
             $table->foreign('replied_by')->references('id')->on('users')->onDelete('cascade');
             $table->text('replied_message');
             $table->timestamps();
