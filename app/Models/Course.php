@@ -70,6 +70,10 @@ class Course extends Model
     {
         return $this->hasMany(CourseComment::class, 'course_id')->where('status', true);
     }
+    public function rating()
+    {
+        return $this->hasMany(Review::class, 'course_id');
+    }
 
     public function progresses()
 {

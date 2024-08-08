@@ -50,7 +50,7 @@
 															<input type="text" class="form-control" placeholder="Search our courses" >
 														</div>
 													</div>
-													<div class="col-md-6 col-lg-6 col-item">
+													{{-- <div class="col-md-6 col-lg-6 col-item">
 														<div class="input-block select-form mb-0">
 															<select class="form-select select" id="sel1" name="sellist1">
 															  <option>Newly published </option>
@@ -59,7 +59,8 @@
 															  <option>published 3</option>
 															</select>
 														</div>
-													</div>
+													</div> --}}
+
 												</div>
 											</form>
 										</div>
@@ -107,20 +108,70 @@
 												<div class="course-info d-flex align-items-center">
 													<div class="rating-img d-flex align-items-center">
 														<img src="assets/img/icon/icon-01.svg" alt="Img">
-														<p>{{ count($item->modules) }}+ Lesson</p>
+														<p>{{ count($item->modules) }}+ Modules</p>
 													</div>
 													<div class="course-view d-flex align-items-center">
-														<img src="assets/img/icon/icon-02.svg" alt="Img">
-														<p>9hr 30min</p>
+														{{-- <img src="assets/img/icon/icon-02.svg" alt="Img">
+														<p>9hr 30min</p> --}}
 													</div>
 												</div>
 												<div class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star"></i>
-													<span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
+
+                                            @if (count($item->rating) > 0)
+                                                    @php
+                                                    $rating = round(($item->rating->sum('rating') / count($item->rating)), 1);
+                                                @endphp
+                                                @if ($rating >= 5)
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                @elseif ($rating >= 4)
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star"></i>
+                                                @elseif ($rating >= 3)
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star "></i>
+                                                <i class="fas fa-star"></i>
+                                                @elseif ($rating >= 2)
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star "></i>
+                                                <i class="fas fa-star "></i>
+                                                <i class="fas fa-star"></i>
+                                                @else
+
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star "></i>
+                                                <i class="fas fa-star "></i>
+                                                <i class="fas fa-star "></i>
+                                                <i class="fas fa-star"></i>
+                                                @endif
+                                            @else
+
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            @endif
+													<span class="d-inline-block average-rating"><span>
+                                                        {{-- {{
+                                                    round(
+                                                        ( $item->rating->sum('rating') && $item->rating->sum('rating') > 0 )? $item->rating->sum('rating'):5 / (count($item->rating) && count($item->rating) > 0 )? 1 : count($item->rating)), 1)
+                                                     }} --}}
+                                                @if (count($item->rating) > 0)
+                                                    @php
+                                                    $rating = round(($item->rating->sum('rating') / (count($item->rating))? 1 : count($item->rating)), 1);
+                                                 @endphp
+                                                 @endif
+                                                     </span> ({{ count($item->rating) }})</span>
 												</div>
 												<div class="all-btn all-category d-flex align-items-center">
                                                     <button title="Add to cart"   onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}' )"  class="btn btn-primary">

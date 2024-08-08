@@ -7,7 +7,7 @@
 						<div class="col-md-7">
 							<div class="home-slide-face aos" data-aos="fade-up">
 								<div class="home-slide-text ">
-									<h5>The Leader in you </h5>
+									<h5>The Uprising Leader in you </h5>
 									<h1>Empower Your Potential with PRLA</h1>
 									<p>Unleash the power of strategic communication and leadership</p>
 								</div>
@@ -19,8 +19,8 @@
 												<input type="email" class="form-control" placeholder="Search School, Online eductional centers, etc">
 												<span class="drop-detail">
 
-													<select class="form-select select">
-                                                        <option value="" disabled>programme</option>
+													<select required class="form-select select">
+                                                        <option value="" >Select Programme</option>
                                                         @foreach ($program as $item)
 														<option>{{ $item->title }}</option>
                                                         @endforeach
@@ -32,18 +32,54 @@
 									</form>
 								</div>
 								<div class="trust-user">
-									<p>Trusted by over 15K Users <br>worldwide since 2022</p>
+									<p>Trusted by over {{ $users }} Users <br>worldwide since 2022</p>
 									<div class="trust-rating d-flex align-items-center">
 										<div class="rate-head">
-											<h2><span>1000</span>+</h2>
+											<h2><span>{{ $reviewCount }}</span>+</h2>
 										</div>
 										<div class="rating d-flex align-items-center">
-											<h2 class="d-inline-block average-rating">4.4</h2>
+                                            @php
+                                                $rating = round($reviewRating, 1);
+                                            @endphp
+											<h2 class="d-inline-block average-rating">{{ $rating }}</h2>
+                                            @if ($rating == 5)
+                                            <i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
+                                            
+                                            @elseif ($reviewRating >= 4)
+                                            <i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star "></i>
+                                            
+                                            @elseif ($reviewRating >= 3)
+                                            <i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star "></i>
+                                            
+                                            @elseif ($reviewRating >= 2)
+                                            <i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star "></i>
+                                            
+                                            @else 
+                                                 
+                                            <i class="fas fa-star filled"></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star "></i>
+                                            @endif
+                                            
+
 										</div>
 									</div>
 								</div>
@@ -210,7 +246,7 @@
                                                             {{ url('storage/'.$item->creator->image) }}
                                                             @endif" alt="Img" class="img-fluid"></a>
                                                             <div class="course-name">
-                                                                <h4><a href="#">{{ $item->creator->name}} </a></h4>
+                                                                <h4><a href="#">{{ $item->creator->name}}  </a></h4>
                                                                 <p>{{ $item->creator->role }}</p>
                                                             </div>
                                                         </div>
@@ -226,21 +262,62 @@
                                                             <p>{{ count($item->lessons)}}+ Lesson</p>
                                                         </div>
                                                         <div class="course-view d-flex align-items-center">
-                                                            <img src="assets/img/icon/icon-02.svg" alt="Img">
-                                                            <p>9hr 30min</p>
+                                                            {{-- <img src="assets/img/icon/icon-02.svg" alt="Img">
+                                                            <p>9hr 30min</p> --}}
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <div class="rating m-0">
-                                                            <i class="fas fa-star filled"></i>
-                                                            <i class="fas fa-star filled"></i>
-                                                            <i class="fas fa-star filled"></i>
-                                                            <i class="fas fa-star filled"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
+                                                    @if (count($item->rating) < 1)
+                                                       
+                                                            @php
+                                                            $rating = round(($item->rating->sum('rating') / count($item->rating)), 1);
+                                                        @endphp
+                                                        @if ($rating >= 5)
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i> 
+                                                        @elseif ($rating >= 4)
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        @elseif ($rating >= 3)
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star "></i>
+                                                        <i class="fas fa-star"></i>
+                                                        @elseif ($rating >= 2)
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star "></i>
+                                                        <i class="fas fa-star "></i>
+                                                        <i class="fas fa-star"></i>
+                                                        @else
+            
+                                                        <i class="fas fa-star filled"></i>
+                                                        <i class="fas fa-star "></i>
+                                                        <i class="fas fa-star "></i>
+                                                        <i class="fas fa-star "></i>
+                                                        <i class="fas fa-star"></i>
+                                                        @endif
+                                                    @else
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i>
+                                                    <i class="fas fa-star filled"></i> 
+                                                    @endif
+                                                            <span class="d-inline-block average-rating"><span>
+                                                                {{(empty($rating))? '0': $rating }}</span> ({{ count($item->rating) }})
+                                                            </span>
                                                         </div>
                                                         <div class="all-btn all-category d-flex align-items-center">
-                                                            <button title="Add to cart"   onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}' )"  class="btn btn-primary-presh">
+                                                            <button title="Add to cart"   onclick="addToCart({{ $item->id }},'{{ $item->creator->name }}','{{ $item->slug }}','{{ $item->title }}')"  class="btn btn-primary-presh">
                                                                 {{-- <img width="30px" src="{{asset('assets/img/icon/cart.svg')}}" alt="img"/> --}}
                                                                 <i class="fa fa-shopping-cart"></i>
                                                             </button>
@@ -359,7 +436,7 @@
 
 						@foreach ($mostEnrolledCourses as $key => $item)
                         @php
-                            $courses = \App\Models\Course::with('modules','creator','lessons','program')->where('id',$item->course_id)->first();
+                            $courses = \App\Models\Course::with('modules','creator','lessons','program','review')->where('id',$item->course_id)->first();
 
                         @endphp
                         <div class="course-box trend-box">
@@ -396,18 +473,58 @@
 											<p>{{ count($courses->lessons)}}+ Lesson</p>
 										</div>
 										<div class="course-view d-flex align-items-center">
-											<img src="assets/img/icon/icon-02.svg" alt="Img" class="img-fluid">
-											<p>10hr 30min</p>
+											{{-- <img src="assets/img/icon/icon-02.svg" alt="Img" class="img-fluid">
+											<p>10hr 30min</p> --}}
 										</div>
 									</div>
 									<div class="d-flex align-items-center justify-content-between">
 										<div class="rating m-0">
+                                            
+                                        @if (count($courses->rating) < 1)
+                                            @php
+                                                $rating = round(($courses->rating->sum('rating') / count($courses->rating)), 1);
+                                            @endphp
+                                            @if ($rating >= 5)
+                                            <i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i> 
+                                            @elseif ($rating >= 4)
+                                            <i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star"></i>
-											<span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
+                                            @elseif ($rating >= 3)
+                                            <i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star"></i>
+                                            @elseif ($rating >= 2)
+                                            <i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star"></i>
+                                            @else
+
+                                            <i class="fas fa-star filled"></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star "></i>
+											<i class="fas fa-star"></i>
+                                            @endif
+										@else
+                                        <i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i> 
+                                        @endif    
+                                        
+											<span class="d-inline-block average-rating"><span>{{ $rating }}</span> ({{ count($courses->rating) }})</span>
 										</div>
 										<div class="all-btn all-category d-flex align-items-center">
 											{{-- <a href="checkout.html" class="btn btn-primary">BUY NOW</a> --}}
@@ -663,7 +780,10 @@
 						<div class="section-sub-head feature-head text-center mb-0">
 							<h2>Latest Blogs</h2>
 							<div class="section-text aos" data-aos="fade-up">
-								<p class="mb-0">Our nonestop eyeopening and amazing happenings on recent news and trends</p>
+								<p class="mb-0">Our nonestop eyeopening and amazing happenings on recent news and trends.
+                                    Stay informed and inspired as we explore the evolving landscape of public relations together. 
+                                    Whether you're a seasoned professional or a budding PR enthusiast, our blog offers valuable content to support your journey in this dynamic field
+                                </p>
 							</div>
 						</div>
 					</div>
