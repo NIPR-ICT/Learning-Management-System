@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('category');
             $table->string('subject');
-            $table->text('message'); 
+            $table->text('message');
             $table->unsignedBigInteger('sender')->unsigned();
             $table->foreign('sender')
                     ->references('id')->on('users')
                     ->onDelete('cascade');
-            $table->enum('priority',['high','low', 'Medium'])->default('opened');
+            $table->enum('priority',['high','low', 'Medium'])->default('low');
             $table->enum('status',['opened','in progress', 'closed'])->default('opened');
             $table->timestamps();
         });
