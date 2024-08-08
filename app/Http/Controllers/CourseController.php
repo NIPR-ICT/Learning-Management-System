@@ -385,7 +385,7 @@ return redirect()->route('program.start')->with('alert', [
     }
 ///////////////////////////////////////////public view///////////////////////////////////////////////
     public function CourseHome(){
-        $courses = Course::with('creator','modules')->latest()->paginate(12);
+        $courses = Course::with('creator','modules', 'rating')->latest()->paginate(12);
         $programs = Program::with('part')->get();
         return view('course', compact('courses','programs'));
     }

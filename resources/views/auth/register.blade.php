@@ -102,7 +102,10 @@
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>Public Relations and Leadership Academy Courses.</h2>
-								<p>awaiting write up.</p>
+								<p>Join the NIPR LMS Community today! Sign up to access a wealth of resources, courses, and networking opportunities tailored for PR professionals. 
+                                    Whether you're looking to enhance your skills, earn certifications, or connect with industry leaders, our platform is designed to support your 
+                                    professional growth. Register now and take the first step towards advancing your PR career.
+                                </p>
 							</div>
 						</div>
 						<div class="welcome-login">
@@ -111,7 +114,9 @@
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>Public Relations and Leadership Academy Courses.</h2>
-								<p>awaiting write up.</p>
+								<p>Ready to elevate your public relations expertise? Sign up for the NIPR LMS and unlock exclusive access to comprehensive training modules, expert-led webinars, 
+                                    and valuable industry insights. 
+                                    Our user-friendly platform is dedicated to providing you with the tools and knowledge you need to excel in the PR field. Join our community and start your learning journey today!</p>
 							</div>
 						</div>
 						<div class="welcome-login">
@@ -120,7 +125,10 @@
 							</div>
 							<div class="mentor-course text-center">
 								<h2>Welcome to <br>Public Relations and Leadership Academy Courses.</h2>
-								<p>awaiting writeup</p>
+								<p>Become a member of the NIPR LMS and gain access to cutting-edge PR education and professional development resources. 
+                                    Our platform offers a wide range of courses, from foundational principles to advanced strategies, all designed to 
+                                    help you succeed in the fast-paced world of public relations. 
+                                    Don't miss out on the opportunity to learn from the best—sign up now and start building your PR prowess.</p>
 							</div>
 						</div>
 					</div>

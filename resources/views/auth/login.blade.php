@@ -98,7 +98,9 @@
                 </div>
                 <div class="mentor-course text-center">
                     <h2>Welcome to <br>Public Relations and Leadership Academy Courses.</h2>
-                    <p>awaiting write up</p>
+                    <p>Welcome back to NIPR LMS! Log in to continue your learning journey and access your personalized dashboard. 
+                        Here, you can resume courses, 
+                        track your progress, and explore new content tailored to your interests. Your professional growth is our priority—sign in now to stay connected and keep advancing your PR skills.</p>
                 </div>
             </div>
             <div class="welcome-login">
@@ -107,7 +109,9 @@
                 </div>
                 <div class="mentor-course text-center">
                     <h2>Welcome to <br>Public Relation and Leadership Academy Courses.</h2>
-                    <p>awaiting write up</p>
+                    <p>Hello, NIPR LMS Member! Sign in to your account and dive back into our extensive library of PR resources. From interactive courses to industry insights, 
+                        #your next learning opportunity is just a click away. 
+                        Stay engaged and make the most of your membership by logging in and continuing your professional development with </p>
                 </div>
             </div>
             <div class="welcome-login">
@@ -116,7 +120,9 @@
                 </div>
                 <div class="mentor-course text-center">
                     <h2>Welcome to <br>Public Relation and Leadership Academy Courses.</h2>
-                    <p>awaiting write up</p>
+                    <p>Welcome to the NIPR LMS portal! Sign in to access your courses, 
+                        view your progress, and stay up-to-date with the latest PR trends and strategies. Our platform is designed to support your continuous learning and professional advancement. 
+                        Log in now to continue your journey towards PR excellence.</p>
                 </div>
             </div>
         </div>
