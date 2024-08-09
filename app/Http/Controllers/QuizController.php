@@ -50,39 +50,51 @@ class QuizController extends Controller
     public function showQuiz($stage, $moduleId)
     {
         $quizz = Quiz::where('module_id', $moduleId)->first();
-       if($quizz){
-        $quizID=$quizz->id;
-        $user = Auth::user();
-        $exists = UserQuizScore::where('user_id', $user->id)
-                        ->where('quiz_id', $quizID)
-                        ->where('stage', $stage)
-                        ->exists();
-       }
-$exists = false;
-if ($exists) {
-    $module = Module::with('quizzes.questions')->find($moduleId);
-    $userAnswers = UserAnswer::where('user_id', $user->id)
-                                    ->where('stage', $stage)
-                                    ->get()->keyBy('question_id')
-                                    ->mapWithKeys(function ($item) {
-                                        return [$item->question_id => $item->selected_answer];
-                                    });
 
+        // Initialize $exists
+        $exists = false;
+    
+        if ($quizz) {
+            $quizID = $quizz->id;
+            $user = Auth::user();
+            $exists = UserQuizScore::where('user_id', $user->id)
+                ->where('quiz_id', $quizID)
+                ->where('stage', $stage)
+                ->exists();
+        }
+    
+        // Fetch the module and questions regardless of whether the quiz has been taken
+        $module = Module::with('quizzes.questions')->find($moduleId);
+    
+        if ($exists) {
+            // If the quiz has been taken, fetch the user's answers and score
+            $userAnswers = UserAnswer::where('user_id', $user->id)
+                ->where('stage', $stage)
+                ->get()->keyBy('question_id')
+                ->mapWithKeys(function ($item) {
+                    return [$item->question_id => $item->selected_answer];
+                });
+    
             $score = UserQuizScore::where('user_id', $user->id)
-                                  ->where('quiz_id', $quizID)
-                                  ->where('stage', $stage)
-                                  ->value('score');
-
-    return view('assessment-detail', [
-        'module' => $module,
-        'stage' => $stage,
-        'score' => $score,
-        'userAnswers' => $userAnswers
-    ]);
-} else {
-    $module = Module::with('quizzes.questions')->find($moduleId);
-    return view('quiz', ['module' => $module,'stage' => $stage, 'moduleId'=>$moduleId]);
-}
+                ->where('quiz_id', $quizID)
+                ->where('stage', $stage)
+                ->value('score');
+    
+            // Render the assessment-detail view with the user's data
+            return view('assessment-detail', [
+                'module' => $module,
+                'stage' => $stage,
+                'score' => $score,
+                'userAnswers' => $userAnswers,
+            ]);
+        } else {
+            // If the quiz has not been taken, render the quiz view
+            return view('quiz', [
+                'module' => $module,
+                'stage' => $stage,
+                'moduleId' => $moduleId,
+            ]);
+        }
     }
 
     public function submitQuiz(Request $request, $quizId)
