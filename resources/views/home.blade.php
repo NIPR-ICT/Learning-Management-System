@@ -268,50 +268,57 @@
                                                     </div>
                                                     <div class="d-flex align-items-center justify-content-between">
                                                         <div class="rating m-0">
-                                                    @if (count($item->rating) < 1)
-                                                       
-                                                            @php
-                                                            $rating = round(($item->rating->sum('rating') / count($item->rating)), 1);
-                                                        @endphp
-                                                        @if ($rating >= 5)
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i> 
-                                                        @elseif ($rating >= 4)
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        @elseif ($rating >= 3)
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star "></i>
-                                                        <i class="fas fa-star"></i>
-                                                        @elseif ($rating >= 2)
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star "></i>
-                                                        <i class="fas fa-star "></i>
-                                                        <i class="fas fa-star"></i>
-                                                        @else
-            
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star "></i>
-                                                        <i class="fas fa-star "></i>
-                                                        <i class="fas fa-star "></i>
-                                                        <i class="fas fa-star"></i>
-                                                        @endif
-                                                    @else
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i> 
-                                                    @endif
+@php
+    $ratingCount = count($item->rating);
+    $rating = $ratingCount > 0 ? round(($item->rating->sum('rating') / $ratingCount), 1) : 0;
+@endphp
+
+@if ($ratingCount > 0)
+    @if ($rating >= 5)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i> 
+    @elseif ($rating >= 4)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star"></i>
+    @elseif ($rating >= 3)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+    @elseif ($rating >= 2)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+    @elseif ($rating >= 1)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+    @else
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+    @endif
+@else
+    <!-- No ratings available, show empty stars or a message -->
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+@endif
                                                             <span class="d-inline-block average-rating"><span>
                                                                 {{(empty($rating))? '0': $rating }}</span> ({{ count($item->rating) }})
                                                             </span>
@@ -480,49 +487,58 @@
 									<div class="d-flex align-items-center justify-content-between">
 										<div class="rating m-0">
                                             
-                                        @if (count($courses->rating) < 1)
-                                            @php
-                                                $rating = round(($courses->rating->sum('rating') / count($courses->rating)), 1);
-                                            @endphp
-                                            @if ($rating >= 5)
-                                            <i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i> 
-                                            @elseif ($rating >= 4)
-                                            <i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star"></i>
-                                            @elseif ($rating >= 3)
-                                            <i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star "></i>
-											<i class="fas fa-star"></i>
-                                            @elseif ($rating >= 2)
-                                            <i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star "></i>
-											<i class="fas fa-star "></i>
-											<i class="fas fa-star"></i>
-                                            @else
+@php
+    $ratingCount = count($courses->rating);
+    $rating = $ratingCount > 0 ? round(($courses->rating->sum('rating') / $ratingCount), 1) : 0;
+@endphp
 
-                                            <i class="fas fa-star filled"></i>
-											<i class="fas fa-star "></i>
-											<i class="fas fa-star "></i>
-											<i class="fas fa-star "></i>
-											<i class="fas fa-star"></i>
-                                            @endif
-										@else
-                                        <i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i> 
-                                        @endif    
+@if ($ratingCount > 0)
+    @if ($rating >= 5)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i> 
+    @elseif ($rating >= 4)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star"></i>
+    @elseif ($rating >= 3)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+    @elseif ($rating >= 2)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+    @elseif ($rating >= 1)
+        <i class="fas fa-star filled"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+    @else
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+    @endif
+@else
+    <!-- No ratings available, show empty stars or a message -->
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+@endif
+  
                                         
 											<span class="d-inline-block average-rating"><span>{{ $rating }}</span> ({{ count($courses->rating) }})</span>
 										</div>
